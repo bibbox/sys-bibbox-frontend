@@ -2,8 +2,10 @@
 Javascript code of the BIBBOX Framework
 
 
-## Archtitecture Principle
+## Architecture
  * how does the liferay backend / portlets communicate wih the ReactJS frontent
+
+## GUI patterns
 
 ## Content
 ### Store
