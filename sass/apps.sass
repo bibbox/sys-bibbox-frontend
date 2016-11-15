@@ -1,0 +1,1184 @@
+#wrapper > section .portlet-content #bibbox-wrapper
+    
+    
+    /* GENERAL */
+    
+    *
+        margin: 0
+        padding: 0
+        font-family: "Helvetica", "sans-serif"
+        font-size: 15px
+        box-sizing: border-box
+        outline: 0
+        word-wrap: break-word
+        
+    h1
+        font-size: 20px
+        font-weight: normal
+        text-align: left
+    
+    h2
+        font-size: 16px
+        font-weight: normal
+        color: rgba(0, 0, 0, 0.4)
+        margin-bottom: 5px
+        text-align: left
+    
+    h3
+        font-size: 18px
+        font-weight: normal
+        color: #555
+        margin-bottom: 5px
+        text-align: left
+    
+    a
+        color: #6496b4
+        text-decoration: none
+    
+    .mce-ico,
+    .mce-caret
+        font-family: 'tinymce', Arial !important
+        
+    .mce-caret
+        margin-top: 8px !important
+
+
+    /* COMMON */
+
+    #wrapper,
+    #component-wrapper,
+    #app-wrapper,
+    #app-filter,
+    #app-legend,
+    #instances,
+    #app-store,
+    #tagger,
+    .store-group,
+    .store-group-name,
+    .store-app .tags,
+    .facet-title,
+    .facet-group,
+    .facet-item,
+    .facet-label
+        float: left
+        width: 100%
+    
+    #component-navigation
+        padding: 10px 20px
+        margin-bottom: 20px
+        text-align: center
+
+    #loader
+        width: 60px
+        height: 60px
+        position: absolute
+        top: 200px
+        left: 50%
+        margin: 0 0 0 -25px
+    
+    button
+        padding: 7px 15px
+        border-radius: 5px
+        background: white
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+        border: 0
+        color: #555
+        cursor: pointer
+        margin: 0 10px
+        min-width: 80px
+        transition: all 0.2s ease-in-out
+        -webkit-transition: all 0.2s ease-in-out
+    
+    button:hover
+        color: white
+        background: #6496b4
+    
+    select
+        padding: 5px 30px 5px 10px
+        border-radius: 3px
+        border: 0
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+        background: white url('../images/arrow.png') right/auto 100% no-repeat
+        -webkit-appearance: none
+        -moz-appearance: none
+        appearance: none
+        
+    textarea
+        min-height: 200px
+        
+    .mce-btn, .mce-panel, .mce-container
+        button
+            -webkit-appearance: none
+            box-shadow: none
+            min-width: initial
+            border-radius: 0
+            background: transparent
+    
+    .highlight
+        color: white !important
+        background: rgb(45, 97, 145) !important
+    
+    .tag
+        padding: 2px 5px
+        min-width: initial
+        margin: 0 5px 5px 0
+        float: left
+        font-size: 12px
+        border: 0
+        background: rgba(0, 0, 0, 0.07)
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+        border-radius: 3px
+        color: #333
+        cursor: pointer
+    
+    .tag.white
+        background: rgba(255, 255, 255, 0.2)
+    
+    .tag:hover
+        background: rgba(0, 0, 0, 0.9)
+        color: white
+
+
+    /* STORE */
+
+    #app-store
+        display: none
+
+        #store-results
+            display: flex
+            flex-flow: row wrap
+            padding: 0 10px
+            border-left: solid 1px #CCC
+
+        .store-group
+            margin-bottom: 20px
+            border-bottom: solid 1px #DDD
+            padding-bottom: 15px
+            display: flex
+            flex-flow: row wrap
+
+        .store-group:last-child
+            border-bottom: 0
+
+        .store-group-name
+            text-align: left
+            padding: 0 10px
+            margin-bottom: 15px
+            font-size: 20px
+            color: #2d6191
+
+        .store-app
+            padding: 15px 10px 10px 10px
+            text-align: center
+            width: 150px
+            float: left
+            background: rgba(255, 255, 255, 0.75)
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+            color: rgb(85, 95, 125)
+            border-radius: 0 10px
+            margin: 10px
+            cursor: pointer
+            transition: all 0.2s ease-in-out
+            -webkit-transition: all 0.2s ease-in-out
+            position: relative
+
+            .name
+                float: left
+                width: 100%
+                height: 50px
+                font-size: 16px
+                margin-bottom: 10px
+                border-bottom: solid 1px rgb(85, 95, 125)
+                transition: border 0.2s ease-in-out
+                -webkit-transition: border 0.2s ease-in-out
+
+            .description
+                text-align: left
+                font-size: 13px
+                width: 100%
+                display: inline-block
+                color: #666
+                transition: color 0.2s ease-in-out
+                -webkit-transition: color 0.2s ease-in-out
+
+            .decoration
+                position: absolute
+                top: -6px
+                right: -6px
+                width: 80px
+
+                img
+                    width: 100%
+                    height: auto
+
+            .character, .icon
+                font-size: 35px
+                float: left
+                width: 100%
+                margin-bottom: 10px
+
+                img
+                    max-width: 90px
+                    max-height: 90px
+
+        .store-app:hover
+            color: white
+            background: #6496b4
+
+        .store-app.highlight .name,
+        .store-app:hover .name
+            border-bottom: solid 1px white
+
+        .store-app.highlight .description,
+        .store-app:hover .description
+            color: white
+
+        .store-app.highlight .tag,
+        .store-app:hover .tag
+            color: white
+            background: rgba(255, 255, 255, 0.2)
+
+        .store-app:hover .tag:hover
+            background: rgba(0, 0, 0, 0.9)
+
+        #app-detail,
+        .app-detail-label,
+        .app-detail-value
+            float: left
+            width: 100%
+
+        #overlay-content
+            float: left
+            width: 100%
+            text-align: center
+            padding: 30px 50px
+
+        #overlay-toggle
+            margin-bottom: 20px
+
+        #app-detail
+            text-align: left
+
+        .app-detail-label
+            margin-bottom: 5px
+            font-weight: bold
+            color: #2d6191
+
+        .app-detail-value
+            margin-bottom: 20px
+
+
+    /* INSTALL */
+
+    #app-install
+        display: none
+        
+        #loading
+            display: block
+            text-align: center
+            
+            img
+                width: 50px
+                margin-bottom: 30px
+                
+            span
+                width: 100%
+                float: left
+
+        form
+            display: flex
+            flex-flow: row wrap
+
+            .app-install-text
+                width: 100%
+                display: inline-block
+                margin-bottom: 20px
+                text-align: center
+                
+                h2
+                    text-align: center
+                    font-size: 25px
+                    color: #2d6191
+                    margin-bottom: 25px
+
+            .full-width
+                width: 100%
+                display: inline-block
+                text-align: center
+
+            .field-group
+                display: flex
+                flex-flow: row wrap
+                width: 100%
+
+            label
+                display: inline-block
+                width: 20%
+                max-width: 100%
+                margin-bottom: 5px
+                padding-right: 30px
+                font-weight: bold
+                color: #2d6191
+                text-align: right
+                height: 33px
+                line-height: 33px
+
+            input,
+            textarea
+                display: inline-block
+                width: 60%
+                max-width: 100%
+                padding: 5px 10px
+                margin-bottom: 5px
+                border-radius: 3px
+                border: solid 1px lightgray
+                background: white
+                text-align: left
+                
+            
+            .field-description,
+            .install-submit
+                width: 100%
+                margin-left: 20%
+                margin-right: 20%
+                padding: 0 5px
+                margin-bottom: 20px
+                
+            .install-submit
+                text-align: center
+
+            .app-install-submit
+                margin-top: 20px
+                
+                
+    /* DASHBOARD */
+    
+    #app-dashboard
+        display: none
+        
+        .app-dashboard-header
+            float: left
+            width: 100%
+            margin-bottom: 40px
+            
+            .app-dashboard-title
+                float: left
+                width: 60%
+
+                img
+                    float: left
+                    max-height: 50px
+
+                h1
+                    color: #2d6191
+                    line-height: 50px
+                    padding: 0
+                    float: left
+                    margin-left: 15px
+                    font-size: 25px
+                    
+            .app-dashboard-controls
+                float: left
+                width: 40%
+                margin-top: 7.5px
+                
+                span, button
+                    float: right
+        
+        .app-dashboard-chart
+            display: inline-block
+            width: 100%
+            height: 150px !important
+                
+        #component-navigation
+            text-align: left
+        
+        .status
+            width: 30px
+            height: 30px
+            border-radius: 15px
+            border: solid 2px lightgray
+            float: left
+            margin-top: 2.5px
+            margin-right: 10px
+            
+        .running
+            background: rgb(140, 210, 90)
+            
+        .stopped
+            background: #DDD
+            
+        input[type=text],
+        textarea
+            display: inline-block
+            width: 100%
+            max-width: 100%
+            padding: 5px 10px
+            border-radius: 3px
+            border: solid 1px lightgray
+            background: white
+            text-align: left
+                
+        button
+            svg
+                float: left
+                height: 20px
+                width: 20px
+                margin-right: 10px
+            
+                path
+                    fill: black
+                    height: 20px
+                    width: 20px  
+        button:hover
+            svg
+                path
+                    fill: white
+                
+        label
+            margin-bottom: 15px
+        
+        ul
+            display: inline-block
+            padding-left: 22px
+            
+            li, a
+                font-size: 22px
+        
+        .full-width
+            display: inline-block
+            width: 100%
+            margin-top: 40px
+            text-align: center
+            
+            
+    /* LOG */
+    
+    #app-log
+        float: left
+        width: 100%
+        
+        #app-log-container
+            float: left
+            width: 100%
+            background: white
+            padding: 20px 30px
+            max-height: 500px
+            overflow: auto
+            border-radius: 10px
+            border: solid 1px lightgray
+            margin-bottom: 40px
+            
+        #app-log-navigation
+            float: left
+            width: 100%
+            text-align: center
+            
+            
+    /* MAINTENANCE */
+    
+    #app-maintenance
+        float: left
+        width: 100%
+        
+        #app-maintenance-container
+            float: left
+            width: 100%
+            margin-bottom: 40px
+            
+        #app-maintenance-navigation
+            float: left
+            width: 100%
+            text-align: center
+
+
+    /* OVERLAY */
+
+    #overlay-wrapper
+        position: fixed
+        top: 0
+        bottom: 0
+        left: 0
+        right: 0
+        background: rgba(0, 0, 0, 0.7)
+        z-index: 2
+    
+    #overlay-loader
+        width: 60px
+        height: 60px
+        position: fixed
+        top: 50%
+        left: 50%
+        margin: -25px 0 0 -25px
+    
+    #overlay-inner
+        display: none
+        position: absolute
+        top: 100px
+        bottom: 100px
+        left: 2.5%
+        right: 2.5%
+    
+    #overlay-body
+        position: relative
+        width: 1000px
+        max-width: 100%
+        background: white
+        margin: 0 auto 0 auto
+        border-radius: 5px
+        box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.8)
+        text-align: left
+        overflow: auto
+        max-height: 100%
+    
+    #overlay-close-wrapper
+        position: relative
+        width: 1000px
+        max-width: 100%
+        margin: 0 auto 0 auto
+        max-height: 100%
+        margin-bottom: -40px
+        height: 40px
+        padding: 5px 5px 0 5px
+    
+    #overlay-close-body
+        position: absolute
+        top: 5px
+        right: 5px
+        width: 35px
+        height: 35px
+        border-radius: 50%
+        padding: 7.5px
+        cursor: pointer
+        z-index: 1
+    
+    #overlay-close-body:hover
+        background: rgba(0, 0, 0, 0.1)
+    
+    #overlay-close-body img
+        width: 20px
+        height: 20px
+
+
+    /* MESSAGE */
+
+    .message-wrapper
+        float: left
+        width: 100%
+        text-align: center
+    
+    .message-body
+        display: inline-block
+        padding: 8px 15px
+        background: rgb(255, 220, 150)
+        color: rgb(150, 110, 50)
+        border-radius: 5px
+        border: solid 1px rgb(220, 170, 100)
+        margin-top: 5px
+        
+
+    /* CONFIRM */
+
+    .confirm-wrapper
+        position: absolute
+        top: 200px
+        bottom: 200px
+        left: 2.5%
+        right: 2.5%
+    
+    .confirm-body
+        position: relative
+        width: 400px
+        max-width: 100%
+        background: white
+        margin: 0 auto
+        border-radius: 5px
+        box-shadow: 0 0 30px 3px rgba(0, 0, 0, 0.8)
+        overflow: auto
+        padding: 20px 30px
+        text-align: center
+
+
+    /* TAGER SEARCH */
+
+    #tagger
+        padding: 10px
+    
+        .ReactTags__tag
+            float: left
+            padding: 5px 7px
+            border-radius: 3px
+            background: rgba(255, 255, 255, 0.75)
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+            color: #555
+            cursor: pointer
+            margin: 0 10px 10px 0
+            transition: all 0.2s ease-in-out
+            -webkit-transition: all 0.2s ease-in-out
+            
+            .ReactTags__remove
+                margin-left: 10px
+                font-weight: bold
+            
+            .ReactTags__remove:hover
+                color: black
+    
+        .ReactTags__tag:hover
+            color: white
+            background: #6496b4
+            
+            .ReactTags__remove
+                color: white
+    
+                
+        .ReactTags__tagInput
+            float: left
+            position: relative
+            margin: 0 0 10px 0
+            
+            input
+                padding: 5px 10px
+                border-radius: 3px
+                background: white
+                box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+                border: 0
+                color: #555
+                cursor: pointer
+                width: 200px
+            
+        .ReactTags__suggestions
+            position: absolute
+            top: 100%
+            width: 100%
+            background: white
+            box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+            z-index: 1
+    
+            ul
+                width: 100%
+                list-style: none
+            
+                li
+                    width: 100%
+                    text-align: left
+                    padding: 3px 5px
+                
+                li:hover
+                    background: #EEE
+
+
+    /* FACET SEARCH*/
+
+    .facet-wrapper
+        width: 250px
+        float: left
+        text-align: left
+        padding: 0 20px 0 10px
+
+    .facet-title
+        text-align: left
+        padding: 0 10px
+        margin-bottom: 25px
+        font-size: 20px
+        color: #2d6191
+    
+    .facet-item
+        text-align: left
+        margin-bottom: 10px
+        position: relative
+        background: rgba(255, 255, 255, 0.5)
+        border-radius: 3px
+        overflow: hidden
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+    
+    .facet-label
+        padding: 5px 10px 5px 35px
+        position: relative
+        color: rgb(85, 95, 125)
+        cursor: pointer
+        z-index: 1
+    
+        input
+            position: absolute
+            left: 10px
+            top: 50%
+            margin-top: -10px
+            width: 20px
+            height: 20px
+    
+    .facet-bar
+        position: absolute
+        top: 0
+        bottom: 0
+        left: 0
+        width: 0
+        background: rgba(100, 150, 180, 0.2)
+        z-index: 0
+
+
+    /* INSTANCES */
+
+    #app-instances
+        display: none
+
+        #app-filter
+            margin-bottom: 15px
+            padding: 10px 10px
+
+            select
+                margin-left: 20px
+
+            #tagger
+                float: left
+                width: auto
+                padding: 0
+
+        #app-legend
+            margin-bottom: 10px
+            padding: 0 10px
+
+            > div
+                float: left
+                margin-right: 20px
+
+                > span
+                    float: left
+                    margin-right: 5px
+                    width: 15px
+                    height: 15px
+
+        .running
+            background: white !important
+
+        .maintenance,
+        .stopped
+            background: rgba(0, 0, 0, 0.05) !important
+            opacity: 0.75
+
+        .old_running
+            background: rgb(166, 198, 152) !important
+
+        .old_paused
+            background: rgb(131, 163, 195) !important
+
+        .old_stopped
+            background: rgb(211, 155, 151) !important
+
+        #instances
+            display: flex
+            flex-flow: row wrap
+
+            .app
+                position: relative
+                width: 23.5%
+                margin: 0.75%
+                background: #CCC
+                border-radius: 0 10px
+                overflow: hidden
+                color: #666
+                padding-bottom: 38px
+                box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+                text-align: left
+
+                .app-header,
+                .app-footer
+                    background: rgba(0, 0, 0, 0.03)
+                    display: inline-block
+                    width: 100%
+                    text-align: center
+
+                .app-header
+                    position: relative
+                    padding: 0 0 0 50px
+                    border-bottom: solid 2px rgba(0, 0, 0, 0.08)
+                    cursor: pointer
+
+                    h1
+                        width: 100%
+                        text-align: left
+                        color: #6496b4
+                        padding: 7px 10px
+                        margin-bottom: 0
+
+                    img
+                        position: absolute
+                        top: 50%
+                        left: 10px
+                        margin-top: -17.5px
+                        width: 35px
+                        height: 35px
+
+                    h2
+                        width: 100%
+                        padding: 0 10px 5px 10px
+                        margin-bottom: 0
+                        font-size: 14px
+
+
+                .app-body
+                    float: left
+                    width: 100%
+                    padding: 20px 18px 20px 18px
+                    color: #555f7d
+
+                    > div,
+                    > h2
+                        display: inline-block
+                        width: 100%
+
+                    .app-application
+                        float: left
+                        width: 100%
+                        margin-bottom: 20px
+                        text-align: center
+
+                        img
+                            display: inline-block
+                            max-width: 50px
+                            max-height: 50px
+
+                        span
+                            display: inline-block
+                            width: 100%
+                            margin-top: 10px
+
+                    .app-quickinfo
+                        float: left
+                        width: 100%
+                        /* margin-bottom: 20px */
+                        padding-bottom: 15px
+                        color: #888
+                        height: 200px
+                        overflow: auto
+                        background-color: rgba(0, 0, 0, 0.03)
+                        padding: 5px 10px
+
+                        h1, h2, h3
+                            color: #555f7d
+
+
+                .app-footer
+                    position: absolute
+                    display: flex
+                    flex-flow: row nowrap
+                    bottom: 0
+                    left: 0
+                    right: 0
+                    border-radius: 0 0 0 10px
+                    overflow: hidden
+                    border-top: solid 2px rgba(0, 0, 0, 0.08)
+                    background: rgba(0, 0, 0, 0.03)
+
+                    .app-footer-button
+                        display: inline-block
+                        height: 36px
+                        flex-grow: 1
+                        padding: 7px 18px
+                        cursor: pointer
+                        border-left: solid 1px rgba(0, 0, 0, 0.08)
+
+                        > span
+                            display: inline-block
+
+                            .title
+                                float: left
+                                line-height: 20px
+                                font-size: 18px
+
+                            .icon
+                                float: left
+                                width: 20px
+                                height: 20px
+                                margin-right: 10px
+
+                                svg
+                                    display: block
+                                    height: 20px
+                                    width: 20px
+
+                                    path
+                                        fill: #666666
+                                        height: 20px
+                                        width: 20px
+                                        
+                    .app-footer-button.dashboard
+                        flex-grow: 0
+                        
+                        > span
+                            .icon
+                                margin-right: 0
+
+                    .app-footer-button:first-child
+                        border-left: 0
+                        border-right: solid 1px rgba(0, 0, 0, 0.08)
+
+                    .app-footer-button:hover
+                        background: #6496b4
+                        color: white
+
+                        path
+                            fill: white !important
+
+    .app-performance
+        width: 100%
+        display: flex !important
+        flex-flow: row wrap
+        margin-top: 5px
+
+        span
+            flex-basis: 33.33%
+
+        .right
+            text-align: right
+
+        .light
+            font-size: 13px
+            color: #6496b4
+
+        .dark
+            font-size: 13px
+            color: rgba(0, 0, 0, 0.3)
+
+
+    /* INFO */
+
+    #app-info
+        display: none
+        flex-flow: row wrap
+    
+        h2
+            color: #2d6191
+            font-size: 20px
+            text-align: left
+    
+        .app-info-header
+            width: 100%
+            display: inline-block
+            margin-bottom: 30px
+    
+            .app-info-title
+                float: left
+                width: 100%
+
+                img
+                    float: left
+                    max-height: 50px
+
+                h1
+                    color: #2d6191
+                    line-height: 50px
+                    padding: 0
+                    float: left
+                    margin-left: 15px
+                    font-size: 25px
+
+        .app-info-body
+            display: flex
+            flex-flow: row wrap
+            width: 100%
+            text-align: left
+
+            h2,
+            .full-width
+                float: left
+                width: 95%
+
+            .margin-bottom
+                margin-bottom: 20px
+
+        .app-info-left
+            width: 60%
+
+            > span
+                float: left
+                width: 45%
+                margin-right: 5%
+
+            h3,
+            p
+                float: left
+                width: 100%
+
+            h3
+                color: #6496b4
+                margin-bottom: 5px
+
+            p
+                margin-bottom: 15px
+
+            img
+                max-height: 40px
+                margin-bottom: 5px
+
+        .app-info-right
+            width: 40%
+            display: block
+
+            img
+                display: inline-block
+                height: 80px
+
+            h2
+                width: 100%
+
+            .app-info-chart
+                float: left
+                width: 100%
+                height: 100px
+                margin-bottom: 5px
+                background: rgba(0, 0, 0, 0.05)
+                border-radius: 5px
+                padding: 10px
+
+            .app-performance
+                margin-bottom: 20px
+
+                .light
+                    color: #6496b4
+
+                .dark
+                    color: rgba(0, 0, 0, 0.4)
+
+
+    /* MEDIA QUERIES */
+
+    @media only screen and (max-width: 1200px)
+        #app-instances
+            #instances
+                .app
+                    width: 31.333%
+                    margin: 1%
+                    
+    @media only screen and (max-width: 1100px)
+        #app-dashboard
+            .app-dashboard-header
+                .app-dashboard-title
+                    width: 100%
+                
+                .app-dashboard-controls
+                    width: 100%
+
+    @media only screen and (max-width: 1000px)
+        #app-install
+            form
+                label
+                    width: 100%
+                    text-align: left
+
+                input,
+                textarea
+                    width: 100%
+                    
+                .field-description,
+                .install-submit
+                    margin-left: 0
+                    margin-right: 0
+                
+    @media only screen and (max-width: 900px)
+        #app-instances
+            #instances
+                .app
+                    width: 47.5%
+                    margin: 1.25%
+                    
+        #app-info
+            .app-info-body
+                .app-info-left
+                    width: 100%
+
+                .app-info-right
+                    margin-top: 30px
+                    width: 100%
+                
+    @media only screen and (max-width: 800px)
+        .app-install-left,
+        .app-install-right
+            width: 100%
+            margin-right: 0
+        
+        .app-install-left
+            text-align: center
+            margin-bottom: 40px
+        
+        #overlay-content
+            padding: 30px 25px
+        
+        #overlay-inner
+            top: 50px
+            bottom: 50px
+                
+    @media only screen and (max-width: 700px)
+        #app-instances
+            #instances
+                .app
+                    width: 95%
+                    margin: 2.5%
+
+    @media only screen and (max-width: 600px)
+        #app-filter #tagger
+            width: 100%
+            margin-top: 20px
+        
+            .ReactTags__tagInput,
+            .ReactTags__tagInput input
+                width: 100%
+            
+        #app-store
+            #tagger
+                width: 100%
+
+                .ReactTags__tagInput,
+                .ReactTags__tagInput input
+                    width: 100%
+
+            .facet-wrapper
+                width: 100%
+                padding: 0 10px
+
+                .facet-title
+                    padding: 0
+
+            #store-results
+                float: left
+                width: 100%
+                margin-top: 30px
+                display: inline-block
+                border-left: 0
+                padding: 0
+        
+        .overlay-content-title
+            width: 100%
+        
+        .overlay-content-controls
+            float: left
+            width: auto
+            margin-top: 15px
+        
+        .overlay-content-left,
+        .overlay-content-right
+            float: left
+            width: 100%
+        
+        .overlay-content-right
+            margin-top: 25px
+        
+        .overlay-content-left
+            > span
+                width: 100%
+                margin-right: 0
+                
+        #app-dashboard
+            .app-dashboard-header
+                .app-dashboard-controls
+                    .status
+                        margin-top: 10px
+                    
+                    button
+                        min-width: auto
+                        padding: 15px
+                        
+                        svg
+                            margin-right: 0
+                        
+                        span
+                            display: none
