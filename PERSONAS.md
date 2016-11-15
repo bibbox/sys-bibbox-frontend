@@ -5,8 +5,8 @@ we describe the different users types as Personas, together with their computer 
 
 ### VM Admin 
 ### Admin
-### BIBBOX Curator
 ### BIBBOX PI
+### BIBBOX Curator
 ### APP PI
 ### APP Curator
 ### Operator
