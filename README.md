@@ -30,6 +30,7 @@
 
 ## Components
 The following table shortly explains the different components:
+
 | Component     | Description |
 | ------------- | ----------- |
 | wrapper       | Renders the different screens of the UI depending on url parameter  |
