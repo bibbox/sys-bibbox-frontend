@@ -31,6 +31,6 @@ User of one or more applications within the BIBBOX installation.
 | ------------------- | -------------- | --------------------- | -------- |
 | ![Avatar][robert]   | Robert Rilling | ![VM Admin][vm-admin] | VM Admin |
 | ![Avatar][lukas]    | Lukas Punter   | ![Admin][admin]       | Admin    |
-| ![Avatar][curtis]   | Veronica Sandu | ![PI][admin]          | PI       |
-| ![Avatar][heimo]    | Heimo Morello  | ![Curator][admin]     | Curator  |
-| ![Avatar][viktoria] | Barbara Kies   | ![User][admin]        | User     |
+| ![Avatar][curtis]   | Veronica Sandu | ![PI][pi]             | PI       |
+| ![Avatar][heimo]    | Heimo Morello  | ![Curator][curator]   | Curator  |
+| ![Avatar][viktoria] | Barbara Kies   | ![User][user]         | User     |
