@@ -47,12 +47,3 @@ The following table shortly explains the different components:
 | maintenance   | Renders the maintenance screen of an installed application          |
 | message       | Renders a warning message                                           |
 | confirm       | Renders a confirmation popup                                        |
-
-## GUI patterns
-
-## Content
-### Store
-#### Install
-### Instances (Applications)
-#### Info Window (User)
-#### Admin Dashboard (Admin)
