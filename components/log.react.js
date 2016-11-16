@@ -8,7 +8,10 @@ import jQuery   from 'jquery';
 const Log = React.createClass({
 	getInitialState() {
 		return {
-            log: ''
+            log: '',
+            applicationname: '',
+            version: '',
+            longname: ''
 		}
 	},
   
@@ -19,7 +22,10 @@ const Log = React.createClass({
 		},
 		function(result) {
 			this.setState({
-                log: result.log
+                log: result.log,
+                applicationname: result.applicationname,
+                version: result.version,
+                longname: result.instancename
 			});
 		  
 			jQuery('#loader').stop().fadeOut(300);
@@ -30,6 +36,12 @@ const Log = React.createClass({
 	render() {
 		return (
             <div id="app-log">
+                <div className="app-log-header">
+					<span className="app-log-title">
+						<img src={'http://datastore.development.bibbox.org/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
+						<h1>{this.state.longname}</h1>
+					</span>
+				</div>
                 <div id="app-log-container" dangerouslySetInnerHTML={{__html: this.state.log.replace(/\n/gi, "<br />")}}></div>
                 <div id="app-log-navigation">
 			  		<button onClick={() => { window.close(); }}>Close</button>

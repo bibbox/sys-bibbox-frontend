@@ -93,7 +93,7 @@ const OverlayWrapper = React.createClass({
             const button = (this.state.app.installable)
                 ?   <button
                         id="overlay-install"
-                        onClick={() => { const win = window.open('/install/id/' + this.state.app.applicationname + '/' + this.state.app.docker_version, '_blank'); win.focus(); }}
+                        onClick={() => { const win = window.open('/install/id/' + this.state.app.applicationname + '/' + this.state.app.docker_version, '_blank'); window.location='/instances'; win.focus(); }}
                     >Install</button>
                 :   '';
             

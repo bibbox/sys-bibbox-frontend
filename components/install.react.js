@@ -45,9 +45,20 @@ const Install = React.createClass({
 		}.bind(this));
 	},
 	
-	fieldChange(id, event) {
+	fieldChange(id, regex = null, event) {
 		let form = this.state.form;
-		form[id] = event.target.value;
+        
+        form[id] = event.target.value;
+        
+        if(regex == null || event.target.value == '') {
+            jQuery(event.target).removeClass('right wrong');
+        }
+        else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null) {
+            jQuery(event.target).addClass('right').removeClass('wrong');
+        }
+        else {
+            jQuery(event.target).addClass('wrong').removeClass('right');
+        }
 		
 		this.setState({ form: form });
 	},
@@ -111,11 +122,23 @@ const Install = React.createClass({
 						/>
 						<br />
 						<label htmlFor="instanceid">Application ID</label>
-						<input onChange={this.fieldChange.bind(this, 'instanceid')} value={this.state.form.instanceid} type="text" name="instanceid" />
+						<input
+                            onChange={this.fieldChange.bind(this, 'instanceid', '^[a-z0-9-]{1,64}$')}
+                            value={this.state.form.instanceid}
+                            type="text"
+                            name="instanceid"
+                            required
+                        />
                         <span className="field-description">Subdomain of your application URL. <b>The application ID can not be changed after the installation.</b></span>
 						<br />
 						<label htmlFor="instancename">Application Name</label>
-						<input onChange={this.fieldChange.bind(this, 'instancename')} value={this.state.form.instancename} type="text" name="instancename" />
+						<input
+                            onChange={this.fieldChange.bind(this, 'instancename', null)}
+                            value={this.state.form.instancename}
+                            type="text"
+                            name="instancename"
+                            required
+                        />
                         <span className="field-description">Full name of your application, can be changed later on.</span>
 						<br />
 						{
@@ -140,8 +163,8 @@ const Install = React.createClass({
 						}
 						<br />
 						<span className="install-submit">
-							<button className="app-install-cancel" onClick={this.cancel}>Cancel</button>
-							<button className="app-install-submit">Install</button>
+							<button className="app-install-cancel" type="button" onClick={this.cancel}>Cancel</button>
+							<button className="app-install-submit" type="submit">Install</button>
 						</span>
 					</form>
 				</div>

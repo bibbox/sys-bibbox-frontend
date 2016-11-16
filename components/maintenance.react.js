@@ -30,7 +30,7 @@ const Maintenance = React.createClass({
 	render() {
 		return (
             <div id="app-maintenance">
-                <div id="app-maintenance-container" dangerouslySetInnerHTML={{__html: this.state.maintenance}}></div>
+                <div id="app-maintenance-container" dangerouslySetInnerHTML={{__html: this.state.content}}></div>
                 <div id="app-maintenance-navigation">
 			  		<button onClick={() => { window.location = "/instances"; }}>Applications</button>
 				</div>
