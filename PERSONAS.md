@@ -14,7 +14,7 @@ Responsible for (easy) configuration tasks and the description of BIBBOX and app
 ### User
 User of one or more applications within the BIBBOX installation.
 
-[robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/robert.jpg
 [lukas]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/lukas.jpg
 [veronica]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
 [heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
