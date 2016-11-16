@@ -20,11 +20,11 @@ User of one or more applications within the BIBBOX installation.
 [heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
 [viktoria]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
 
-[vm-admin]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[admin]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[pi]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[curator]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 
-[user]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png 
+[vm-admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/vm-admin_small.png
+[admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/admin_small.png
+[pi]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/pi_small.png
+[curator]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/curator_small.png
+[user]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/user_small.png
 
 ## Personas
 | Picture             | Name           | Role Icon             | Role     |
