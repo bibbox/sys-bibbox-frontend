@@ -14,11 +14,11 @@ Responsible for (easy) configuration tasks and the description of BIBBOX and app
 ### User
 User of one or more applications within the BIBBOX installation.
 
-[robert]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[lukas]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[curtis]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[heimo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
-[viktoria]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
+[robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[lukas]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[curtis]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[viktoria]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
 
 [vm-admin]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
 [admin]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png
