@@ -41,9 +41,6 @@ const Instances = React.createClass({
 		
 		return (
 			<div id="app-instances">
-			  	<div id="component-navigation">
-			  		<button onClick={() => { window.location = "/store"; }}>Add application</button>
-				</div>
 				<AppFilter
 					setTags={this.setTags}
 					all={this.state.all}

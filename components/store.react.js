@@ -102,9 +102,6 @@ const Store = React.createClass({
         
         return (
             <div id="app-store">
-                <div id="component-navigation">
-                    <button onClick={() => { window.location = "/instances"; }}>Installed apps</button>
-                </div>
                 {message}
                 <TagSearch all={this.state.all} setTags={this.setTaggerTags} suggestions={suggestions} />
                 <FacetSearch label="Tags" tags={getTags(this.state.all)} return={this.setFacetTags} count={false} />

@@ -45,6 +45,7 @@ const Log = React.createClass({
                 <div id="app-log-container" dangerouslySetInnerHTML={{__html: this.state.log.replace(/\n/gi, "<br />")}}></div>
                 <div id="app-log-navigation">
 			  		<button onClick={() => { window.close(); }}>Close</button>
+			  		<button onClick={() => { window.location.reload(); }}>Refresh</button>
 				</div>
             </div>
 		);
