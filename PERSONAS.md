@@ -16,9 +16,9 @@ User of one or more applications within the BIBBOX installation.
 
 [robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
 [lukas]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
-[curtis]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[veronica]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
 [heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
-[viktoria]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[barbara]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/barbara.jpg
 
 [vm-admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/vm-admin_small.png
 [admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/admin_small.png
@@ -31,6 +31,6 @@ User of one or more applications within the BIBBOX installation.
 | ------------------- | -------------- | --------------------- | -------- |
 | ![Avatar][robert]   | Robert Rilling | ![VM Admin][vm-admin] | VM Admin |
 | ![Avatar][lukas]    | Lukas Punter   | ![Admin][admin]       | Admin    |
-| ![Avatar][curtis]   | Veronica Sandu | ![PI][pi]             | PI       |
+| ![Avatar][veronica] | Veronica Sandu | ![PI][pi]             | PI       |
 | ![Avatar][heimo]    | Heimo Morello  | ![Curator][curator]   | Curator  |
-| ![Avatar][viktoria] | Barbara Kies   | ![User][user]         | User     |
+| ![Avatar][barbara]  | Barbara Kies   | ![User][user]         | User     |
