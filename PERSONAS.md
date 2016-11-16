@@ -17,7 +17,7 @@ User of one or more applications within the BIBBOX installation.
 [robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/robert.jpg
 [lukas]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/lukas.jpg
 [veronica]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
-[heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/profile.jpg
+[heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/heimo.jpg
 [barbara]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/barbara.jpg
 
 [vm-admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/vm-admin_small.png
