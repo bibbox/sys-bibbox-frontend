@@ -33,4 +33,4 @@ User of one or more applications within the BIBBOX installation.
 | ![Avatar][lukas]    | Lukas Punter   | ![Admin][admin]       | Admin    |
 | ![Avatar][veronica] | Veronica Sandu | ![PI][pi]             | PI       |
 | ![Avatar][heimo]    | Heimo Morello  | ![Curator][curator]   | Curator  |
-| ![Avatar][barbara]  | Barbara Kies   | ![User][user]         | User     |
+| ![Avatar][carmen]   | Carmen Christo | ![User][user]         | User     |
