@@ -14,11 +14,11 @@ Responsible for (easy) configuration tasks and the description of BIBBOX and app
 ### User
 User of one or more applications within the BIBBOX installation.
 
-[roxana]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/robert.jpg
-[alan]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/lukas.jpg
-[maimuna]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
-[santa]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/heimo.jpg
-[carmen]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/barbara.jpg
+[roxana]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/roxana.jpg
+[alan]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/alan.jpg
+[maimuna]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/maimuna.jpg
+[santa]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/santa.jpg
+[carmen]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/carmen.jpg
 
 [vm-admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/vm-admin_small.png
 [admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/admin_small.png
