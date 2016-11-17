@@ -10,7 +10,8 @@ const Instances = React.createClass({
 		return {
 			all: [],
 			current: [],
-            user: {}
+            user: {},
+            tags: []
 		}
 	},
     
@@ -24,15 +25,27 @@ const Instances = React.createClass({
 	  
             jQuery('#loader').stop().fadeOut(300);
             jQuery(ReactDOM.findDOMNode(this)).fadeIn(500);
+            
+            setInterval(() => {
+                get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-list', {}, function (result) {
+                    const current = filterAppInstances(result.instances, this.state.tags);
+                    
+                    this.setState({
+                        all: result.instances,
+                        current: current
+                    });
+                }.bind(this));
+            }, 3000);
 		}.bind(this));
     },
   
 	setTags(tags) {
 		// Get the filtered list of app instances
-		let current = filterAppInstances(this.state.all, tags);
+		const current = filterAppInstances(this.state.all, tags);
 		
 		this.setState({
-		  	current: current
+		  	current: current,
+            tags: tags
 		});
 	},
   

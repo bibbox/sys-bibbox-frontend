@@ -9,6 +9,13 @@ var components = [
         ],
         path:       __dirname + "/js",
         filename:   "apps.js"
+    },
+    {
+        entry: [
+            __dirname + "/components/activity-wrapper.react.js"
+        ],
+        path:       __dirname + "/js",
+        filename:   "activity.js"
     }
 ];
 

@@ -19,7 +19,12 @@ const Info = React.createClass({
             description: '',
             applicationname: '',
             version: '',
-            application: {},
+            maintenance: false,
+            user: {
+                role: '',
+                username: ''
+            }
+            /* application: {},
 			cpu: [],
 			ram: [],
 			cpu_current: 0,
@@ -42,7 +47,7 @@ const Info = React.createClass({
 					  	}
 				  	}]
 			  	}
-		  	}
+		  	} */
 		}
 	},
   
@@ -76,11 +81,13 @@ const Info = React.createClass({
             
 			this.setState({
                 longname: result.instancename,
-                // shortname: result.instanceshortname,
-                // url: result.instanceurl,
+                shortname: result.instanceshortname,
+                url: result.url,
                 description: result.longdescription,
                 applicationname: result.applicationname,
                 version: result.version,
+                user: result.user,
+                maintenance: result.ismaintenance
                 // application: result.application,
                 // interval: interval
 			});
@@ -156,19 +163,24 @@ const Info = React.createClass({
         */
         
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
+        
+        const open = (this.state.user.role == 'admin' || !this.state.maintenance)
+            ? this.state.url
+            : '/instance/id/' + this.props.params.param2 + '/maintenance';
 		
 		return (
 			<div id="app-info">
 				<div className="app-info-header">
-					<span className="app-info-title">
+					<span className="app-info-title" onClick={() => { const win = window.open(open, '_blank'); win.focus(); }}>
 						<img src={'http://datastore.development.bibbox.org/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
-						<h1>{this.state.longname}</h1>
+						<h1>{this.state.shortname}</h1>
+                        <h3>{this.state.longname}</h3>
 					</span>
 				</div>
 				
 				<div className="app-info-body">
+                    {/*
 					<div className="app-info-left">
-                        {/*
 					  	<h2 className="margin-bottom">General information</h2>
 					  
 					  	<span>
@@ -228,9 +240,7 @@ const Info = React.createClass({
                             <h3>Description</h3>
 							<div dangerouslySetInnerHTML={{__html: this.state.application.description}}></div>
 						</span>
-                        */}
 					</div>
-                    {/*
 				  	<div className="app-info-right">
 					  	<h2 className="margin-bottom">Performance</h2>
 					  
@@ -279,7 +289,6 @@ const Info = React.createClass({
 							<span className="dark one">{Math.round(this.state.ram_current)}%</span>
 							<span className="dark right">82%</span>
 						</div>
-					  
 						<div className="app-info-chart">
 							<Line
 								data={data}

@@ -974,26 +974,35 @@
             text-align: left
     
         .app-info-header
+            float: left
             width: 100%
-            display: inline-block
-            margin-bottom: 30px
-    
+            margin-bottom: 20px
+            
             .app-info-title
                 float: left
-                width: 100%
-
+                cursor: pointer
+                padding-left: 80px
+                position: relative
+                margin-bottom: 20px
+                
                 img
-                    float: left
-                    max-height: 50px
+                    position: absolute
+                    height: 50px !important
+                    top: 50%
+                    left: 0
+                    margin-top: -25px
 
                 h1
                     color: #2d6191
-                    line-height: 50px
                     padding: 0
                     float: left
-                    margin-left: 15px
+                    margin-bottom: 10px
                     font-size: 25px
-
+                    
+                h3
+                    float: left
+                    clear: left
+                    
         .app-info-body
             display: flex
             flex-flow: row wrap

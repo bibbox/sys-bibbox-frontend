@@ -91,7 +91,7 @@ const Dashboard = React.createClass({
                 maintenance: result.ismaintenance,
                 maintenance_description: result.maintenance,
                 short_description: result.shortdescription,
-                notes: '',
+                notes: result.adminnode,
                 long_description: result.longdescription,
                 applicationname: result.applicationname,
                 version: result.version,
@@ -121,13 +121,31 @@ const Dashboard = React.createClass({
             case false:
                 this.setState({
                     confirm_text: 'Are you sure, you want to start this application?',
-                    confirm_action: () => {alert('Starting application');}
+                    confirm_action: () => {
+                        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.set-instance-status', {
+                            instanceId: this.props.params.param2,
+                            status: 'start'
+                        },
+                        function() {
+                            this.setState({ status: true });
+                            alert('Application has started!');
+                        }.bind(this))
+                    }
                 });
                 break;
             default:
                 this.setState({
                     confirm_text: 'Are you sure, you want to stop this application?',
-                    confirm_action: () => {alert('Stopping application');}
+                    confirm_action: () => {
+                        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.set-instance-status', {
+                            instanceId: this.props.params.param2,
+                            status: 'stop'
+                        },
+                        function() {
+                            this.setState({ status: false });
+                            alert('Application has stopped!');
+                        }.bind(this))
+                    }
                 });
         }
     },
@@ -137,37 +155,41 @@ const Dashboard = React.createClass({
         this.setState({
             confirm_text: 'Are you sure, you want to restart this application?',
             confirm_action: () => {
-                    get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.restart-instance-status', {
-                    instanceId: this.props.params.param2
+                this.setState({ status: false });
+                
+                get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.set-instance-status', {
+                    instanceId: this.props.params.param2,
+                    status: 'restart'
                 },
                 function() {
-                    alert('The app will restart now, this might take a while.');
-                }.bind(this))
+                    this.setState({ status: true });
+                    alert('Application has restarted!');
+                }.bind(this));
             }
         });
     },
     
     toggleMaintenance() {
         // toggle Maintenance API
-        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.maintenance-instance-status', {
+        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.toggl-instance-maintenance-status', {
             instanceId: this.props.params.param2
         },
         function() {
             this.setState({ maintenance: !this.state.maintenance });
-        }.bind(this))
+        }.bind(this));
     },
     
     delete() {
         this.setState({
             confirm_text: 'Are you sure, you want to delete this application?',
             confirm_action: () => {
-                    get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.delete-instance-status', {
+                get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.delete-instance-status', {
                     instanceId: this.props.params.param2
                 },
                 function() {
                     alert('The app has successfully been deleted!');
                     window.location = '/instances';
-                }.bind(this))
+                }.bind(this));
             }
         });
     },
@@ -196,7 +218,7 @@ const Dashboard = React.createClass({
     },
     
     notesChange(e) {
-        this.setState({ long_description: e.target.getContent() });
+        this.setState({ notes: e.target.getContent() });
     },
     
     nameChange(e) {
@@ -214,7 +236,7 @@ const Dashboard = React.createClass({
             instanceshortname: this.state.shortname,
             description: this.state.long_description,
             shortdescription: this.state.short_description,
-            ismaintenance: this.state.maintenance,
+            adminnode: this.state.notes,
             maintenance: this.state.maintenance_description
         }}];
 		
@@ -274,9 +296,9 @@ const Dashboard = React.createClass({
             };
         */
         
-        const startstop = (this.state.status == 'running') ? 'Stop' : 'Start';
+        const startstop = (this.state.status) ? 'Stop' : 'Start';
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
-        const status = (this.state.maintenance) ? 'maintenance' : ((this.state.status) ? 'running' : 'stopped');
+        const status = (this.state.status) ? ((this.state.maintenance) ? 'maintenance' : 'running') : 'stopped';
         const maintenance = (this.state.maintenance) ? 'Stop Meintenance' : 'Start Maintenance';
 		
 		return (
@@ -297,13 +319,13 @@ const Dashboard = React.createClass({
                         </button>
                         <button onClick={this.restart}>
                             <svg viewBox="0 0 1000 1000">
-                                <path d="M500,0C223.857,0,0,223.857,0,500s223.857,500,500,500s500-223.857,500-500S776.143,0,500,0z M501,925.787C266.396,925.787,76.213,735.604,76.213,501C76.213,266.397,266.396,76.213,501,76.213S925.786,266.397,925.786,501C925.786,735.604,735.603,925.787,501,925.787z M591.202,690.972c1.115-1.341,2.378-2.558,5.256-5.632c-1.465,20.368,2.695,38.779-9.946,55.72c-20.156,27.01-39.918,54.186-66.5,75.436c-26.183,20.931-55.698,33.339-89.502,34.665c-1.192,0.046-2.358,0.71-3.537,1.086c-2.072,0-4.144,0-6.217,0c-5.363-1.603-10.761-3.099-16.086-4.822c-38.852-12.573-59.25-46.334-46.39-87.492c27.169-86.944,52.955-174.32,79.274-261.529c7.083-23.469,13.976-46.995,21.109-70.449c2.26-7.433,1.231-13.887-4.801-18.96c-6.23-5.241-12.695-2.41-17.756,1.462c-8.563,6.555-17.144,13.46-24.197,21.543c-18.368,21.049-35.885,42.84-53.832,64.26c-1.562,1.865-3.788,3.174-5.706,4.742c0-13.47,0-26.939,0-40.409c16.4-19.236,31.652-39.62,49.462-57.447c28.93-28.959,61.847-52.498,102.126-63.78c26.147-7.324,49.653-1.834,68.799,16.891c20.32,19.875,24.846,45.169,16.944,71.731c-28.114,94.496-56.952,188.778-85.529,283.136c-4.785,15.805-9.56,31.614-14.482,47.377c-2.338,7.481-2.25,14.435,4.179,19.816c6.39,5.348,13.467,2.967,18.583-1.25c10.885-8.977,21.621-18.388,30.972-28.908C559.919,729.602,575.322,710.078,591.202,690.972z M647.629,220.503c0,39.072-31.674,70.747-70.746,70.747c-39.074,0-70.748-31.675-70.748-70.747c0-39.073,31.674-70.748,70.748-70.748C615.955,149.755,647.629,181.43,647.629,220.503z" />
+                                <path d="M992.001,507.999c0,66.4-13.015,130.838-38.683,191.522c-24.782,58.593-60.251,111.205-105.421,156.375s-97.782,80.639-156.375,105.421C630.838,986.985,566.4,1000,500,1000s-130.838-13.015-191.523-38.683c-58.592-24.782-111.204-60.251-156.373-105.421c-45.171-45.17-80.64-97.782-105.422-156.375C21.014,638.837,7.999,574.399,7.999,507.999c0-94.006,26.612-185.405,76.962-264.315c32.16-50.405,72.985-94.28,120.361-129.74l-65.975-97.322L459.096,0L325.479,291.191l-69.749-102.89c-37.34,28.562-69.592,63.569-95.152,103.63c-41.137,64.473-62.881,139.188-62.881,216.068c0,107.459,41.848,208.486,117.832,284.471C291.514,868.455,392.541,910.302,500,910.302s208.486-41.847,284.471-117.832c75.985-75.984,117.831-177.012,117.831-284.471c0-65.419-16.042-130.34-46.392-187.744c-29.407-55.622-72.15-104.294-123.606-140.756c-20.21-14.321-24.983-42.314-10.663-62.524c14.321-20.21,42.315-24.984,62.524-10.664c62.867,44.548,115.097,104.031,151.042,172.018C972.361,348.603,992.001,428.021,992.001,507.999z" />
                             </svg>
                             <span className="text">Restart</span>
                         </button>
                         <button onClick={this.toggleMaintenance}>
                             <svg viewBox="0 0 1000 1000">
-                                <path d="M500,0C223.857,0,0,223.857,0,500s223.857,500,500,500s500-223.857,500-500S776.143,0,500,0z M501,925.787C266.396,925.787,76.213,735.604,76.213,501C76.213,266.397,266.396,76.213,501,76.213S925.786,266.397,925.786,501C925.786,735.604,735.603,925.787,501,925.787z M591.202,690.972c1.115-1.341,2.378-2.558,5.256-5.632c-1.465,20.368,2.695,38.779-9.946,55.72c-20.156,27.01-39.918,54.186-66.5,75.436c-26.183,20.931-55.698,33.339-89.502,34.665c-1.192,0.046-2.358,0.71-3.537,1.086c-2.072,0-4.144,0-6.217,0c-5.363-1.603-10.761-3.099-16.086-4.822c-38.852-12.573-59.25-46.334-46.39-87.492c27.169-86.944,52.955-174.32,79.274-261.529c7.083-23.469,13.976-46.995,21.109-70.449c2.26-7.433,1.231-13.887-4.801-18.96c-6.23-5.241-12.695-2.41-17.756,1.462c-8.563,6.555-17.144,13.46-24.197,21.543c-18.368,21.049-35.885,42.84-53.832,64.26c-1.562,1.865-3.788,3.174-5.706,4.742c0-13.47,0-26.939,0-40.409c16.4-19.236,31.652-39.62,49.462-57.447c28.93-28.959,61.847-52.498,102.126-63.78c26.147-7.324,49.653-1.834,68.799,16.891c20.32,19.875,24.846,45.169,16.944,71.731c-28.114,94.496-56.952,188.778-85.529,283.136c-4.785,15.805-9.56,31.614-14.482,47.377c-2.338,7.481-2.25,14.435,4.179,19.816c6.39,5.348,13.467,2.967,18.583-1.25c10.885-8.977,21.621-18.388,30.972-28.908C559.919,729.602,575.322,710.078,591.202,690.972z M647.629,220.503c0,39.072-31.674,70.747-70.746,70.747c-39.074,0-70.748-31.675-70.748-70.747c0-39.073,31.674-70.748,70.748-70.748C615.955,149.755,647.629,181.43,647.629,220.503z" />
+                                <path d="M508.461,644.761c9.771,9.351,6.007,15.672,1.287,25.198c-28.07,56.666-61.301,109.324-104.846,155.96c-45.203,48.416-87.561,99.534-130.187,150.289c-13.901,16.557-30.232,24.049-51.073,23.785c-55.451,0.118-130.938-66.669-137.815-122c-2.489-20.021,4.187-37.004,17.511-51.715c63.182-69.754,125.223-140.596,190.056-208.781c29.371-30.892,71.061-46.046,106.302-69.661c7.725-5.18,11.834,0.455,16.439,5.064C446.818,583.614,477.106,614.745,508.461,644.761z M603.357,406.12c-5.879-9.308,8.673-15.571,14.986-21.875c67.247-67.112,134.915-133.805,202.521-200.555c9.291-9.172,20.08-17.083,12.802-33.149c-4.514-9.962,3.651-14.387,11.003-18.615c24.808-14.27,49.528-28.696,74.261-43.097c23.623-13.756,27.426,12.698,40.395,20.265c12.349,7.203,6.071,16.042-0.038,24.494c-11.98,16.576-24.018,33.145-35.16,50.282c-9.636,14.825-18.641,28.753-40.146,24.285c-10.6-2.203-15.541,7.791-21.594,13.964c-68.213,69.589-136.194,139.404-204.425,208.975c-4.885,4.98-8.571,12.03-18.643,13.51C627.468,432.374,612.725,420.946,603.357,406.12z M485.574,316.548c-28.429-28.289-43.506-60.784-41.328-100.997c0.979-18.115-1.087-35.942-4.824-53.674C414.447,43.385,279.865-31.684,172.242,13.1c2.268,8.547,9.75,12.903,15.369,18.576c33.462,33.779,66.722,67.781,101.031,100.683c11.156,10.697,13.919,20.753,8.297,34.71c-19.062,47.327-52.535,80.061-99.271,99.755c-14.577,6.143-25.285,3.005-36.721-8.99c-37.789-39.635-76.965-77.944-117.606-118.769C-4.187,277.737,98.948,417.521,242.535,414.136c36.301-0.855,68.912,6.76,94.684,32.339c105.849,105.053,215.092,206.666,318.084,314.625c48.08,50.396,96.999,100.018,146.469,149.05c29.506,29.243,65.495,35.967,104.33,21.702c38.462-14.126,58.418-43.541,62.373-83.557c3.505-35.465-13.02-62.549-37.414-86.857C782.4,613.307,634.326,464.587,485.574,316.548z M866.8,874.33c-21.998,0.255-40.201-18.544-39.425-40.708c0.753-21.337,18.438-38.07,39.747-37.607c21.161,0.463,38.957,18.41,38.761,39.089C905.685,855.597,887.261,874.091,866.8,874.33z" />
                             </svg>
                             <span className="text">{maintenance}</span>
                         </button>
@@ -360,8 +382,6 @@ const Dashboard = React.createClass({
                 <br />
                 <input type="text" value={this.state.name} onChange={this.nameChange} />
                 <br />
-                <br />
-                <label><input type="checkbox" onClick={this.maintenanceChange} checked={this.state.maintenance} /> Enable maintenance mode</label>
                 <br />
                 <label>Maintenance description</label><br />
                 {
