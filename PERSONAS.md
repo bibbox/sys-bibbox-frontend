@@ -14,11 +14,11 @@ Responsible for (easy) configuration tasks and the description of BIBBOX and app
 ### User
 User of one or more applications within the BIBBOX installation.
 
-[robert]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/robert.jpg
-[lukas]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/lukas.jpg
-[veronica]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
-[heimo]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/heimo.jpg
-[barbara]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/barbara.jpg
+[roxana]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/robert.jpg
+[alan]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/lukas.jpg
+[maimuna]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/veronica.jpg
+[santa]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/heimo.jpg
+[carmen]: https://raw.githubusercontent.com/bibbox/sys-bibbox-frontend/master/personas/barbara.jpg
 
 [vm-admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/vm-admin_small.png
 [admin]: https://raw.githubusercontent.com/bibbox/res-images/master/user-roles-icons/admin_small.png
@@ -29,8 +29,8 @@ User of one or more applications within the BIBBOX installation.
 ## Personas
 | Picture             | Name           | Role Icon             | Role     |
 | ------------------- | -------------- | --------------------- | -------- |
-| ![Avatar][robert]   | Robert Rilling | ![VM Admin][vm-admin] | VM Admin |
-| ![Avatar][lukas]    | Lukas Punter   | ![Admin][admin]       | Admin    |
-| ![Avatar][veronica] | Veronica Sandu | ![PI][pi]             | PI       |
-| ![Avatar][heimo]    | Heimo Morello  | ![Curator][curator]   | Curator  |
-| ![Avatar][carmen]   | Carmen Christo | ![User][user]         | User     |
+| ![Avatar][roxana]   | Roxana Rilling | ![VM Admin][vm-admin] | VM Admin |
+| ![Avatar][alan]     | Alan Punter      | ![Admin][admin]       | Admin    |
+| ![Avatar][maimuna]  | Majmuna Sandu    | ![PI][pi]             | PI       |
+| ![Avatar][santa]    | Santa Morello    | ![Curator][curator]   | Curator  |
+| ![Avatar][carmen]   | Carmen Thatcher  | ![User][user]         | User     |
