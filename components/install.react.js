@@ -123,7 +123,7 @@ const Install = React.createClass({
 						<br />
 						<label htmlFor="instanceid">Application ID</label>
 						<input
-                            onChange={this.fieldChange.bind(this, 'instanceid', '^[a-z0-9-]{1,64}$')}
+                            onChange={this.fieldChange.bind(this, 'instanceid', '^[a-z0-9]{1}.[a-z0-9-]{0,62}.[a-z0-9]{1}$')}
                             value={this.state.form.instanceid}
                             type="text"
                             name="instanceid"
@@ -133,7 +133,7 @@ const Install = React.createClass({
 						<br />
 						<label htmlFor="instancename">Application Name</label>
 						<input
-                            onChange={this.fieldChange.bind(this, 'instancename', null)}
+                            onChange={this.fieldChange.bind(this, 'instancename', '^[a-zA-Z0-9]{1}.[a-zA-Z0-9- ]{0,253}.[a-zA-Z0-9]{1}$')}
                             value={this.state.form.instancename}
                             type="text"
                             name="instancename"

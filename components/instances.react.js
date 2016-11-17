@@ -15,17 +15,17 @@ const Instances = React.createClass({
 	},
     
 	componentDidMount() {
-		get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-list', {}, function (result) {
+        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-list', {}, function (result) {
 			this.setState({
 				all: result.instances,
 				current: result.instances,
 				user: result.user
 			});
-		}.bind(this));
 	  
-		jQuery('#loader').stop().fadeOut(300);
-		jQuery(ReactDOM.findDOMNode(this)).fadeIn(500);
-	},
+            jQuery('#loader').stop().fadeOut(300);
+            jQuery(ReactDOM.findDOMNode(this)).fadeIn(500);
+		}.bind(this));
+    },
   
 	setTags(tags) {
 		// Get the filtered list of app instances
@@ -156,6 +156,7 @@ const App = React.createClass({
 	},
   
 	render() {
+        {/*
 		var data = {
 			labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
 			datasets: [
@@ -203,6 +204,7 @@ const App = React.createClass({
 				}
 			]
 		};
+        */}
 	
         const dashboard = (this.props.user.role == 'admin')
             ?   <span className="app-footer-button dashboard" onClick={() => { window.location = '/instance/id/' + this.props.data.instanceid + '/dashboard'; }}>

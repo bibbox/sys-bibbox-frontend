@@ -367,31 +367,41 @@
         .app-dashboard-header
             float: left
             width: 100%
-            margin-bottom: 40px
+            margin-bottom: 20px
             
             .app-dashboard-title
                 float: left
-                width: 60%
-
+                cursor: pointer
+                padding-left: 80px
+                position: relative
+                margin-bottom: 20px
+                
                 img
-                    float: left
-                    max-height: 50px
+                    position: absolute
+                    height: 50px !important
+                    top: 50%
+                    left: 0
+                    margin-top: -25px
 
                 h1
                     color: #2d6191
-                    line-height: 50px
                     padding: 0
                     float: left
-                    margin-left: 15px
+                    margin-bottom: 10px
                     font-size: 25px
                     
+                h3
+                    float: left
+                    clear: left
+                    
             .app-dashboard-controls
+                float: right
+                padding-left: 30px
+                margin-top: 15px
+                margin-bottom: 20px
+
+            span, button
                 float: left
-                width: 40%
-                margin-top: 7.5px
-                
-                span, button
-                    float: right
         
         .app-dashboard-chart
             display: inline-block
@@ -415,6 +425,9 @@
             
         .stopped
             background: #DDD
+            
+        .maintenance
+            background: #ebd67a
             
         input[type=text],
         textarea
@@ -448,6 +461,7 @@
         
         ul
             display: inline-block
+            width: 100%
             padding-left: 22px
             
             li, a
@@ -1056,15 +1070,6 @@
                 .app
                     width: 31.333%
                     margin: 1%
-                    
-    @media only screen and (max-width: 1100px)
-        #app-dashboard
-            .app-dashboard-header
-                .app-dashboard-title
-                    width: 100%
-                
-                .app-dashboard-controls
-                    width: 100%
 
     @media only screen and (max-width: 1000px)
         #app-install
@@ -1121,6 +1126,28 @@
                 .app
                     width: 95%
                     margin: 2.5%
+                
+        #app-dashboard
+            .app-dashboard-header
+                .app-dashboard-title
+                    width: 100%
+                
+                .app-dashboard-controls
+                    width: 100%
+                    padding-left: 0
+                    
+                    .status
+                        margin-top: 10px
+
+                    button
+                        min-width: auto
+                        padding: 15px
+
+                        svg
+                            margin-right: 0
+
+                        span
+                            display: none
 
     @media only screen and (max-width: 600px)
         #app-filter #tagger
@@ -1174,19 +1201,3 @@
             > span
                 width: 100%
                 margin-right: 0
-                
-        #app-dashboard
-            .app-dashboard-header
-                .app-dashboard-controls
-                    .status
-                        margin-top: 10px
-                    
-                    button
-                        min-width: auto
-                        padding: 15px
-                        
-                        svg
-                            margin-right: 0
-                        
-                        span
-                            display: none

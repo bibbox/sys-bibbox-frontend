@@ -27,7 +27,8 @@ const Dashboard = React.createClass({
             confirm_action: null,
             applicationname: '',
             version: '',
-			cpu: [],
+            url: '',
+			/* cpu: [],
 			ram: [],
 			cpu_current: 0,
 			ram_current: 0,
@@ -49,7 +50,7 @@ const Dashboard = React.createClass({
 					  	}
 				  	}]
 			  	}
-		  	}
+		  	} */
 		}
 	},
   
@@ -94,6 +95,7 @@ const Dashboard = React.createClass({
                 long_description: result.longdescription,
                 applicationname: result.applicationname,
                 version: result.version,
+                url: result.url
                 // interval: interval
 			});
 		  
@@ -130,11 +132,29 @@ const Dashboard = React.createClass({
         }
     },
     
-    confirmReset() {
+    restart() {
+        // Restart API
         this.setState({
-            confirm_text: null,
-            confirm_action: null
+            confirm_text: 'Are you sure, you want to restart this application?',
+            confirm_action: () => {
+                    get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.restart-instance-status', {
+                    instanceId: this.props.params.param2
+                },
+                function() {
+                    alert('The app will restart now, this might take a while.');
+                }.bind(this))
+            }
         });
+    },
+    
+    toggleMaintenance() {
+        // toggle Maintenance API
+        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.maintenance-instance-status', {
+            instanceId: this.props.params.param2
+        },
+        function() {
+            this.setState({ maintenance: !this.state.maintenance });
+        }.bind(this))
     },
     
     delete() {
@@ -149,6 +169,13 @@ const Dashboard = React.createClass({
                     window.location = '/instances';
                 }.bind(this))
             }
+        });
+    },
+    
+    confirmReset() {
+        this.setState({
+            confirm_text: null,
+            confirm_action: null
         });
     },
     
@@ -249,21 +276,36 @@ const Dashboard = React.createClass({
         
         const startstop = (this.state.status == 'running') ? 'Stop' : 'Start';
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
-        const status = (this.state.status) ? 'running' : 'stopped';
+        const status = (this.state.maintenance) ? 'maintenance' : ((this.state.status) ? 'running' : 'stopped');
+        const maintenance = (this.state.maintenance) ? 'Stop Meintenance' : 'Start Maintenance';
 		
 		return (
 			<div id="app-dashboard">
                 <div className="app-dashboard-header">
-                    <span className="app-dashboard-title">
+                    <span className="app-dashboard-title" onClick={() => { const win = window.open(this.state.url, '_blank'); win.focus(); }}>
                         <img src={'http://datastore.development.bibbox.org/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
-                        <h1>{this.state.name}</h1>
+                        <h1>{this.state.shortname}</h1>
+                        <h3>{this.state.name}</h3>
                     </span>
                     <div className="app-dashboard-controls">
-                        <button onClick={() => { window.location = '/instance/id/' + this.props.params.param2 + '/info'; }}>
+                        <span className={'status ' + status}></span>
+                        <button onClick={this.startStop}>
+                            <svg viewBox="0 0 1000 1000">
+                              <path d="M451.523,528.59V47.615c0-26.233,21.267-47.5,47.5-47.5s47.5,21.267,47.5,47.5V528.59c0,26.233-21.267,47.5-47.5,47.5S451.523,554.823,451.523,528.59z M711.563,158.396c-23.034-12.554-51.885-4.056-64.438,18.98s-4.055,51.885,18.98,64.438c113.472,61.835,183.962,180.438,183.962,309.526c0,94.084-36.639,182.536-103.165,249.063c-66.527,66.527-154.979,103.166-249.063,103.166s-182.537-36.639-249.064-103.166S145.609,645.424,145.609,551.34c0-129.281,70.646-247.969,184.369-309.747c23.052-12.522,31.587-41.361,19.065-64.413c-12.522-23.052-41.362-31.586-64.413-19.065C140.281,236.53,50.609,387.206,50.609,551.34c0,60.354,11.831,118.929,35.165,174.097c22.528,53.261,54.769,101.085,95.826,142.143c41.057,41.057,88.881,73.298,142.143,95.825c55.167,23.334,113.742,35.165,174.097,35.165s118.93-11.831,174.097-35.165c53.261-22.527,101.085-54.769,142.142-95.826c41.058-41.057,73.298-88.881,95.825-142.143c23.334-55.167,35.165-113.741,35.165-174.096C945.068,387.45,855.595,236.883,711.563,158.396z" />
+                            </svg>
+                            <span className="text">{startstop}</span>
+                        </button>
+                        <button onClick={this.restart}>
                             <svg viewBox="0 0 1000 1000">
                                 <path d="M500,0C223.857,0,0,223.857,0,500s223.857,500,500,500s500-223.857,500-500S776.143,0,500,0z M501,925.787C266.396,925.787,76.213,735.604,76.213,501C76.213,266.397,266.396,76.213,501,76.213S925.786,266.397,925.786,501C925.786,735.604,735.603,925.787,501,925.787z M591.202,690.972c1.115-1.341,2.378-2.558,5.256-5.632c-1.465,20.368,2.695,38.779-9.946,55.72c-20.156,27.01-39.918,54.186-66.5,75.436c-26.183,20.931-55.698,33.339-89.502,34.665c-1.192,0.046-2.358,0.71-3.537,1.086c-2.072,0-4.144,0-6.217,0c-5.363-1.603-10.761-3.099-16.086-4.822c-38.852-12.573-59.25-46.334-46.39-87.492c27.169-86.944,52.955-174.32,79.274-261.529c7.083-23.469,13.976-46.995,21.109-70.449c2.26-7.433,1.231-13.887-4.801-18.96c-6.23-5.241-12.695-2.41-17.756,1.462c-8.563,6.555-17.144,13.46-24.197,21.543c-18.368,21.049-35.885,42.84-53.832,64.26c-1.562,1.865-3.788,3.174-5.706,4.742c0-13.47,0-26.939,0-40.409c16.4-19.236,31.652-39.62,49.462-57.447c28.93-28.959,61.847-52.498,102.126-63.78c26.147-7.324,49.653-1.834,68.799,16.891c20.32,19.875,24.846,45.169,16.944,71.731c-28.114,94.496-56.952,188.778-85.529,283.136c-4.785,15.805-9.56,31.614-14.482,47.377c-2.338,7.481-2.25,14.435,4.179,19.816c6.39,5.348,13.467,2.967,18.583-1.25c10.885-8.977,21.621-18.388,30.972-28.908C559.919,729.602,575.322,710.078,591.202,690.972z M647.629,220.503c0,39.072-31.674,70.747-70.746,70.747c-39.074,0-70.748-31.675-70.748-70.747c0-39.073,31.674-70.748,70.748-70.748C615.955,149.755,647.629,181.43,647.629,220.503z" />
                             </svg>
-                            <span className="text">App info</span>
+                            <span className="text">Restart</span>
+                        </button>
+                        <button onClick={this.toggleMaintenance}>
+                            <svg viewBox="0 0 1000 1000">
+                                <path d="M500,0C223.857,0,0,223.857,0,500s223.857,500,500,500s500-223.857,500-500S776.143,0,500,0z M501,925.787C266.396,925.787,76.213,735.604,76.213,501C76.213,266.397,266.396,76.213,501,76.213S925.786,266.397,925.786,501C925.786,735.604,735.603,925.787,501,925.787z M591.202,690.972c1.115-1.341,2.378-2.558,5.256-5.632c-1.465,20.368,2.695,38.779-9.946,55.72c-20.156,27.01-39.918,54.186-66.5,75.436c-26.183,20.931-55.698,33.339-89.502,34.665c-1.192,0.046-2.358,0.71-3.537,1.086c-2.072,0-4.144,0-6.217,0c-5.363-1.603-10.761-3.099-16.086-4.822c-38.852-12.573-59.25-46.334-46.39-87.492c27.169-86.944,52.955-174.32,79.274-261.529c7.083-23.469,13.976-46.995,21.109-70.449c2.26-7.433,1.231-13.887-4.801-18.96c-6.23-5.241-12.695-2.41-17.756,1.462c-8.563,6.555-17.144,13.46-24.197,21.543c-18.368,21.049-35.885,42.84-53.832,64.26c-1.562,1.865-3.788,3.174-5.706,4.742c0-13.47,0-26.939,0-40.409c16.4-19.236,31.652-39.62,49.462-57.447c28.93-28.959,61.847-52.498,102.126-63.78c26.147-7.324,49.653-1.834,68.799,16.891c20.32,19.875,24.846,45.169,16.944,71.731c-28.114,94.496-56.952,188.778-85.529,283.136c-4.785,15.805-9.56,31.614-14.482,47.377c-2.338,7.481-2.25,14.435,4.179,19.816c6.39,5.348,13.467,2.967,18.583-1.25c10.885-8.977,21.621-18.388,30.972-28.908C559.919,729.602,575.322,710.078,591.202,690.972z M647.629,220.503c0,39.072-31.674,70.747-70.746,70.747c-39.074,0-70.748-31.675-70.748-70.747c0-39.073,31.674-70.748,70.748-70.748C615.955,149.755,647.629,181.43,647.629,220.503z" />
+                            </svg>
+                            <span className="text">{maintenance}</span>
                         </button>
                         <button onClick={this.delete}>
                             <svg viewBox="0 0 128 128">
@@ -271,13 +313,6 @@ const Dashboard = React.createClass({
                             </svg>
                             <span className="text">Delete</span>
                         </button>
-                        <button onClick={this.startStop}>
-                            <svg viewBox="0 0 1000 1000">
-                              <path d="M451.523,528.59V47.615c0-26.233,21.267-47.5,47.5-47.5s47.5,21.267,47.5,47.5V528.59c0,26.233-21.267,47.5-47.5,47.5S451.523,554.823,451.523,528.59z M711.563,158.396c-23.034-12.554-51.885-4.056-64.438,18.98s-4.055,51.885,18.98,64.438c113.472,61.835,183.962,180.438,183.962,309.526c0,94.084-36.639,182.536-103.165,249.063c-66.527,66.527-154.979,103.166-249.063,103.166s-182.537-36.639-249.064-103.166S145.609,645.424,145.609,551.34c0-129.281,70.646-247.969,184.369-309.747c23.052-12.522,31.587-41.361,19.065-64.413c-12.522-23.052-41.362-31.586-64.413-19.065C140.281,236.53,50.609,387.206,50.609,551.34c0,60.354,11.831,118.929,35.165,174.097c22.528,53.261,54.769,101.085,95.826,142.143c41.057,41.057,88.881,73.298,142.143,95.825c55.167,23.334,113.742,35.165,174.097,35.165s118.93-11.831,174.097-35.165c53.261-22.527,101.085-54.769,142.142-95.826c41.058-41.057,73.298-88.881,95.825-142.143c23.334-55.167,35.165-113.741,35.165-174.096C945.068,387.45,855.595,236.883,711.563,158.396z" />
-                            </svg>
-                            <span className="text">{startstop}</span>
-                        </button>
-                        <span className={'status ' + status}></span>
                     </div>
                 </div>
                 {/*
@@ -311,19 +346,19 @@ const Dashboard = React.createClass({
                             Install instructions
                         </a>
                     </li>
-                    <li><a href={'/instance/id/' + this.props.params.param2 + '/log/install'} target='_blank'>Install log</a></li>
                     <li><a href={'/instance/id/' + this.props.params.param2 + '/log/general'} target='_blank'>General log</a></li>
+                    <li><a href={'/instance/id/' + this.props.params.param2 + '/log/install'} target='_blank'>Install log</a></li>
                 </ul>
-                <br />
-                <br />
-                <label>Long name</label>
-                <br />
-                <input type="text" value={this.state.name} onChange={this.nameChange} />
                 <br />
                 <br />
                 <label>Short name</label>
                 <br />
                 <input type="text" value={this.state.shortname} onChange={this.shortnameChange} />
+                <br />
+                <br />
+                <label>Long name</label>
+                <br />
+                <input type="text" value={this.state.name} onChange={this.nameChange} />
                 <br />
                 <br />
                 <label><input type="checkbox" onClick={this.maintenanceChange} checked={this.state.maintenance} /> Enable maintenance mode</label>

@@ -51,6 +51,7 @@ const Info = React.createClass({
 			instanceId : this.props.params.param2
 		},
 		function(result) {
+            /*
             const interval = setInterval(function() {
                 let cpu = this.state.cpu;
                 let ram = this.state.ram;
@@ -71,17 +72,17 @@ const Info = React.createClass({
                     ram_current: ram_new
                 });
             }.bind(this), 3000);
-
+            */
             
 			this.setState({
                 longname: result.instancename,
-                shortname: result.instanceshortname,
-                url: result.instanceurl,
+                // shortname: result.instanceshortname,
+                // url: result.instanceurl,
                 description: result.longdescription,
                 applicationname: result.applicationname,
                 version: result.version,
-                application: result.application,
-                interval: interval
+                // application: result.application,
+                // interval: interval
 			});
 		  
 			jQuery('#loader').stop().fadeOut(300);
@@ -93,6 +94,7 @@ const Info = React.createClass({
 	  	clearInterval(this.state.interval);
 	},
 	
+    /*
 	random(min, max, num) {
 		var rtn = [];
 		while (rtn.length < num) {
@@ -100,8 +102,10 @@ const Info = React.createClass({
 		}
 		return rtn;
 	},
+    */
 	
 	render() {
+        /*
 		var data = {
 			labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
 			datasets: [
@@ -149,6 +153,7 @@ const Info = React.createClass({
 				}
 			]
 		};
+        */
         
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
 		
@@ -163,6 +168,7 @@ const Info = React.createClass({
 				
 				<div className="app-info-body">
 					<div className="app-info-left">
+                        {/*
 					  	<h2 className="margin-bottom">General information</h2>
 					  
 					  	<span>
@@ -173,13 +179,12 @@ const Info = React.createClass({
 					  	<span>
 							<h3>Instance ID</h3>
 							<p><a href={this.state.url} target="_blank">{this.state.url}</a></p>
+						</span>					  
+                        */}
+					  	<span className="full-width">
+							<div dangerouslySetInnerHTML={{__html: this.state.description}}></div>
 						</span>
-					  
-					  	<span className="full-width margin-bottom">
-							<h3>Description</h3>
-							<p dangerouslySetInnerHTML={{__html: this.state.description}}></p>
-						</span>
-					  
+                        {/*
 						<h2 className="margin-bottom">Application</h2>
 						<span>
                             <h3>Long name</h3>
@@ -219,13 +224,13 @@ const Info = React.createClass({
                                 </a>
                             </p>
 						</span>
-					  
 						<span className="full-width">
-							<h3>Description</h3>
-							<p dangerouslySetInnerHTML={{__html: this.state.application.description}}></p>
+                            <h3>Description</h3>
+							<div dangerouslySetInnerHTML={{__html: this.state.application.description}}></div>
 						</span>
+                        */}
 					</div>
-				  
+                    {/*
 				  	<div className="app-info-right">
 					  	<h2 className="margin-bottom">Performance</h2>
 					  
@@ -321,6 +326,7 @@ const Info = React.createClass({
 							<span className="dark right">82%</span>
 						</div>
 					</div>
+                    */}
 				</div>
 			</div>
 		);
