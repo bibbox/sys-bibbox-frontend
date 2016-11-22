@@ -172,7 +172,7 @@ const Info = React.createClass({
 			<div id="app-info">
 				<div className="app-info-header">
 					<span className="app-info-title" onClick={() => { const win = window.open(open, '_blank'); win.focus(); }}>
-						<img src={'http://datastore.development.bibbox.org/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
+						<img src={datastore + '/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
 						<h1>{this.state.shortname}</h1>
                         <h3>{this.state.longname}</h3>
 					</span>

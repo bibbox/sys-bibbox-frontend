@@ -12,7 +12,7 @@ var components = [
     },
     {
         entry: [
-            __dirname + "/components/activity-wrapper.react.js"
+            __dirname + "/components/activity-center.react.js"
         ],
         path:       __dirname + "/js",
         filename:   "activity.js"
@@ -26,6 +26,13 @@ var stylesheets = [
         ],
         path:       __dirname + "/css",
         filename:   "apps.css"
+    },
+    {
+        entry: [
+            __dirname + "/sass/activity.sass"
+        ],
+        path:       __dirname + "/css",
+        filename:   "activity.css"
     }
 ];
 

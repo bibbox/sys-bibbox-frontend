@@ -147,7 +147,7 @@ const StoreApps = React.createClass({
                                 {
                                     group.group_members.map(function(app) {
                                         let highlight = (this.props.selected == app.app_name) ? " highlight" : "";
-                                        let decoration = (app.decoration != '') ? <span className="decoration"><img src={"/o/BIBBOXDocker-portlet/images/" + app.decoration + ".png"} /></span> : '';
+                                        let decoration = (app.decoration != '') ? <span className="decoration"><img src={datastore + '/js/images/' + app.decoration + ".png"} /></span> : '';
 
                                         return (
                                             <div

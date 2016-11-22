@@ -1,0 +1,110 @@
+/* ACTIVITY CENTER */
+
+.activity-bibbox
+    #activity-wrapper
+        #activities
+            position: relative
+
+            #activity-button
+                float: right
+                cursor: pointer
+                color: #2d6191
+                width: 40px
+                height: 40px
+                line-height: 40px
+                text-align: center
+                font-size: 16px
+
+                svg
+                    display: inline-block
+                    width: 25px
+                    height: 25px
+                    margin: 7.5px
+                    fill: #2d6191
+
+            #activity-button:hover
+                background: #2d6191
+
+                svg
+                    fill: white
+
+            #activity-button.loading
+                background: url('../images/loading_dark.gif') center/auto 90% no-repeat
+
+            #activity-button.loading:hover
+                color: white
+                background: #2d6191 url('../images/loading_light.gif') center/auto 90% no-repeat
+
+            #activity-overlay
+                position: absolute
+                top: 50px
+                right: 0
+                display: none
+                background: white
+                width: 500px
+                max-width: 100%
+                box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3)
+                border-radius: 3px
+                overflow: hidden
+                z-index: 5
+
+                #activity-list
+                    float: left
+                    width: 100%
+
+                    .activity
+                        float: left
+                        width: 100%
+                        padding: 5px 15px 5px 85px
+                        border-bottom: solid 1px #DDD
+                        position: relative
+                        cursor: pointer
+                        transition: background 0.3s ease-in-out
+
+                        .activity-state,
+                        .activity-icon
+                            position: absolute
+                            top: 50%
+                            margin-top: -10px
+                            float: left
+                            width: 20px
+                            height: 20px
+
+                            svg, img
+                                float: left
+                                width: 20px
+                                height: 20px
+
+                        .activity-state
+                            left: 15px
+
+                        .activity-icon
+                            left: 50px
+
+                        .activity-title
+                            display: inline-block
+                            width: 100%
+                            font-size: 16px
+                            color: #2d6191
+
+                        .activity-user,
+                        .activity-start-date,
+                        .activity-end-date
+                            float: left
+                            margin-right: 20px
+                            color: #555
+
+                    .activity:hover
+                        background: rgba(0, 0, 0, 0.05)
+
+                #activity-history-link
+                    display: inline-block
+                    width: 100%
+                    color: black
+                    text-align: center
+                    padding: 5px 15px
+                    cursor: pointer
+
+                #activity-history-link:hover
+                    background: #2d6191
+                    color: white

@@ -198,7 +198,7 @@ function get(jQuery, url, data, callback) {
         data.p_auth = Liferay.authToken;
     }
     else {
-        url = 'http://development.bibbox.org' + url;
+        url = basedomain + url;
     }
     
     jQuery.ajax({
@@ -210,10 +210,6 @@ function get(jQuery, url, data, callback) {
         data: data,
         success: function (result) {
             callback(result);
-        },
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('Authorization', make_base_auth('bibboxadmin', 'bibbox2016'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
         }
     });
 }
@@ -226,7 +222,7 @@ function post(jQuery, url, data, callback) {
         url += '?p_auth=' + Liferay.authToken;
     }
     else {
-        url = 'http://development.bibbox.org' + url;
+        url = basedomain + url;
     }
     
     jQuery.ajax({
@@ -238,10 +234,6 @@ function post(jQuery, url, data, callback) {
         data: JSON.stringify(data),
         success: function (data) {
             callback(data);
-        },
-        beforeSend: function(xhr) {
-            xhr.setRequestHeader('Authorization', make_base_auth('bibboxadmin', 'bibbox2016'));
-            xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
         }
     });
 }

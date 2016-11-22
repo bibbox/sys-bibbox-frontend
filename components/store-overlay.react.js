@@ -9,11 +9,11 @@ const StoreOverlay = React.createClass({
     render() {
         return (
             <div id="overlay-wrapper">
-                <img id="overlay-loader" src="/o/BIBBOXDocker-portlet/images/loading_light.gif" />
+                <img id="overlay-loader" src={datastore + '/js/images/loading_light.gif'} />
                 <div id="overlay-inner">
                     <div id="overlay-close-wrapper">
                         <div id="overlay-close-body" onClick={this.props.reset}>
-                            <img src="/o/BIBBOXDocker-portlet/images/close.png" />
+                            <img src={datastore + '/js/images/close.png'} />
                         </div>
                     </div>
                     <div id="overlay-body">

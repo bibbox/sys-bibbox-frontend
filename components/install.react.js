@@ -8,8 +8,12 @@ import jQuery   from 'jquery';
 const Install = React.createClass({
 	getInitialState() {
 		return {
+            name: '',
 			status: '',
 		  	install: [],
+            usedinstanceids: [],
+            idError: true,
+            nameError: true,
 			form: {
 				applicationname: '',
 				version: '',
@@ -36,7 +40,9 @@ const Install = React.createClass({
 			});
 			
 			this.setState({
+                name: result.name,
 			  	install: result.install,
+                usedinstanceids: result.usedinstanceids,
 			  	form: form
 			});
 		  
@@ -45,22 +51,37 @@ const Install = React.createClass({
 		}.bind(this));
 	},
 	
-	fieldChange(id, regex = null, event) {
+	fieldChange(id, regex = null, forbidden, event) {
 		let form = this.state.form;
+        let idError = this.state.idError;
+        let nameError = this.state.nameError;
         
         form[id] = event.target.value;
         
         if(regex == null || event.target.value == '') {
             jQuery(event.target).removeClass('right wrong');
+            
+            if(id == 'instanceid') { idError = true; }
+            else if(id == 'instancename') { nameError = true; }
         }
-        else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null) {
+        else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null && (forbidden == null || !forbidden.includes(event.target.value))) {
             jQuery(event.target).addClass('right').removeClass('wrong');
+            
+            if(id == 'instanceid') { idError = false; }
+            else if(id == 'instancename') { nameError = false; }
         }
         else {
             jQuery(event.target).addClass('wrong').removeClass('right');
+            
+            if(id == 'instanceid') { idError = true; }
+            else if(id == 'instancename') { nameError = true; }
         }
 		
-		this.setState({ form: form });
+		this.setState({
+            form: form,
+            idError: idError,
+            nameError: nameError
+        });
 	},
 	
 	dataFieldChange(id, event) {
@@ -77,13 +98,19 @@ const Install = React.createClass({
     
 	submit(e) {
 		e.preventDefault();
+        
+        if(this.state.idError || this.state.nameError) {
+            alert('One or more fields are not filled out correctly. Please correct the fields and try again.');
+            return;
+        }
 		
 		this.setState({ status: 'loading' });
 		
 		let data = [{ "/BIBBOXDocker-portlet.install-application": this.state.form }];
         
 		post(jQuery, '/api/jsonws/invoke', data, function(result) {
-			window.location = '/instance/id/' + this.state.form.instanceid + '/log/install';
+			// window.location = '/instance/id/' + this.state.form.instanceid + '/log/install';
+            window.close();
 		}.bind(this));
 	},
 	
@@ -92,7 +119,7 @@ const Install = React.createClass({
             return (
                 <div id="app-install">
                     <div id="loading">
-                        <img src="/o/BIBBOXDocker-portlet/images/loading_dark.gif" />
+                        <img src={datastore + '/js/images/loading_dark.gif'} />
                         <span>Please wait while your application is being set up.<br />You will be redirected shortly...</span>
                     </div>
                 </div>
@@ -103,7 +130,7 @@ const Install = React.createClass({
 			  	<div id="app-install">
 					<form action="" onSubmit={this.submit}>
 						<div className="app-install-text">
-							<h2>{ this.state.form.applicationname + ' ' + this.state.form.version }</h2>
+							<h2>{ this.state.name }</h2>
                             <span>Please fill out the form to install the aplication</span>
 						</div>
 						<input
@@ -123,7 +150,7 @@ const Install = React.createClass({
 						<br />
 						<label htmlFor="instanceid">Application ID</label>
 						<input
-                            onChange={this.fieldChange.bind(this, 'instanceid', '^[a-z0-9]{1}[a-z0-9-]{0,62}[a-z0-9]{1}$')}
+                            onChange={this.fieldChange.bind(this, 'instanceid', '^[a-z0-9]{1}[a-z0-9-]{0,62}[a-z0-9]{1}$', this.state.usedinstanceids)}
                             value={this.state.form.instanceid}
                             type="text"
                             name="instanceid"
@@ -133,7 +160,7 @@ const Install = React.createClass({
 						<br />
 						<label htmlFor="instancename">Application Name</label>
 						<input
-                            onChange={this.fieldChange.bind(this, 'instancename', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$')}
+                            onChange={this.fieldChange.bind(this, 'instancename', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$', null)}
                             value={this.state.form.instancename}
                             type="text"
                             name="instancename"

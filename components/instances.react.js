@@ -231,7 +231,7 @@ const App = React.createClass({
                 </span>
             :   '';
 	
-        const open = (this.props.user.role == 'admin' || this.props.data.status != 'maintenance')
+        const open = (this.props.user.role == 'admin' || (this.props.data.status != 'maintenance' && this.props.data.status != 'installing'))
             ? this.props.data.url
             : '/instance/id/' + this.props.data.instanceid + '/maintenance';
         
@@ -242,7 +242,7 @@ const App = React.createClass({
 					<h1>{this.props.data.instanceshortname}</h1>
 					<h2>{this.props.data.instancename}</h2>
 				</div>
-			  
+			     
 				<div className="app-body">
 					<div className="app-quickinfo" dangerouslySetInnerHTML={{__html: this.props.data.description}}></div>
                     {/*
