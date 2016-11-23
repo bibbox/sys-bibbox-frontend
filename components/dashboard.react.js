@@ -17,6 +17,8 @@ const Dashboard = React.createClass({
 		return {
             name: '',
             shortname: '',
+			shortnameError: false,
+			nameError: false,
             status: 'stopped',
             maintenance: false,
             maintenance_description: null,
@@ -28,6 +30,7 @@ const Dashboard = React.createClass({
             applicationname: '',
             version: '',
             url: '',
+		  	log: '',
 			/* cpu: [],
 			ram: [],
 			cpu_current: 0,
@@ -102,6 +105,23 @@ const Dashboard = React.createClass({
             
             this.updateStatus();
 		}.bind(this));
+	  
+        this.getLog();
+        
+		setInterval(() => {
+		  	this.getLog();
+		}, 3000);
+	},
+  
+  	getLog() {
+		get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-log', {
+			instanceId: this.props.params.param2,
+			logtype: 'general',
+		  	lines: 10
+		},
+		function(result) {
+			this.setState({ log: result.log });
+		}.bind(this));
 	},
     
     updateStatus() {
@@ -110,9 +130,7 @@ const Dashboard = React.createClass({
                 instanceId : this.props.params.param2
             },
             function(result) {
-                this.setState({
-                    status: result.status
-                });
+                this.setState({ status: result.status });
             }.bind(this));
         }, 3000);
     },
@@ -131,7 +149,7 @@ const Dashboard = React.createClass({
     
     startStop() {
         switch(this.state.status) {
-            case false:
+            case 'stopped':
                 this.setState({
                     confirm_text: 'Are you sure, you want to start this application?',
                     confirm_action: () => {
@@ -139,9 +157,9 @@ const Dashboard = React.createClass({
                             instanceId: this.props.params.param2,
                             status: 'start'
                         },
-                        function() {
-                            this.setState({ status: true });
-                            alert('Application has started!');
+                        function(result) {
+                            this.setState({ status: result.status });
+                            // alert('Application has started!');
                         }.bind(this))
                     }
                 });
@@ -154,9 +172,9 @@ const Dashboard = React.createClass({
                             instanceId: this.props.params.param2,
                             status: 'stop'
                         },
-                        function() {
-                            this.setState({ status: false });
-                            alert('Application has stopped!');
+                        function(result) {
+                            this.setState({ status: result.status });
+                            // alert('Application has stopped!');
                         }.bind(this))
                     }
                 });
@@ -164,31 +182,27 @@ const Dashboard = React.createClass({
     },
     
     restart() {
-        // Restart API
         this.setState({
             confirm_text: 'Are you sure, you want to restart this application?',
             confirm_action: () => {
-                this.setState({ status: false });
-                
                 get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.set-instance-status', {
                     instanceId: this.props.params.param2,
                     status: 'restart'
                 },
-                function() {
-                    this.setState({ status: true });
-                    alert('Application has restarted!');
+                function(result) {
+                    this.setState({ status: result.status });
+                    // alert('Application has restarted!');
                 }.bind(this));
             }
         });
     },
     
     toggleMaintenance() {
-        // toggle Maintenance API
         get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.toggl-instance-maintenance-status', {
             instanceId: this.props.params.param2
         },
-        function() {
-            this.setState({ maintenance: !this.state.maintenance });
+        function(result) {
+            this.setState({ maintenance: result.ismaintenance });
         }.bind(this));
     },
     
@@ -200,7 +214,7 @@ const Dashboard = React.createClass({
                     instanceId: this.props.params.param2
                 },
                 function() {
-                    alert('The app has successfully been deleted!');
+                    // alert('The app has successfully been deleted!');
                     window.location = '/instances';
                 }.bind(this));
             }
@@ -212,10 +226,6 @@ const Dashboard = React.createClass({
             confirm_text: null,
             confirm_action: null
         });
-    },
-    
-    maintenanceChange() {
-        this.setState({ maintenance: !this.state.maintenance });
     },
     
     maintenanceDescChange(e) {
@@ -233,16 +243,45 @@ const Dashboard = React.createClass({
     notesChange(e) {
         this.setState({ notes: e.target.getContent() });
     },
-    
-    nameChange(e) {
-        this.setState({ name: e.target.value });
-    },
-    
-    shortnameChange(e) {
-        this.setState({ shortname: e.target.value });
-    },
+  
+	fieldChange(id, regex = null, event) {
+		let state = this.state;
+		let shortnameError = this.state.shortnameError;
+		let nameError = this.state.nameError;
+		
+		state[id] = event.target.value;
+		
+		if(regex == null || event.target.value == '') {
+			jQuery(event.target).removeClass('right wrong');
+			
+			if(id == 'shortname') { shortnameError = true; }
+			else if(id == 'name') { nameError = true; }
+		}
+		else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null) {
+			jQuery(event.target).addClass('right').removeClass('wrong');
+			
+			if(id == 'shortname') { shortnameError = false; }
+			else if(id == 'name') { nameError = false; }
+		}
+		else {
+			jQuery(event.target).addClass('wrong').removeClass('right');
+			
+			if(id == 'shortname') { shortnameError = true; }
+			else if(id == 'instancename') { nameError = true; }
+		}
+		
+		state.shortnameError = shortnameError;
+		state.nameError = nameError;
+		
+		this.setState(state);
+	},
     
     save() {
+		if(this.state.shortnameError || this.state.nameError) {
+			alert('One or more fields are not filled out correctly. Please correct the fields and try again.');
+			return;
+		}
+	  
 		let data = [{ "/BIBBOXDocker-portlet.update-instance-info": {
             instanceId: this.props.params.param2,
             instancename: this.state.name,
@@ -334,7 +373,7 @@ const Dashboard = React.createClass({
 		const controls = (status == 'installing')
             ?   <div className="app-dashboard-controls"><span className="installing">Currently installing...</span></div>
             :   <div className="app-dashboard-controls">
-                    <span className={'status ' + status}></span>
+                    <span className={'status ' + status}> </span>
                     <button onClick={this.startStop}>
                         <svg viewBox="0 0 1000 1000">
                           <path d="M451.523,528.59V47.615c0-26.233,21.267-47.5,47.5-47.5s47.5,21.267,47.5,47.5V528.59c0,26.233-21.267,47.5-47.5,47.5S451.523,554.823,451.523,528.59z M711.563,158.396c-23.034-12.554-51.885-4.056-64.438,18.98s-4.055,51.885,18.98,64.438c113.472,61.835,183.962,180.438,183.962,309.526c0,94.084-36.639,182.536-103.165,249.063c-66.527,66.527-154.979,103.166-249.063,103.166s-182.537-36.639-249.064-103.166S145.609,645.424,145.609,551.34c0-129.281,70.646-247.969,184.369-309.747c23.052-12.522,31.587-41.361,19.065-64.413c-12.522-23.052-41.362-31.586-64.413-19.065C140.281,236.53,50.609,387.206,50.609,551.34c0,60.354,11.831,118.929,35.165,174.097c22.528,53.261,54.769,101.085,95.826,142.143c41.057,41.057,88.881,73.298,142.143,95.825c55.167,23.334,113.742,35.165,174.097,35.165s118.93-11.831,174.097-35.165c53.261-22.527,101.085-54.769,142.142-95.826c41.058-41.057,73.298-88.881,95.825-142.143c23.334-55.167,35.165-113.741,35.165-174.096C945.068,387.45,855.595,236.883,711.563,158.396z" />
@@ -403,19 +442,24 @@ const Dashboard = React.createClass({
                             Install instructions
                         </a>
                     </li>
+				  	<li><a href={'/instance/id/' + this.props.params.param2 + '/log/install'} target='_blank'>Install log</a></li>
                     <li><a href={'/instance/id/' + this.props.params.param2 + '/log/general'} target='_blank'>General log</a></li>
-                    <li><a href={'/instance/id/' + this.props.params.param2 + '/log/install'} target='_blank'>Install log</a></li>
                 </ul>
                 <br />
                 <br />
+				<label>Log preview</label>
+				<br />
+			  	<div className="app-dashboard-log" dangerouslySetInnerHTML={{__html: this.state.log.replace(/\n/gi, "<br />").substring(6)}}></div>
+				<br />
+				<br />
                 <label>Short name</label>
                 <br />
-                <input type="text" value={this.state.shortname} onChange={this.shortnameChange} />
+                <input type="text" className="right" value={this.state.shortname} onChange={this.fieldChange.bind(this, 'shortname', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$')} />
                 <br />
                 <br />
                 <label>Long name</label>
                 <br />
-                <input type="text" value={this.state.name} onChange={this.nameChange} />
+                <input type="text" className="right" value={this.state.name} onChange={this.fieldChange.bind(this, 'name', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$')} />
                 <br />
                 <br />
                 <label>Maintenance description</label><br />

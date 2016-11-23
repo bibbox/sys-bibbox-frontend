@@ -22,18 +22,33 @@ var ActivityCenter = React.createClass({
 	},
     
     componentDidMount() {
+	    this.getData();
+	    
         setInterval(() => {
-            get(jQuery, activitydomain + '/activities/api/v1.0/activities', { limit: 10 }, function(result) {
-                this.setState({
-                    activities: result.content,
-                    metadata: result.metadata
-                });
-            }.bind(this));
+            this.getData();
         }, 3000);
+    },
+  
+    getData() {
+        get(jQuery, activitydomain + '/activities/api/v1.0/activities', { limit: 10 }, function(result) {
+            this.setState({
+                activities: result.content,
+                metadata: result.metadata
+            });
+        }.bind(this));
     },
     
     toggle() {
         jQuery('#activities #activity-overlay').toggle();
+    },
+  
+    formatDate(part) {
+        if(part < 10) {
+            return '0' + String(part);
+        }
+        else {
+            return part;
+        }
     },
     
     render: function() {
@@ -53,12 +68,19 @@ var ActivityCenter = React.createClass({
                                 let finished = '';
                                 let start = new Date(activity.start_time);
                                 let end = new Date(activity.finished_time);
+                                const started = 'started: '
+                                    + this.formatDate(parseInt(start.getMonth() + 1)) + '.'
+                                    + this.formatDate(parseInt(start.getDate())) + '.'
+                                    + String(start.getFullYear()).slice(-2) + ' '
+                                    + this.formatDate(parseInt(start.getHours())) + ':'
+                                    + this.formatDate(parseInt(start.getMinutes())) + ':'
+                                    + this.formatDate(parseInt(start.getSeconds()));
 
                                 switch(activity.state) {
                                     case 'RUNNING': state = 'loading_dark.gif'; break;
                                     case 'FINISHED': state = 'done.png'; break;
                                     case 'SUCCESS': state = 'done.png'; break;
-                                    defaut: state = 'done.png';
+                                    default: state = 'done.png';
                                 }
                                 switch(activity.type) {
                                     case 'INSTALLAPP': icon = installIcon; break;
@@ -67,10 +89,16 @@ var ActivityCenter = React.createClass({
                                     case 'RESTARTAPP': icon = restartIcon; break;
                                     case 'MAINTENANCEAPP': icon = maintenanceIcon; break;
                                     case 'DELETEAPP': icon = deleteIcon; break;
-                                    defaut: icon = startStopIcon;
+                                    default: icon = startStopIcon;
                                 }
                                 if(activity.state == 'FINISHED') {
-                                    finished = 'finished: ' + parseInt(end.getMonth() + 1) + '.' + end.getDate() + '.' + String(end.getFullYear()).slice(-2) + ' ' + end.getHours() + ':' + end.getMinutes() + ':' + end.getSeconds();
+                                    finished = 'finished: '
+                                        + this.formatDate(parseInt(end.getMonth() + 1)) + '.'
+                                        + this.formatDate(parseInt(end.getDate())) + '.'
+                                        + String(end.getFullYear()).slice(-2) + ' '
+                                        + this.formatDate(parseInt(end.getHours())) + ':'
+                                        + this.formatDate(parseInt(end.getMinutes())) + ':'
+                                        + this.formatDate(parseInt(end.getSeconds()));
                                 }
 
                                 return (
@@ -84,7 +112,7 @@ var ActivityCenter = React.createClass({
                                             </svg>
                                         </span>
                                         <span className="activity-title">{activity.name}</span>
-                                        <span className="activity-start-date">{'started: ' + parseInt(start.getMonth() + 1) + '.' + start.getDate() + '.' + String(start.getFullYear()).slice(-2) + ' ' + start.getHours() + ':' + start.getMinutes() + ':' + start.getSeconds()}</span>
+                                        <span className="activity-start-date">{started}</span>
                                         <span className="activity-end-date" onClick={() => { window.location = '/activities'; }}>{finished}</span>
                                     </div>
                                 );

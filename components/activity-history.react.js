@@ -14,7 +14,7 @@ const activityIcon = "M698.035,849.501c-0.816,0-1.635-0.031-2.458-0.093c-14.517-
 /**
  * Wrapping component for the activy history
  */
-var ActivityHistory = React.createClass({
+const ActivityHistory = React.createClass({
     getInitialState() {
 		return {
 			activities: [],
@@ -31,10 +31,8 @@ var ActivityHistory = React.createClass({
         this.getData();
         
         setInterval(() => {
-            get(jQuery, activitydomain + '/activities/api/v1.0/activities', { limit: this.state.page * this.state.items}, function(result) {
-                this.getData();
-            }.bind(this));
-        }, 10000);
+		    this.getData();
+        }, 3000);
     },
     
     getData() {
@@ -64,6 +62,18 @@ var ActivityHistory = React.createClass({
         if(id != this.state.selected) {
             this.setState({ selected: id });
         }
+        else {
+		  this.setState({ selected: null });
+        }
+    },
+  
+    formatDate(part) {
+        if(part < 10) {
+            return '0' + String(part);
+        }
+        else {
+            return part;
+        }
     },
     
     render() {
@@ -80,12 +90,19 @@ var ActivityHistory = React.createClass({
                             let end = new Date(activity.finished_time);
                             const classes = (activity.id == this.state.selected) ? ' selected' : '';
                             const log = (activity.id == this.state.selected) ? <ActivityLog id={activity.id} /> : '';
+                            const started = 'started: '
+                                + this.formatDate(parseInt(start.getMonth() + 1)) + '.'
+                                + this.formatDate(parseInt(start.getDate())) + '.'
+                                + String(start.getFullYear()).slice(-2) + ' '
+                                + this.formatDate(parseInt(start.getHours())) + ':'
+                                + this.formatDate(parseInt(start.getMinutes())) + ':'
+                                + this.formatDate(parseInt(start.getSeconds()));
 
                             switch(activity.state) {
                                 case 'RUNNING': state = 'loading_dark.gif'; break;
                                 case 'FINISHED': state = 'done.png'; break;
                                 case 'SUCCESS': state = 'done.png'; break;
-                                defaut: state = 'done.png';
+                                default: state = 'done.png';
                             }
                             switch(activity.type) {
                                 case 'INSTALLAPP': icon = installIcon; break;
@@ -94,10 +111,16 @@ var ActivityHistory = React.createClass({
                                 case 'RESTARTAPP': icon = restartIcon; break;
                                 case 'MAINTENANCEAPP': icon = maintenanceIcon; break;
                                 case 'DELETEAPP': icon = deleteIcon; break;
-                                defaut: icon = startStopIcon;
+                                default: icon = startStopIcon;
                             }
                             if(activity.state == 'FINISHED') {
-                                finished = 'finished: ' + parseInt(end.getMonth() + 1) + '.' + end.getDate() + '.' + String(end.getFullYear()).slice(-2) + ' ' + end.getHours() + ':' + end.getMinutes() + ':' + end.getSeconds();
+                                finished = 'finished: '
+                                + this.formatDate(parseInt(end.getMonth() + 1)) + '.'
+                                + this.formatDate(parseInt(end.getDate())) + '.'
+                                + String(end.getFullYear()).slice(-2) + ' '
+                                + this.formatDate(parseInt(end.getHours())) + ':'
+                                + this.formatDate(parseInt(end.getMinutes())) + ':'
+                                + this.formatDate(parseInt(end.getSeconds()));
                             }
 
                             return (
@@ -111,7 +134,7 @@ var ActivityHistory = React.createClass({
                                         </svg>
                                     </span>
                                     <span className="activity-title">{activity.name}</span>
-                                    <span className="activity-start-date">{'started: ' + parseInt(start.getMonth() + 1) + '.' + start.getDate() + '.' + String(start.getFullYear()).slice(-2) + ' ' + start.getHours() + ':' + start.getMinutes() + ':' + start.getSeconds()}</span>
+                                    <span className="activity-start-date">{started}</span>
                                     <span className="activity-end-date">{finished}</span>
                                     {log}
                                 </div>
@@ -143,20 +166,28 @@ var ActivityLog = React.createClass({
     
     componentDidMount() {
         this.getData(this.props);
+  
+        const interval = setInterval(() => {
+		    this.getData(this.props);
+        }, 3000);
+        
+        this.setState({ interval: interval });
     },
     
     componentWillReceiveProps(props) {
         this.getData(props);
+  
+        const interval = setInterval(() => {
+            this.getData(props);
+        }, 3000);
+  
+	    this.setState({ interval: interval });
     },
     
     getData(props) {
-        const interval = setInterval(() => {
-            get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + props.id + '/logs', {}, function(result) {
-                this.setState({ log: result.content });
-            }.bind(this));
-        }, 3000);
-        
-        this.setState({ interval: interval });
+        get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + props.id + '/logs', {}, function(result) {
+            this.setState({ log: result.content });
+        }.bind(this));
     },
     
     componentWillUnmount() {
@@ -168,7 +199,7 @@ var ActivityLog = React.createClass({
     render() {
         const log = (this.state.log.length == 0)
             ?   <img className="activity-log-loader" src={datastore + '/js/images/loading_dark.gif'} />
-            :   <div className="activity-log-container">
+            :   <div className="activity-log-container" onClick={(e) => { e.stopPropagation(); }}>
                     {
                         this.state.log.map((line, i) => {
                             return (

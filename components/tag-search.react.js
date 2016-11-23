@@ -34,7 +34,12 @@ const TagSearch = React.createClass({
         var lowerCaseQuery = textInputValue.toLowerCase()
 
         return possibleSuggestionsArray.filter(function(suggestion)  {
-            return suggestion.toLowerCase().includes(lowerCaseQuery)
+            if(suggestion.toLowerCase().indexOf(lowerCaseQuery) != -1) {
+                return true;
+            }
+            else {
+                return false;
+            }
         })
     },
     
