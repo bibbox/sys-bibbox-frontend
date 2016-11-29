@@ -32,7 +32,7 @@ const Maintenance = React.createClass({
             <div id="app-maintenance">
                 <div id="app-maintenance-container" dangerouslySetInnerHTML={{__html: this.state.content}}></div>
                 <div id="app-maintenance-navigation">
-			  		<button onClick={() => { window.location = "/instances"; }}>Applications</button>
+			  		<button onClick={() => { window.close(); }}>Close</button>
 				</div>
             </div>
 		);

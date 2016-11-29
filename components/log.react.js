@@ -17,7 +17,8 @@ const Log = React.createClass({
 	componentDidMount() {
         get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-log', {
 			instanceId: this.props.params.param2,
-			logtype: this.props.params.param4
+			logtype: this.props.params.param4,
+            lines: 100
 		},
 		function(result) {
 			this.setState({ log: result.log });
@@ -35,7 +36,8 @@ const Log = React.createClass({
             setInterval(() => {
                 get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-log', {
                     instanceId: this.props.params.param2,
-                    logtype: this.props.params.param4
+                    logtype: this.props.params.param4,
+                    lines: 100
                 },
                 function(result) {
                     const isBreak = (this.state.autoScroll) ? true : false;
