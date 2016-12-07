@@ -170,7 +170,7 @@ const App = React.createClass({
 		return (
 			<div className={"app " + this.props.data.status}>
 				<div className="app-header" onClick={() => { const win = window.open(open, '_blank'); win.focus(); }}>
-					<img src={"https://raw.githubusercontent.com/bibbox/" + this.props.data.application + "/master/icon.png"} />
+					<img src={datastore + '/bibbox/' + this.props.data.application + '/blob/' + this.props.data.version + '/icon.png'} />
 					<h1>{this.props.data.instanceshortname}</h1>
 					<h2>{this.props.data.instancename}</h2>
 				</div>

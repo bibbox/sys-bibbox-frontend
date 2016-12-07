@@ -158,7 +158,7 @@ const StoreApps = React.createClass({
                                                 {decoration}
                                                 {/* <span className="character">{app.app_dispay_name.charAt(0)}</span> */}
                                                 <span className="icon">
-                                                    <img src={"https://raw.githubusercontent.com/bibbox/" + app.app_name + "/master/icon.png"} />
+                                                    <img src={datastore + '/bibbox/' + app.app_name + '/blob/development/icon.png'} />
                                                 </span>
                                                 <span className="name">{app.app_dispay_name }</span>
                                                 {/* <AppTags tags={app.tags} /> */}
