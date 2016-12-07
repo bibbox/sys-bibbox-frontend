@@ -99,8 +99,16 @@ const Install = React.createClass({
 	submit(e) {
 		e.preventDefault();
         
-        if(this.state.idError || this.state.nameError) {
-            alert('One or more fields are not filled out correctly. Please correct the fields and try again.');
+        let error = false;
+        
+        this.state.install.forEach((field) => {
+            if(field.min_length > 0 && jQuery('.data-field-' + field.id).val() == '') {
+                error = true;
+            }
+        });
+        
+        if(this.state.idError || this.state.nameError || error) {
+            alert('One or more fields are empty or not not filled out correctly. Please correct the fields and try again.');
             return;
         }
 		
@@ -109,7 +117,6 @@ const Install = React.createClass({
 		let data = [{ "/BIBBOXDocker-portlet.install-application": this.state.form }];
         
 		post(jQuery, '/api/jsonws/invoke', data, function(result) {
-			// window.location = '/instance/id/' + this.state.form.instanceid + '/log/install';
             window.close();
 		}.bind(this));
 	},
@@ -170,17 +177,20 @@ const Install = React.createClass({
 						<br />
 						{
 							this.state.install.map((item) => {
+                                const required = (item.min_length > 0) ? true : false;
+                            
 								return (
 									<div key={item.id} className="field-group">
 										<label htmlFor={item.id}>{item.display_name}</label>
 										<input
+                                            className={"data-field-" + item.id}
 											type={item.type}
 											pattern={".{" + item.min_length + "," + item.max_length + "}"}
 											name={this.state.form.data[item.id]}
 											value={this.state.form.data[item.id]}
 											placeholder={item.default_value}
 											title={item.tooltip}
-											required={item.description}
+											required={required}
 											onChange={this.dataFieldChange.bind(this, item.id)}
 										/>
 										<span className="field-description" dangerouslySetInnerHTML={{__html: item.description}}></span>

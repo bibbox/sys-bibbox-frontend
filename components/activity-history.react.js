@@ -100,9 +100,12 @@ const ActivityHistory = React.createClass({
 
                             switch(activity.state) {
                                 case 'RUNNING': state = 'loading_dark.gif'; break;
-                                case 'FINISHED': state = 'done.png'; break;
-                                case 'SUCCESS': state = 'done.png'; break;
-                                default: state = 'done.png';
+                                case 'FINISHED':
+                                    state = (activity.result == 'SUCCESS')
+                                        ? 'done.png'
+                                        : 'error.png';
+                                    break;
+                                default: state = 'error.png';
                             }
                             switch(activity.type) {
                                 case 'INSTALLAPP': icon = installIcon; break;
@@ -165,11 +168,9 @@ var ActivityLog = React.createClass({
 	},
     
     componentDidMount() {
-        this.getData(this.props);
-  
         const interval = setInterval(() => {
-		    get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + props.id + '/logs', {}, function(result) {
-                this.setState({ log: result.content });
+		    get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + this.props.id + '/logs', {}, function(result) {
+                this.setState({ log: result.content.reverse() });
             }.bind(this));
         }, 3000);
         
