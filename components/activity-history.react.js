@@ -168,32 +168,16 @@ var ActivityLog = React.createClass({
         this.getData(this.props);
   
         const interval = setInterval(() => {
-		    this.getData(this.props);
+		    get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + props.id + '/logs', {}, function(result) {
+                this.setState({ log: result.content });
+            }.bind(this));
         }, 3000);
         
         this.setState({ interval: interval });
     },
     
-    componentWillReceiveProps(props) {
-        this.getData(props);
-  
-        const interval = setInterval(() => {
-            this.getData(props);
-        }, 3000);
-  
-	    this.setState({ interval: interval });
-    },
-    
-    getData(props) {
-        get(jQuery, activitydomain + '/activities/api/v1.0/activities/' + props.id + '/logs', {}, function(result) {
-            this.setState({ log: result.content });
-        }.bind(this));
-    },
-    
     componentWillUnmount() {
-        this.setState({
-            interval: clearInterval(this.state.interval)
-        });
+        clearInterval(this.state.interval);
     },
     
     render() {

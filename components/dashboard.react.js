@@ -30,30 +30,7 @@ const Dashboard = React.createClass({
             applicationname: '',
             version: '',
             url: '',
-		  	log: '',
-			/* cpu: [],
-			ram: [],
-			cpu_current: 0,
-			ram_current: 0,
-			cpu_max: 0,
-			ram_max: 0,
-			interval: {},
-			options: {
-				maintainAspectRatio: false,
-				responsive: true,
-				scales: {
-					xAxes: [{
-						display: false
-					}],
-					yAxes: [{
-					  	ticks: {
-							max: 100,
-							min: 0,
-							stepSize: 25
-					  	}
-				  	}]
-			  	}
-		  	} */
+		  	log: ''
 		}
 	},
   
@@ -62,29 +39,6 @@ const Dashboard = React.createClass({
 			instanceId : this.props.params.param2
 		},
 		function(result) {
-            /*
-                const interval = setInterval(function() {
-                    let cpu = this.state.cpu;
-                    let ram = this.state.ram;
-
-                    let cpu_new = this.random(0, 100, 1)[0];
-                    let ram_new = this.random(0, 100, 1)[0];
-
-                    cpu.push(cpu_new);
-                    ram.push(ram_new);
-
-                    if(cpu.length > 20) cpu.splice(0, 1);
-                    if(ram.length > 20) ram.splice(0, 1);
-
-                    this.setState({
-                        cpu: cpu,
-                        ram: ram,
-                        cpu_current: cpu_new,
-                        ram_current: ram_new
-                    });
-                }.bind(this), 3000);
-            */
-            
 			this.setState({
                 name: result.instancename,
                 shortname: result.instanceshortname,
@@ -97,7 +51,6 @@ const Dashboard = React.createClass({
                 applicationname: result.applicationname,
                 version: result.version,
                 url: result.url
-                // interval: interval
 			});
 		  
 			jQuery('#loader').stop().fadeOut(300);
@@ -198,7 +151,7 @@ const Dashboard = React.createClass({
     },
     
     toggleMaintenance() {
-        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.toggl-instance-maintenance-status', {
+        get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.toggle-instance-maintenance-status', {
             instanceId: this.props.params.param2
         },
         function(result) {
@@ -298,56 +251,6 @@ const Dashboard = React.createClass({
     },
 	
 	render() {
-        /*
-            var data = {
-                labels: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19],
-                datasets: [
-                    {
-                        label: 'My First dataset',
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: '#6496b4',
-                        borderColor: '#6496b4',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: 'transparent',
-                        pointBackgroundColor: 'transparent',
-                        pointBorderWidth: 0,
-                        pointHoverRadius: 0,
-                        pointHoverBackgroundColor: 'transparent',
-                        pointHoverBorderColor: 'transparent',
-                        pointHoverBorderWidth: 0,
-                        pointRadius: 0,
-                        pointHitRadius: 0,
-                        data: this.state.cpu
-                    },
-                    {
-                        label: 'My First dataset',
-                        fill: false,
-                        lineTension: 0.1,
-                        backgroundColor: 'rgba(0, 0, 0, 0.4)',
-                        borderColor: 'rgba(0, 0, 0, 0.4)',
-                        borderCapStyle: 'butt',
-                        borderDash: [],
-                        borderDashOffset: 0.0,
-                        borderJoinStyle: 'miter',
-                        pointBorderColor: 'transparent',
-                        pointBackgroundColor: 'transparent',
-                        pointBorderWidth: 0,
-                        pointHoverRadius: 0,
-                        pointHoverBackgroundColor: 'transparent',
-                        pointHoverBorderColor: 'transparent',
-                        pointHoverBorderWidth: 0,
-                        pointRadius: 0,
-                        pointHitRadius: 0,
-                        data: this.state.ram
-                    }
-                ]
-            };
-        */
-        
         const startstop = (this.state.status == 'running') ? 'Stop' : 'Start';
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
         const maintenance = (this.state.maintenance) ? 'Stop Maintenance' : 'Start Maintenance';
@@ -411,45 +314,13 @@ const Dashboard = React.createClass({
                     </span>
                     {controls}
                 </div>
-                {/*
-                    <div className="app-dashboard-chart">
-                        <Line
-                            data={data}
-                            options={this.state.options}
-                            redraw={true}
-                            width={600}
-                            height={150}
-                        />
-                    </div>
-                    <div className="app-performance">
-                        <span className="two"> </span>
-                        <span className="one">Current</span>
-                        <span className="right">Max</span>
-                        <br />
-                        <span className="light two">CPU</span>
-                        <span className="light one">{Math.round(this.state.cpu_current)}%</span>
-                        <span className="light right">90%</span>
-                        <br />
-                        <span className="dark two">RAM</span>
-                        <span className="dark one">{Math.round(this.state.ram_current)}%</span>
-                        <span className="dark right">82%</span>
-                    </div>
-                    <br />
-                */}
                 <ul>
                     <li>
                         <a href={'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'} target='_blank'>
                             Install instructions
                         </a>
                     </li>
-				  	<li><a href={'/instance/id/' + this.props.params.param2 + '/log/install'} target='_blank'>Install log</a></li>
-                    <li><a href={'/instance/id/' + this.props.params.param2 + '/log/general'} target='_blank'>General log</a></li>
                 </ul>
-                <br />
-                <br />
-				<label>Log preview</label>
-				<br />
-			  	<div className="app-dashboard-log" dangerouslySetInnerHTML={{__html: this.state.log.replace(/\n/gi, "<br />").substring(6)}}></div>
 				<br />
 				<br />
                 <label>Short name</label>

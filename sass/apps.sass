@@ -501,16 +501,66 @@
         float: left
         width: 100%
         
-        #app-log-container
+        .app-log-header
             float: left
             width: 100%
-            background: white
-            padding: 20px 30px
-            max-height: 500px
-            overflow: auto
-            border-radius: 10px
-            border: solid 1px lightgray
-            margin-bottom: 40px
+            margin-bottom: 20px
+            
+            .app-log-title
+                float: left
+                cursor: pointer
+                padding-left: 80px
+                position: relative
+                margin-bottom: 20px
+                
+                img
+                    position: absolute
+                    height: 50px !important
+                    top: 50%
+                    left: 0
+                    margin-top: -25px
+
+                h1
+                    color: #2d6191
+                    padding: 0
+                    float: left
+                    margin-bottom: 10px
+                    font-size: 25px
+                    
+                h3
+                    float: left
+                    clear: left
+        
+        .app-log-item
+            float: left
+            width: 100%
+            
+            .app-log-containername
+                float: left
+                width: 100%
+                font-weight: bold
+                font-size: 18px
+                margin-bottom: 10px
+                
+            .app-log-command
+                float: left
+                width: 100%
+                margin-bottom: 10px
+                background: black;
+                color: white;
+                padding: 3px 10px;
+                border-radius: 3px;
+        
+            .app-log-container
+                float: left
+                width: 100%
+                background: white
+                padding: 20px 30px
+                max-height: 500px
+                overflow: auto
+                border-radius: 10px
+                border: solid 1px lightgray
+                margin-bottom: 40px
             
         #app-log-navigation
             float: left
@@ -933,7 +983,6 @@
                                 float: left
                                 width: 20px
                                 height: 20px
-                                margin-right: 10px
 
                                 svg
                                     display: block
@@ -944,13 +993,6 @@
                                         fill: #666666
                                         height: 20px
                                         width: 20px
-                                        
-                    .app-footer-button.dashboard
-                        flex-grow: 0
-                        
-                        > span
-                            .icon
-                                margin-right: 0
 
                     .app-footer-button:first-child
                         border-left: 0

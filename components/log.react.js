@@ -8,68 +8,125 @@ import jQuery   from 'jquery';
 const Log = React.createClass({
 	getInitialState() {
 		return {
-            log: '',
-            break: true,
-            autoScroll: true
+            logs: [],
+            shortname: '',
+            longname: '',
+            application: '',
+            version: '',
+            url: ''
 		}
 	},
   
 	componentDidMount() {
         get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-log', {
-			instanceId: this.props.params.param2,
-			logtype: this.props.params.param4,
-            lines: 100
+			instanceId: this.props.params.param2
 		},
 		function(result) {
-			this.setState({ log: result.log });
+            for(let i = 0; i < result.logs.length; i++) {
+                result.logs[i].break = true;
+                result.logs[i].autoScroll = true;
+            }
+            console.log(result.logs);
+            
+			this.setState({
+                logs: result.logs,
+                shortname: result.instanceshortname,
+                longname: result.longname,
+                application: result.application,
+                version: result.version,
+                url: result.url
+            });
 		  
 			jQuery('#loader').stop().fadeOut(300);
 			jQuery(ReactDOM.findDOMNode(this)).fadeIn(500);
             
-            const container = jQuery(ReactDOM.findDOMNode(this)).find('#app-log-container');
-            if(this.state.autoScroll) {
-                container.animate({scrollTop: container[0].scrollHeight - container.height()}, 1000, () => {
-                    this.setState({ break: false });
-                });
-            }
+            this.state.logs.forEach((log, i) => {
+                const container = jQuery(ReactDOM.findDOMNode(this)).find('.app-log-container.' + log.containername);
+                
+                if(this.state.logs[i].autoScroll) {
+                    container.animate({scrollTop: container[0].scrollHeight - container.height()}, 1000, () => {
+                        let state = this.state;
+                        state.logs[i].break = false;
+                        this.setState(state);
+                    });
+                }
+            });
             
             setInterval(() => {
                 get(jQuery, '/api/jsonws/BIBBOXDocker-portlet.get-instance-log', {
-                    instanceId: this.props.params.param2,
-                    logtype: this.props.params.param4,
-                    lines: 100
+                    instanceId: this.props.params.param2
                 },
                 function(result) {
-                    const isBreak = (this.state.autoScroll) ? true : false;
+                    let state = this.state;
                     
-                    this.setState({
-                        log: result.log,
-                        break: isBreak
-                    });
-                    
-                    if(isBreak) {
-                        container.animate({scrollTop: container[0].scrollHeight - container.height()}, 1000, () => {
-                            this.setState({ break: false });
-                        });
+                    for(let i = 0; i < state.logs.length; i++) {
+                        state.logs[i].break = this.state.logs[i].autoScroll;
+                        state.logs[i].log = result.logs[i].log;
                     }
+                    
+                    this.setState(state);
+                    
+                    console.log(this.state.logs);
+                    this.state.logs.forEach((log, i) => {
+                        const container = jQuery(ReactDOM.findDOMNode(this)).find('.app-log-container.' + log.containername);
+                        
+                        if(log.break) {
+                            container.animate({scrollTop: container[0].scrollHeight - container.height()}, 1000, () => {
+                                let state = this.state;
+                                state.logs[i].break = false;
+                                this.setState(state);
+                            });
+                        }
+                    });
                 }.bind(this));
             }, 3000);
 		}.bind(this));
 	},
     
     scrollEvent(e) {
-        if(!this.state.break) {
-            const container = jQuery(ReactDOM.findDOMNode(this)).find('#app-log-container');
-            const autoScroll = (container.scrollTop() >= parseInt(container[0].scrollHeight - container.height()) - 50) ? true : false;
-            
-            this.setState({ autoScroll: autoScroll });
-        }
+        this.state.logs.forEach((log, i) => {
+            if(!log.break) {
+                const container = jQuery(ReactDOM.findDOMNode(this)).find('.app-log-container.' + log.containername);
+                const autoScroll = (container.scrollTop() >= parseInt(container[0].scrollHeight - container.height()) - 50) ? true : false;
+
+                let state = this.state;
+                state.logs[i].autoScroll = autoScroll;
+                this.setState(state);
+            }
+        });
     },
     
 	render() {
 		return (
             <div id="app-log">
-                <div id="app-log-container" onScroll={this.scrollEvent} dangerouslySetInnerHTML={{__html: this.state.log.replace(/\n/gi, "<br />")}}></div>
+                <div className="app-log-header">
+                    <span className="app-log-title" onClick={() => { const win = window.open(this.state.url, '_blank'); win.focus(); }}>
+                        <img src={datastore + '/bibbox/' + this.state.application + '/blob/' + this.state.version + '/icon.png'} />
+                        <h1>{this.state.shortname}</h1>
+                        <h3>{this.state.longname}</h3>
+                    </span>
+                </div>
+                {
+                    this.state.logs.map((log) => {
+                        const command = (log.cmd != '') ? <span className="app-log-command">{"$ " + log.cmd}</span> : '';
+                        let lines = log.log.replace(/\n/gi, "<br />");
+                        if(lines.startsWith("<br />")) {
+                            lines = lines.substr(6);
+                        }
+            
+                        return (
+                            <div key={log.containername} className="app-log-item">
+                                <span className="app-log-containername">{log.containername}</span>
+                                {command}
+                                <div
+                                    className={"app-log-container " + log.containername}
+                                    onScroll={this.scrollEvent}
+                                    dangerouslySetInnerHTML={{__html: lines}}
+                                ></div>
+                            </div>
+                        );
+                    })
+                }
                 <div id="app-log-navigation">
 			  		<button onClick={() => { window.close(); }}>Close</button>
 				</div>
