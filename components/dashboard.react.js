@@ -83,6 +83,7 @@ const Dashboard = React.createClass({
                 instanceId : this.props.params.param2
             },
             function(result) {
+                console.log(result.status);
                 this.setState({ status: result.status });
             }.bind(this));
         }, 3000);
@@ -254,28 +255,31 @@ const Dashboard = React.createClass({
         const startstop = (this.state.status == 'running') ? 'Stop' : 'Start';
         const version = (this.state.version == 'development') ? 'master' : this.state.version;
         const maintenance = (this.state.maintenance) ? 'Stop Maintenance' : 'Start Maintenance';
-        let status = 'stopped';
+        let status = this.state.status;
+        let controls = '';
         
-        switch(this.state.status) {
-            case 'running':
-                if(this.state.maintenance)
-                    { status = 'maintenance'; }
-                else
-                    { status = 'running'; }
-                break;
-            case 'stopped':
-                status = 'stopped';
-                break;
-            case 'installing':
-                status = 'installing';
-                break;
-            default:
-                status = 'stopped';
+        if(this.state.status == 'running' && this.state.maintenance) {
+            status = 'maintenance';
         }
         
-		const controls = (status == 'installing')
-            ?   <div className="app-dashboard-controls"><span className="installing">Currently installing...</span></div>
-            :   <div className="app-dashboard-controls">
+        switch(status) {
+            case 'installing':
+                controls = <div className="app-dashboard-controls"><span className="installing">Currently installing...</span></div>;
+                break;
+            case 'starting':
+                controls = <div className="app-dashboard-controls"><span className="starting">Currently starting...</span></div>;
+                break;
+            case 'stopping':
+                controls = <div className="app-dashboard-controls"><span className="stopping">Currently stopping...</span></div>;
+                break;
+            case 'restarting':
+                controls = <div className="app-dashboard-controls"><span className="restarting">Currently restarting...</span></div>;
+                break;
+            case 'deleting':
+                controls = <div className="app-dashboard-controls"><span className="deleting">Currently deleting...</span></div>;
+                break;
+            default:
+                controls = <div className="app-dashboard-controls">
                     <span className={'status ' + status}> </span>
                     <button onClick={this.startStop}>
                         <svg viewBox="0 0 1000 1000">
@@ -302,6 +306,7 @@ const Dashboard = React.createClass({
                         <span className="text">Delete</span>
                     </button>
                 </div>;
+        }
         
         
 		return (
