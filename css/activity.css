@@ -1,0 +1,91 @@
+/* ACTIVITY CENTER */
+.activity-bibbox #activity-wrapper #activities {
+  position: relative; }
+  .activity-bibbox #activity-wrapper #activities #activity-button {
+    float: right;
+    cursor: pointer;
+    color: #2d6191;
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    font-size: 16px; }
+    .activity-bibbox #activity-wrapper #activities #activity-button svg {
+      display: inline-block;
+      width: 22px;
+      height: 22px;
+      margin: 9px;
+      fill: #2d6191; }
+  .activity-bibbox #activity-wrapper #activities #activity-button:hover {
+    background: #2d6191; }
+    .activity-bibbox #activity-wrapper #activities #activity-button:hover svg {
+      fill: white; }
+  .activity-bibbox #activity-wrapper #activities #activity-button.loading {
+    background: url(fd6a4a0f438d2962666f1124b8ec5d93.gif) center/auto 90% no-repeat; }
+  .activity-bibbox #activity-wrapper #activities #activity-button.loading:hover {
+    color: white;
+    background: #2d6191 url(4f60ba40ea1eb23598dd69bd79ecf4ca.gif) center/auto 90% no-repeat; }
+  .activity-bibbox #activity-wrapper #activities #activity-overlay {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    display: none;
+    background: white;
+    width: 500px;
+    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.3);
+    border-radius: 3px;
+    overflow: hidden;
+    z-index: 5; }
+    .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list {
+      float: left;
+      width: 100%; }
+      .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity {
+        float: left;
+        width: 100%;
+        padding: 5px 15px 5px 85px;
+        border-bottom: solid 1px #DDD;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out; }
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-state,
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-icon {
+          position: absolute;
+          top: 50%;
+          margin-top: -10px;
+          float: left;
+          width: 20px;
+          height: 20px; }
+          .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-state svg, .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-state img,
+          .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-icon svg,
+          .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-icon img {
+            float: left;
+            width: 20px;
+            height: 20px; }
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-state {
+          left: 15px; }
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-icon {
+          left: 50px; }
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-title {
+          display: inline-block;
+          width: 100%;
+          font-size: 16px;
+          color: #2d6191; }
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-user,
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-start-date,
+        .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity .activity-end-date {
+          float: left;
+          margin-right: 20px;
+          color: #555;
+          font-size: 15px; }
+      .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-list .activity:hover {
+        background: rgba(0, 0, 0, 0.05); }
+    .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-history-link {
+      display: inline-block;
+      width: 100%;
+      color: black;
+      text-align: center;
+      padding: 5px 15px;
+      cursor: pointer; }
+    .activity-bibbox #activity-wrapper #activities #activity-overlay #activity-history-link:hover {
+      background: #2d6191;
+      color: white; }
