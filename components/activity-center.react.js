@@ -38,7 +38,8 @@ var ActivityCenter = React.createClass({
         }.bind(this));
     },
     
-    toggle() {
+    toggle(e) {
+        e.stopPropagation();
         jQuery('#activities #activity-overlay').toggle();
     },
   
@@ -122,7 +123,7 @@ var ActivityCenter = React.createClass({
                             })
                         }
                     </div>
-                    <span id="activity-history-link" onClick={() => { window.location = '/activities'; }}>Show history</span>
+                    <span id="activity-history-link" onClick={(e) => { e.stopPropagation(); window.location = '/activities'; }}>Show history</span>
                 </div>
             </div>
         );

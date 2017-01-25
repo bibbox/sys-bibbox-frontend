@@ -1,3 +1,7 @@
+jQuery(window).click(function() {
+    jQuery('#activities #activity-overlay').hide();
+});
+
 /* Returns the new index of an element for ordering an array by name */
 
 function compareName(a, b) {
