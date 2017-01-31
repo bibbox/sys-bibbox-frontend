@@ -43036,7 +43036,7 @@
 	                _react2.default.createElement(_message2.default, { text: this.state.message })
 	            );
 	        } else {
-	            var button = this.state.app.installable ? _react2.default.createElement(
+	            var button = this.state.app.installable && this.state.app.user.role == 'admin' ? _react2.default.createElement(
 	                'button',
 	                {
 	                    id: 'overlay-install',
@@ -71896,7 +71896,6 @@
 	            get(_jquery2.default, '/api/jsonws/BIBBOXDocker-portlet.get-instance-dashboard', {
 	                instanceId: _this2.props.params.param2
 	            }, function (result) {
-	                console.log(result.status);
 	                this.setState({ status: result.status });
 	            }.bind(_this2));
 	        }, 3000);
@@ -74468,18 +74467,7 @@
 	                        dangerouslySetInnerHTML: { __html: lines }
 	                    })
 	                );
-	            }),
-	            _react2.default.createElement(
-	                'div',
-	                { id: 'app-log-navigation' },
-	                _react2.default.createElement(
-	                    'button',
-	                    { onClick: function onClick() {
-	                            window.close();
-	                        } },
-	                    'Close'
-	                )
-	            )
+	            })
 	        );
 	    }
 	});

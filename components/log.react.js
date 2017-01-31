@@ -127,9 +127,6 @@ const Log = React.createClass({
                         );
                     })
                 }
-                <div id="app-log-navigation">
-			  		<button onClick={() => { window.close(); }}>Close</button>
-				</div>
             </div>
 		);
 	}

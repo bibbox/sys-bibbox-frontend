@@ -83,7 +83,6 @@ const Dashboard = React.createClass({
                 instanceId : this.props.params.param2
             },
             function(result) {
-                console.log(result.status);
                 this.setState({ status: result.status });
             }.bind(this));
         }, 3000);

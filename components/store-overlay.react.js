@@ -90,7 +90,7 @@ const OverlayWrapper = React.createClass({
             );
         }
         else {
-            const button = (this.state.app.installable)
+            const button = (this.state.app.installable && this.state.app.user.role == 'admin')
                 ?   <button
                         id="overlay-install"
                         onClick={() => { const win = window.open('/install/id/' + this.state.app.applicationname + '/' + this.state.app.docker_version, '_blank'); window.location='/instances'; win.focus(); }}
