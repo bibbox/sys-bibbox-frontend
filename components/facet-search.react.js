@@ -20,13 +20,16 @@ const FacetSearch = React.createClass({
     },
     
     render: function() {
-        let total = 0;
+        let total = 0;  // Total number of items
+        let most = 0;   // Highest items per category value
         let items = [];
         let tags = this.props.tags;
         let keys = Object.keys(tags).sort();
         
         for(let i = 0; i < keys.length; i++) {
             total += tags[keys[i]].length;
+            
+            most = (tags[keys[i]].length > most) ? tags[keys[i]].length : most;
             
             items.push({
                 key:        keys[i],
@@ -51,7 +54,7 @@ const FacetSearch = React.createClass({
                                     tag={item.key}
                                     items={item.children}
                                     count={this.props.count}
-                                    percentage={item.children.length / total * 100}
+                                    percentage={item.children.length / most * 100}
                                 />
                             );
                         })

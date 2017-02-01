@@ -26,7 +26,6 @@ const Log = React.createClass({
                 result.logs[i].break = true;
                 result.logs[i].autoScroll = true;
             }
-            console.log(result.logs);
             
 			this.setState({
                 logs: result.logs,
@@ -66,7 +65,6 @@ const Log = React.createClass({
                     
                     this.setState(state);
                     
-                    console.log(this.state.logs);
                     this.state.logs.forEach((log, i) => {
                         const container = jQuery(ReactDOM.findDOMNode(this)).find('.app-log-container.' + log.containername);
                         

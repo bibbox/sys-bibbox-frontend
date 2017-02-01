@@ -257,9 +257,8 @@ const Dashboard = React.createClass({
         let status = this.state.status;
         let controls = '';
         
-        if(this.state.status == 'running' && this.state.maintenance) {
-            status = 'maintenance';
-        }
+        console.log(status);
+        console.log(this.state.maintenance);
         
         switch(status) {
             case 'installing':
@@ -278,6 +277,8 @@ const Dashboard = React.createClass({
                 controls = <div className="app-dashboard-controls"><span className="deleting">Currently deleting...</span></div>;
                 break;
             default:
+                status = (status == 'running' && this.state.maintenance) ? 'maintenance' : status;
+                
                 controls = <div className="app-dashboard-controls">
                     <span className={'status ' + status}> </span>
                     <button onClick={this.startStop}>

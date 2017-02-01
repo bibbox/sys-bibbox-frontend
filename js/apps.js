@@ -42702,13 +42702,16 @@
 	    render: function render() {
 	        var _this = this;
 
-	        var total = 0;
+	        var total = 0; // Total number of items
+	        var most = 0; // Highest items per category value
 	        var items = [];
 	        var tags = this.props.tags;
 	        var keys = Object.keys(tags).sort();
 
 	        for (var i = 0; i < keys.length; i++) {
 	            total += tags[keys[i]].length;
+
+	            most = tags[keys[i]].length > most ? tags[keys[i]].length : most;
 
 	            items.push({
 	                key: keys[i],
@@ -42738,7 +42741,7 @@
 	                        tag: item.key,
 	                        items: item.children,
 	                        count: _this.props.count,
-	                        percentage: item.children.length / total * 100
+	                        percentage: item.children.length / most * 100
 	                    });
 	                })
 	            )
@@ -72069,9 +72072,8 @@
 	        var status = this.state.status;
 	        var controls = '';
 
-	        if (this.state.status == 'running' && this.state.maintenance) {
-	            status = 'maintenance';
-	        }
+	        console.log(status);
+	        console.log(this.state.maintenance);
 
 	        switch (status) {
 	            case 'installing':
@@ -72130,6 +72132,8 @@
 	                );
 	                break;
 	            default:
+	                status = status == 'running' && this.state.maintenance ? 'maintenance' : status;
+
 	                controls = _react2.default.createElement(
 	                    'div',
 	                    { className: 'app-dashboard-controls' },
@@ -74343,7 +74347,6 @@
 	                result.logs[i].break = true;
 	                result.logs[i].autoScroll = true;
 	            }
-	            console.log(result.logs);
 
 	            this.setState({
 	                logs: result.logs,
@@ -74384,7 +74387,6 @@
 
 	                    this.setState(state);
 
-	                    console.log(this.state.logs);
 	                    this.state.logs.forEach(function (log, i) {
 	                        var container = (0, _jquery2.default)(_reactDom2.default.findDOMNode(_this2)).find('.app-log-container.' + log.containername);
 
