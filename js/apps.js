@@ -70159,7 +70159,7 @@
 	                            startstop
 	                        )
 	                    ),
-	                    _react2.default.createElement(
+	                    this.state.status != 'stopped' ? _react2.default.createElement(
 	                        'button',
 	                        { onClick: this.restart },
 	                        _react2.default.createElement(
@@ -70172,8 +70172,8 @@
 	                            { className: 'text' },
 	                            'Restart'
 	                        )
-	                    ),
-	                    _react2.default.createElement(
+	                    ) : '',
+	                    this.state.status != 'stopped' ? _react2.default.createElement(
 	                        'button',
 	                        { onClick: this.toggleMaintenance },
 	                        _react2.default.createElement(
@@ -70186,8 +70186,8 @@
 	                            { className: 'text' },
 	                            maintenance
 	                        )
-	                    ),
-	                    _react2.default.createElement(
+	                    ) : '',
+	                    this.state.status != 'running' ? _react2.default.createElement(
 	                        'button',
 	                        { onClick: this.delete },
 	                        _react2.default.createElement(
@@ -70200,7 +70200,7 @@
 	                            { className: 'text' },
 	                            'Delete'
 	                        )
-	                    )
+	                    ) : ''
 	                );
 	        }
 
