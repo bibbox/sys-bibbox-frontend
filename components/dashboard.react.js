@@ -257,9 +257,6 @@ const Dashboard = React.createClass({
         let status = this.state.status;
         let controls = '';
         
-        console.log(status);
-        console.log(this.state.maintenance);
-        
         switch(status) {
             case 'installing':
                 controls = <div className="app-dashboard-controls"><span className="installing">Currently installing...</span></div>;
@@ -323,6 +320,11 @@ const Dashboard = React.createClass({
                     <li>
                         <a href={'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'} target='_blank'>
                             Install instructions
+                        </a>
+                    </li>
+                    <li>
+                        <a href={'/instance/id/' + params.param2 + '/log'}>
+                            Application Logs
                         </a>
                     </li>
                 </ul>

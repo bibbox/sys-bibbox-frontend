@@ -61,11 +61,13 @@ const Instances = React.createClass({
 				/>
 				<div id="instances">
 					{
-						this.state.current.map(app => {
-							return (
-								<App key={app.instanceid} data={app} user={this.state.user} />
-							);
-						})
+                        (this.state.current.length > 0) ?
+                            this.state.current.map(app => {
+                                return (
+                                    <App key={app.instanceid} data={app} user={this.state.user} />
+                                );
+                            })
+                            : <span id="no-items">No applications have been found.</span>
 					}
 				</div>
 			</div>
@@ -180,6 +182,8 @@ const App = React.createClass({
 				</div>
 			  
                 <div className="app-footer">
+                    {dashboard}
+                    {logs}
 				    <span className="app-footer-button info" title="Info" onClick={() => { window.location = '/instance/id/' + this.props.data.instanceid + '/info'; }}>
 					   <span>
 						  <span className="icon">
@@ -198,8 +202,6 @@ const App = React.createClass({
 						  </span>
 					  </span>
 				  </span>
-                {logs}
-                {dashboard}
 			  </div>
 			</div>
 		);

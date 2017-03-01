@@ -139,7 +139,7 @@ const OverlayDetail = React.createClass({
                     }
                     </select>
                 </span>
-                <label className="app-detail-label">Docker versions</label>
+                <label className="app-detail-label">Version</label>
                 <span className="app-detail-value">{this.props.app.version}</span>
                 <label className="app-detail-label">GitHub URL</label>
                 <span className="app-detail-value">
