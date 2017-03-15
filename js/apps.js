@@ -70230,6 +70230,28 @@
 	                controls
 	            ),
 	            _react2.default.createElement(
+	                'div',
+	                { id: 'tab-nav' },
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'tab-nav-item active' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: '/instance/id/' + params.param2 + '/dashboard' },
+	                        'Dashboard'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'tab-nav-item' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: '/instance/id/' + params.param2 + '/log' },
+	                        'Logs'
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
 	                'ul',
 	                null,
 	                _react2.default.createElement(
@@ -72455,6 +72477,28 @@
 	                    )
 	                )
 	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { id: 'tab-nav' },
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'tab-nav-item' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: '/instance/id/' + params.param2 + '/dashboard' },
+	                        'Dashboard'
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'span',
+	                    { className: 'tab-nav-item active' },
+	                    _react2.default.createElement(
+	                        'a',
+	                        { href: '/instance/id/' + params.param2 + '/log' },
+	                        'Logs'
+	                    )
+	                )
+	            ),
 	            this.state.logs.map(function (log) {
 	                var command = log.cmd != '' ? _react2.default.createElement(
 	                    'span',
@@ -72637,7 +72681,7 @@
 				} else if (id == 'instancename') {
 					nameError = true;
 				}
-			} else if (regex != null && event.target.value.match(new RegExp(regex, 'g')) != null && (forbidden == null || !forbidden.includes(event.target.value))) {
+			} else if (regex != null && event.target.value.match(new RegExp(regex, 'g')) != null && event.target.value != 'datastore' && (forbidden == null || !forbidden.includes(event.target.value))) {
 				(0, _jquery2.default)(event.target).addClass('right').removeClass('wrong');
 
 				if (id == 'instanceid') {

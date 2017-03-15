@@ -4,6 +4,7 @@
   /* COMMON */
   /* STORE */
   /* INSTALL */
+  /* TAB NAV */
   /* DASHBOARD */
   /* LOG */
   /* MAINTENANCE */
@@ -387,6 +388,39 @@
       #wrapper > section .portlet-content #bibbox-wrapper #app-install form .app-install-submit,
       #wrapper > section .portlet-content #activity-wrapper #app-install form .app-install-submit {
         margin-top: 20px; }
+  #wrapper > section .portlet-content #bibbox-wrapper #tab-nav,
+  #wrapper > section .portlet-content #activity-wrapper #tab-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .active,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .active {
+      background: rgba(45, 97, 145, 0.5); }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .active a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .active a {
+        color: white; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item:hover,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item:hover {
+      background: rgba(45, 97, 145, 0.75); }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item:hover a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item:hover a {
+        color: white; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item {
+      width: 50%;
+      display: inline-block; }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item a {
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        text-align: center; }
   #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard,
   #wrapper > section .portlet-content #activity-wrapper #app-dashboard {
     display: none; }

@@ -360,6 +360,43 @@
                 margin-top: 20px
                 
                 
+    
+    /* TAB NAV */
+    
+    #tab-nav
+        display: flex;
+        flex-flow: row nowrap;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 3px;
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+        margin-bottom: 30px;
+        
+        .active
+            background: rgba(45, 97, 145, 0.5);
+            
+            a
+                color: white;
+            
+        .tab-nav-item:hover
+            background: rgba(45, 97, 145, 0.75);
+            
+            a
+                color: white;
+        
+        .tab-nav-item
+            width: 50%;
+            display: inline-block;
+            
+            a
+                display: inline-block;
+                width: 100%;
+                height: 40px;
+                line-height: 40px;
+                font-size: 18px;
+                text-align: center;
+                
+                
     /* DASHBOARD */
     
     #app-dashboard

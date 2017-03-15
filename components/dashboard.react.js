@@ -320,6 +320,7 @@ const Dashboard = React.createClass({
         
 		return (
 			<div id="app-dashboard">
+                
                 <div className="app-dashboard-header">
                     <span className="app-dashboard-title" onClick={() => { const win = window.open(this.state.url, '_blank'); win.focus(); }}>
                         <img src={datastore + '/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
@@ -327,6 +328,18 @@ const Dashboard = React.createClass({
                         <h3>{this.state.name}</h3>
                     </span>
                     {controls}
+                </div>
+                <div id="tab-nav">
+                    <span className="tab-nav-item active">
+                        <a href={'/instance/id/' + params.param2 + '/dashboard'}>
+                            Dashboard
+                        </a>
+                    </span>
+                    <span className="tab-nav-item">
+                        <a href={'/instance/id/' + params.param2 + '/log'}>
+                            Logs
+                        </a>
+                    </span>
                 </div>
                 <ul>
                     <li>

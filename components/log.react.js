@@ -104,6 +104,18 @@ const Log = React.createClass({
                         <h3>{this.state.longname}</h3>
                     </span>
                 </div>
+                <div id="tab-nav">
+                    <span className="tab-nav-item">
+                        <a href={'/instance/id/' + params.param2 + '/dashboard'}>
+                            Dashboard
+                        </a>
+                    </span>
+                    <span className="tab-nav-item active">
+                        <a href={'/instance/id/' + params.param2 + '/log'}>
+                            Logs
+                        </a>
+                    </span>
+                </div>
                 {
                     this.state.logs.map((log) => {
                         const command = (log.cmd != '') ? <span className="app-log-command">{"$ " + log.cmd}</span> : '';

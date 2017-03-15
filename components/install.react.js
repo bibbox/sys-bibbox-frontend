@@ -64,7 +64,7 @@ const Install = React.createClass({
             if(id == 'instanceid') { idError = true; }
             else if(id == 'instancename') { nameError = true; }
         }
-        else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null && (forbidden == null || !forbidden.includes(event.target.value))) {
+        else if(regex != null && event.target.value.match(new RegExp(regex, 'g')) != null && event.target.value != 'datastore' && (forbidden == null || !forbidden.includes(event.target.value))) {
             jQuery(event.target).addClass('right').removeClass('wrong');
             
             if(id == 'instanceid') { idError = false; }
