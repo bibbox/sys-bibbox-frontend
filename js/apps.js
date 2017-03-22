@@ -70262,15 +70262,6 @@
 	                        { href: 'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md', target: '_blank' },
 	                        'Install instructions'
 	                    )
-	                ),
-	                _react2.default.createElement(
-	                    'li',
-	                    null,
-	                    _react2.default.createElement(
-	                        'a',
-	                        { href: '/instance/id/' + params.param2 + '/log' },
-	                        'Application Logs'
-	                    )
 	                )
 	            ),
 	            _react2.default.createElement('br', null),
@@ -70281,7 +70272,7 @@
 	                'Short name'
 	            ),
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.shortname, onChange: this.fieldChange.bind(this, 'shortname', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$') }),
+	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.shortname, onChange: this.fieldChange.bind(this, 'shortname', '^.{0,80}$') }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
@@ -70290,7 +70281,7 @@
 	                'Long name'
 	            ),
 	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.name, onChange: this.fieldChange.bind(this, 'name', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$') }),
+	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.name, onChange: this.fieldChange.bind(this, 'name', '^.{0,80}$') }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
@@ -72826,7 +72817,7 @@
 							'Application Name'
 						),
 						_react2.default.createElement('input', {
-							onChange: this.fieldChange.bind(this, 'instancename', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$', null),
+							onChange: this.fieldChange.bind(this, 'instancename', '^.{0,80}$', null),
 							value: this.state.form.instancename,
 							type: 'text',
 							name: 'instancename',

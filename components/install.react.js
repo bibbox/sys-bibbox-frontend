@@ -167,7 +167,7 @@ const Install = React.createClass({
 						<br />
 						<label htmlFor="instancename">Application Name</label>
 						<input
-                            onChange={this.fieldChange.bind(this, 'instancename', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$', null)}
+                            onChange={this.fieldChange.bind(this, 'instancename', '^.{0,80}$', null)}
                             value={this.state.form.instancename}
                             type="text"
                             name="instancename"

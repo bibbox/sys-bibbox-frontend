@@ -347,22 +347,17 @@ const Dashboard = React.createClass({
                             Install instructions
                         </a>
                     </li>
-                    <li>
-                        <a href={'/instance/id/' + params.param2 + '/log'}>
-                            Application Logs
-                        </a>
-                    </li>
                 </ul>
 				<br />
 				<br />
                 <label>Short name</label>
                 <br />
-                <input type="text" className="right" value={this.state.shortname} onChange={this.fieldChange.bind(this, 'shortname', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$')} />
+                <input type="text" className="right" value={this.state.shortname} onChange={this.fieldChange.bind(this, 'shortname', '^.{0,80}$')} />
                 <br />
                 <br />
                 <label>Long name</label>
                 <br />
-                <input type="text" className="right" value={this.state.name} onChange={this.fieldChange.bind(this, 'name', '^[a-zA-Z0-9]{1}[a-zA-Z0-9- ]{0,253}[a-zA-Z0-9]{1}$')} />
+                <input type="text" className="right" value={this.state.name} onChange={this.fieldChange.bind(this, 'name', '^.{0,80}$')} />
                 <br />
                 <br />
                 <label>Maintenance description</label><br />

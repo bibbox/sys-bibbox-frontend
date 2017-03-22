@@ -38,7 +38,7 @@ const ActivityHistory = React.createClass({
     getData() {
         get(jQuery, activitydomain + '/activities/api/v1.0/activities', { limit: this.state.page * this.state.items}, function(result) {
             let selected = (typeof(params.param2) != 'undefined' && this.state.init == false) ? params.param2 : this.state.selected;
-
+            
             this.setState({
                 activities: result.content,
                 metadata: result.metadata,
