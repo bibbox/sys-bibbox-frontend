@@ -22,6 +22,10 @@ const Log = React.createClass({
 			instanceId: this.props.params.param2
 		},
 		function(result) {
+            if(result.hasOwnProperty('error')) {
+                window.location = "/instances";
+            }
+            
             for(let i = 0; i < result.logs.length; i++) {
                 result.logs[i].break = true;
                 result.logs[i].autoScroll = true;

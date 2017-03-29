@@ -69868,6 +69868,10 @@
 	        get(_jquery2.default, '/api/jsonws/BIBBOXDocker-portlet.get-instance-dashboard', {
 	            instanceId: this.props.params.param2
 	        }, function (result) {
+	            if (result.hasOwnProperty('error')) {
+	                window.location = "/instances";
+	            }
+
 	            this.setState({
 	                name: result.instancename,
 	                shortname: result.instanceshortname,
@@ -72382,6 +72386,10 @@
 	            instanceId: this.props.params.param2
 	        }, function (result) {
 	            var _this = this;
+
+	            if (result.hasOwnProperty('error')) {
+	                window.location = "/instances";
+	            }
 
 	            for (var i = 0; i < result.logs.length; i++) {
 	                result.logs[i].break = true;
