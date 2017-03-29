@@ -877,13 +877,17 @@
     #wrapper > section .portlet-content #activity-wrapper #app-instances .running {
       background: white !important; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-instances .maintenance,
-    #wrapper > section .portlet-content #bibbox-wrapper #app-instances .stopped,
-    #wrapper > section .portlet-content #bibbox-wrapper #app-instances .installing,
-    #wrapper > section .portlet-content #activity-wrapper #app-instances .maintenance,
-    #wrapper > section .portlet-content #activity-wrapper #app-instances .stopped,
-    #wrapper > section .portlet-content #activity-wrapper #app-instances .installing {
+    #wrapper > section .portlet-content #activity-wrapper #app-instances .maintenance {
       background: rgba(0, 0, 0, 0.05) !important;
       opacity: 0.75; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-instances .stopped,
+    #wrapper > section .portlet-content #activity-wrapper #app-instances .stopped {
+      background: rgba(0, 0, 0, 0.15) !important;
+      opacity: 0.75; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-instances .installing,
+    #wrapper > section .portlet-content #activity-wrapper #app-instances .installing {
+      background: white !important;
+      opacity: 0.45; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-instances .old_running,
     #wrapper > section .portlet-content #activity-wrapper #app-instances .old_running {
       background: #a6c698 !important; }
@@ -938,6 +942,11 @@
             margin-top: -17.5px;
             width: 35px;
             height: 35px; }
+          #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app .app-header .lock,
+          #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app .app-header .lock {
+            width: 27px;
+            left: 14px;
+            margin-top: -13.5px; }
           #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app .app-header h2,
           #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app .app-header h2 {
             width: 100%;

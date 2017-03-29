@@ -30,7 +30,9 @@ const Dashboard = React.createClass({
             applicationname: '',
             version: '',
             url: '',
-		  	log: ''
+		  	log: '',
+            user: {},
+            locked: false
 		}
 	},
   
@@ -50,7 +52,9 @@ const Dashboard = React.createClass({
                 long_description: result.longdescription,
                 applicationname: result.applicationname,
                 version: result.version,
-                url: result.url
+                url: result.url,
+                user: result.user,
+                locked: result.locked
 			});
 		  
 			jQuery('#loader').stop().fadeOut(300);
@@ -276,7 +280,7 @@ const Dashboard = React.createClass({
             default:
                 status = (status == 'running' && this.state.maintenance) ? 'maintenance' : status;
                 
-                controls = <div className="app-dashboard-controls">
+                controls = (this.state.user.role == 'vmadmin' || (this.state.user.role == 'admin' && !this.state.locked)) ? <div className="app-dashboard-controls">
                     <span className={'status ' + status}> </span>
                     <button onClick={this.startStop}>
                         <svg viewBox="0 0 1000 1000">
@@ -314,7 +318,8 @@ const Dashboard = React.createClass({
                             </button>
                             : ''
                     }
-                </div>;
+                </div>
+                : <div className="app-dashboard-controls"><span className="deleting">This application is locked.</span></div>;
         }
         
         

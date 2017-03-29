@@ -878,11 +878,17 @@
         .running
             background: white !important
 
-        .maintenance,
-        .stopped,
-        .installing
+        .maintenance
             background: rgba(0, 0, 0, 0.05) !important
             opacity: 0.75
+        
+        .stopped
+            background: rgba(0, 0, 0, 0.15) !important
+            opacity: 0.75
+        
+        .installing
+            background: white !important
+            opacity: 0.45
 
         .old_running
             background: rgb(166, 198, 152) !important
@@ -936,6 +942,11 @@
                         margin-top: -17.5px
                         width: 35px
                         height: 35px
+                        
+                    .lock
+                        width: 27px
+                        left: 14px
+                        margin-top: -13.5px
 
                     h2
                         width: 100%

@@ -141,7 +141,7 @@ const App = React.createClass({
 	},
   
 	render() {
-        const dashboard = (this.props.user.role == 'admin')
+        const dashboard = (this.props.user.role == 'vmadmin' || this.props.user.role == 'admin')
             ?   <span className="app-footer-button dashboard" title="Dashboard" onClick={() => { window.location = '/instance/id/' + this.props.data.instanceid + '/dashboard'; }}>
                     <span>
                         <span className="icon">
@@ -153,7 +153,7 @@ const App = React.createClass({
                 </span>
             :   '';
         
-        const logs = (this.props.user.role == 'admin')
+        const logs = (this.props.user.role == 'vmadmin' || this.props.user.role == 'admin')
             ?   <span className="app-footer-button logs" title="Logs" onClick={() => { window.location = '/instance/id/' + this.props.data.instanceid + '/log'; }}>
                     <span>
                         <span className="icon">
@@ -165,14 +165,17 @@ const App = React.createClass({
                 </span>
             :   '';
 	
-        const open = (this.props.user.role == 'admin' || (this.props.data.status != 'maintenance' && this.props.data.status != 'installing'))
+        const open = (this.props.user.role == 'vmadmin' || this.props.user.role == 'admin' || (!this.props.data.maintenance && this.props.data.status != 'installing'))
             ? this.props.data.url
             : '/instance/id/' + this.props.data.instanceid + '/maintenance';
         
+        const classNames = (this.props.data.ismaintenance) ? "maintenance" : "";
+        console.log(this.props.data.locked);
 		return (
-			<div className={"app " + this.props.data.status}>
+            <div className={"app " + this.props.data.status + " " + classNames}>
 				<div className="app-header" onClick={() => { const win = window.open(open, '_blank'); win.focus(); }}>
 					<img src={datastore + '/bibbox/' + this.props.data.application + '/blob/' + this.props.data.version + '/icon.png'} />
+                    { this.props.data.locked ? <img className="lock" src={datastore + "/js/images/lock.png"} /> : null }
 					<h1>{this.props.data.instanceshortname}</h1>
 					<h2>{this.props.data.instancename}</h2>
 				</div>
