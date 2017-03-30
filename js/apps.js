@@ -72956,12 +72956,10 @@
 	        get(_jquery2.default, activitydomain + '/activities/api/v1.0/activities', { limit: this.state.page * this.state.items }, function (result) {
 	            var selected = typeof params.param2 != 'undefined' && this.state.init == false ? params.param2 : this.state.selected;
 
-	            console.log(result);
-
 	            this.setState({
 	                activities: result.content,
 	                metadata: result.metadata,
-	                pages: Math.ceil(result.metadata.count / this.state.items),
+	                pages: Math.ceil(result.metadata.total / this.state.items),
 	                selected: selected,
 	                init: true
 	            });

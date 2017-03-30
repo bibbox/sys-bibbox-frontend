@@ -39,12 +39,10 @@ const ActivityHistory = React.createClass({
         get(jQuery, activitydomain + '/activities/api/v1.0/activities', { limit: this.state.page * this.state.items}, function(result) {
             let selected = (typeof(params.param2) != 'undefined' && this.state.init == false) ? params.param2 : this.state.selected;
             
-            console.log(result);
-            
             this.setState({
                 activities: result.content,
                 metadata: result.metadata,
-                pages: Math.ceil(result.metadata.count / this.state.items),
+                pages: Math.ceil(result.metadata.total / this.state.items),
                 selected: selected,
                 init: true
             });
@@ -79,6 +77,7 @@ const ActivityHistory = React.createClass({
     },
     
     render() {
+        
         const more = (this.state.page < this.state.pages) ? <button id="activities-more" onClick={this.more}>Load more</button> : '';
         const history = (this.state.activities.length == 0)
             ?   <span id="activities-no-items">There are no activities yet.</span>
