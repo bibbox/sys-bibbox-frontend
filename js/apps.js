@@ -69848,9 +69848,9 @@
 	            nameError: false,
 	            status: 'stopped',
 	            maintenance: false,
-	            maintenance_description: null,
+	            maintenance_description: 'This application is currently in maintenance, please try again later!',
 	            short_description: null,
-	            long_description: null,
+	            long_description: 'The application\`s long description should be used to provide some general information on the application\'s purpose and functionality. This text is only a placeholder and should be replaced by the admin.',
 	            notes: null,
 	            confirm_text: null,
 	            confirm_action: null,
@@ -69877,10 +69877,10 @@
 	                shortname: result.instanceshortname,
 	                status: result.status,
 	                maintenance: result.ismaintenance,
-	                maintenance_description: result.maintenance,
+	                maintenance_description: result.maintenance.length > 0 ? result.maintenance : this.state.maintenance_description,
 	                short_description: result.shortdescription,
 	                notes: result.adminnode,
-	                long_description: result.longdescription,
+	                long_description: result.longdescription.length > 0 ? result.longdescription : this.state.long_description,
 	                applicationname: result.applicationname,
 	                version: result.version,
 	                url: result.url,
@@ -70286,21 +70286,31 @@
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'Short name'
+	                'div',
+	                { className: 'row' },
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-2' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Short name'
+	                    ),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.shortname, onChange: this.fieldChange.bind(this, 'shortname', '^.{0,80}$') })
+	                ),
+	                _react2.default.createElement(
+	                    'div',
+	                    { className: 'col-2' },
+	                    _react2.default.createElement(
+	                        'label',
+	                        null,
+	                        'Long name'
+	                    ),
+	                    _react2.default.createElement('br', null),
+	                    _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.name, onChange: this.fieldChange.bind(this, 'name', '^.{0,80}$') })
+	                )
 	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.shortname, onChange: this.fieldChange.bind(this, 'shortname', '^.{0,80}$') }),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement(
-	                'label',
-	                null,
-	                'Long name'
-	            ),
-	            _react2.default.createElement('br', null),
-	            _react2.default.createElement('input', { type: 'text', className: 'right', value: this.state.name, onChange: this.fieldChange.bind(this, 'name', '^.{0,80}$') }),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement('br', null),
 	            _react2.default.createElement(
@@ -72386,6 +72396,8 @@
 	            instanceId: this.props.params.param2
 	        }, function (result) {
 	            var _this = this;
+
+	            console.log(result);
 
 	            if (result.hasOwnProperty('error')) {
 	                window.location = "/instances";

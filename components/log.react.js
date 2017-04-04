@@ -22,6 +22,8 @@ const Log = React.createClass({
 			instanceId: this.props.params.param2
 		},
 		function(result) {
+            console.log(result);
+            
             if(result.hasOwnProperty('error')) {
                 window.location = "/instances";
             }

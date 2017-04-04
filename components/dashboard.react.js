@@ -21,9 +21,9 @@ const Dashboard = React.createClass({
 			nameError: false,
             status: 'stopped',
             maintenance: false,
-            maintenance_description: null,
+            maintenance_description: 'This application is currently in maintenance, please try again later!',
             short_description: null,
-            long_description: null,
+            long_description: 'The application\`s long description should be used to provide some general information on the application\'s purpose and functionality. This text is only a placeholder and should be replaced by the admin.',
             notes: null,
             confirm_text: null,
             confirm_action: null,
@@ -50,10 +50,10 @@ const Dashboard = React.createClass({
                 shortname: result.instanceshortname,
                 status: result.status,
                 maintenance: result.ismaintenance,
-                maintenance_description: result.maintenance,
+                maintenance_description: (result.maintenance.length > 0) ? result.maintenance : this.state.maintenance_description,
                 short_description: result.shortdescription,
                 notes: result.adminnode,
-                long_description: result.longdescription,
+                long_description: (result.longdescription.length > 0) ? result.longdescription : this.state.long_description,
                 applicationname: result.applicationname,
                 version: result.version,
                 url: result.url,
@@ -359,14 +359,18 @@ const Dashboard = React.createClass({
                 </ul>
 				<br />
 				<br />
-                <label>Short name</label>
-                <br />
-                <input type="text" className="right" value={this.state.shortname} onChange={this.fieldChange.bind(this, 'shortname', '^.{0,80}$')} />
-                <br />
-                <br />
-                <label>Long name</label>
-                <br />
-                <input type="text" className="right" value={this.state.name} onChange={this.fieldChange.bind(this, 'name', '^.{0,80}$')} />
+                <div className="row">
+                    <div className="col-2">
+                        <label>Short name</label>
+                        <br />
+                        <input type="text" className="right" value={this.state.shortname} onChange={this.fieldChange.bind(this, 'shortname', '^.{0,80}$')} />
+                    </div>
+                    <div className="col-2">
+                        <label>Long name</label>
+                        <br />
+                        <input type="text" className="right" value={this.state.name} onChange={this.fieldChange.bind(this, 'name', '^.{0,80}$')} />
+                    </div>
+                </div>
                 <br />
                 <br />
                 <label>Maintenance description</label><br />

@@ -469,6 +469,21 @@
       display: inline-block;
       width: 100%;
       height: 150px !important; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row {
+      display: flex;
+      width: 100%; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2 {
+        width: 50%;
+        min-width: 350px;
+        display: inline-block; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(1),
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(1) {
+        margin-right: 10px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(2),
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(2) {
+        margin-left: 10px; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #component-navigation,
     #wrapper > section .portlet-content #activity-wrapper #app-dashboard #component-navigation {
       text-align: left; }
@@ -1449,7 +1464,19 @@
     #wrapper > section .portlet-content #bibbox-wrapper #overlay-inner,
     #wrapper > section .portlet-content #activity-wrapper #overlay-inner {
       top: 50px;
-      bottom: 50px; } }
+      bottom: 50px; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row {
+      flex-flow: column; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2 {
+        width: 100%; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(1),
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(1) {
+        margin-right: 0; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(2),
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(2) {
+        margin-left: 0; } }
   @media only screen and (max-width: 700px) {
     #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app,
     #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app {
