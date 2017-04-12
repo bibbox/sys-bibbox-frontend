@@ -453,33 +453,38 @@
                 box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
                 padding: 5px 12px
 
-                table
+            table
+                width: 100%
+
+                td
+                    padding: 5px 15px 5px 0
+                    line-height: 20px
+                    text-align: left
                     width: 100%
 
-                    td
-                        padding: 5px 15px 5px 0
-                        line-height: 20px
-                        text-align: left
-                        width: 100%
+                    a
+                        font-size: 13px
 
-                        a
-                            font-size: 13px
+                .icon
+                    width: 20px
 
-                    .icon
+                    img
                         width: 20px
 
-                        img
-                            width: 20px
+                .label-left
+                    width: 150px
+                    min-width: 150px
+                    color: black
 
-                    .label-left
-                        width: 150px
-                        min-width: 150px
-                        color: black
+                .label-right
+                    width: 100px
+                    min-width: 100px
+                    color: black
 
-                    .label-right
-                        width: 100px
-                        min-width: 100px
-                        color: black
+                .label-short
+                    width: 90px
+                    min-width: 90px
+                    color: black
 
             #app-dashboard-info-primary
                 display: flex
@@ -1459,6 +1464,7 @@
             margin-top: 50px
 
 
+
     /* MEDIA QUERIES */
 
     @media only screen and (max-width: 1200px)
@@ -1523,13 +1529,24 @@
                 
                 .col-2
                     width: 100%
+                    margin-bottom: 30px
                 
                 .col-2:nth-child(1)
                     margin-right: 0
 
                 .col-2:nth-child(2)
                     margin-left: 0
-                
+
+                .col-2:last-child
+                    margin-bottom: auto
+
+            #app-dashboard-info
+                #app-dashboard-info-primary
+                    flex-flow: column nowrap
+
+                    table
+                        width: 100%
+
     @media only screen and (max-width: 700px)
         #app-instances
             #instances

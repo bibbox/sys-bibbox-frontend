@@ -70378,7 +70378,7 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    'td',
-	                                    { className: 'label' },
+	                                    { className: 'label-short' },
 	                                    'ID:'
 	                                ),
 	                                _react2.default.createElement(
@@ -70396,7 +70396,7 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    'td',
-	                                    { className: 'label' },
+	                                    { className: 'label-short' },
 	                                    'App:'
 	                                ),
 	                                _react2.default.createElement(
@@ -70414,7 +70414,7 @@
 	                                null,
 	                                _react2.default.createElement(
 	                                    'td',
-	                                    { className: 'label' },
+	                                    { className: 'label-short' },
 	                                    'Version:'
 	                                ),
 	                                _react2.default.createElement(

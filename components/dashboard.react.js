@@ -369,19 +369,19 @@ const Dashboard = React.createClass({
                         <div id="app-dashboard-info-primary">
                             <table>
                                 <tr>
-                                    <td className="label">ID:</td>
+                                    <td className="label-short">ID:</td>
                                     <td>{params.param2}</td>
                                 </tr>
                             </table>
                             <table>
                                 <tr>
-                                    <td className="label">App:</td>
+                                    <td className="label-short">App:</td>
                                     <td>{this.state.info.name}</td>
                                 </tr>
                             </table>
                             <table>
                                 <tr>
-                                    <td className="label">Version:</td>
+                                    <td className="label-short">Version:</td>
                                     <td>{this.state.info.version}</td>
                                 </tr>
                             </table>

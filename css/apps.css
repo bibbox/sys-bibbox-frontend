@@ -475,34 +475,39 @@
       border-radius: 5px;
       box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
       padding: 5px 12px; }
-      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table,
-      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table {
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table {
+      width: 100%; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table td,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table td {
+        padding: 5px 15px 5px 0;
+        line-height: 20px;
+        text-align: left;
         width: 100%; }
-        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table td,
-        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table td {
-          padding: 5px 15px 5px 0;
-          line-height: 20px;
-          text-align: left;
-          width: 100%; }
-          #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table td a,
-          #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table td a {
-            font-size: 13px; }
-        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .icon,
-        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .icon {
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table td a,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table td a {
+          font-size: 13px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table .icon,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table .icon {
+        width: 20px; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table .icon img,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table .icon img {
           width: 20px; }
-          #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .icon img,
-          #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .icon img {
-            width: 20px; }
-        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .label-left,
-        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .label-left {
-          width: 150px;
-          min-width: 150px;
-          color: black; }
-        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .label-right,
-        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .label-right {
-          width: 100px;
-          min-width: 100px;
-          color: black; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table .label-left,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table .label-left {
+        width: 150px;
+        min-width: 150px;
+        color: black; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table .label-right,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table .label-right {
+        width: 100px;
+        min-width: 100px;
+        color: black; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info table .label-short,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info table .label-short {
+        width: 90px;
+        min-width: 90px;
+        color: black; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary,
     #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary {
       display: flex;
@@ -1522,13 +1527,23 @@
       flex-flow: column; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2,
       #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2 {
-        width: 100%; }
+        width: 100%;
+        margin-bottom: 30px; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(1),
       #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(1) {
         margin-right: 0; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:nth-child(2),
       #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:nth-child(2) {
-        margin-left: 0; } }
+        margin-left: 0; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row .col-2:last-child,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row .col-2:last-child {
+        margin-bottom: auto; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary {
+      flex-flow: column nowrap; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table {
+        width: 100%; } }
   @media only screen and (max-width: 700px) {
     #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app,
     #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app {
