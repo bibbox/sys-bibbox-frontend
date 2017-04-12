@@ -54,7 +54,7 @@
   #wrapper > section .portlet-content #bibbox-wrapper .mce-caret,
   #wrapper > section .portlet-content #activity-wrapper .mce-ico,
   #wrapper > section .portlet-content #activity-wrapper .mce-caret {
-    font-family: 'tinymce', Arial !important; }
+    font-family: 'tinymce', Arial, "sans-serif" !important; }
   #wrapper > section .portlet-content #bibbox-wrapper .mce-caret,
   #wrapper > section .portlet-content #activity-wrapper .mce-caret {
     margin-top: 8px !important; }
@@ -396,7 +396,7 @@
     background: rgba(255, 255, 255, 0.5);
     border-radius: 3px;
     box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
-    margin-bottom: 30px; }
+    margin-bottom: 70px; }
     #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .active,
     #wrapper > section .portlet-content #activity-wrapper #tab-nav .active {
       background: rgba(45, 97, 145, 0.5); }
@@ -469,6 +469,60 @@
       display: inline-block;
       width: 100%;
       height: 150px !important; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box {
+      background: white;
+      border-radius: 5px;
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+      padding: 5px 12px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table {
+        width: 100%; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table td,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table td {
+          padding: 5px 15px 5px 0;
+          line-height: 20px;
+          text-align: left;
+          width: 100%; }
+          #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table td a,
+          #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table td a {
+            font-size: 13px; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .icon,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .icon {
+          width: 20px; }
+          #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .icon img,
+          #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .icon img {
+            width: 20px; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .label-left,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .label-left {
+          width: 150px;
+          min-width: 150px;
+          color: black; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info .list-box table .label-right,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info .list-box table .label-right {
+          width: 100px;
+          min-width: 100px;
+          color: black; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary,
+    #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary {
+      display: flex;
+      width: 100%;
+      flex-flow: row nowrap;
+      margin-bottom: 13px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table {
+        margin-right: 30px; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table td,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table td {
+          padding: 0 10px;
+          color: black; }
+        #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table td:last-child,
+        #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table td:last-child {
+          font-weight: bold;
+          color: #6496b4; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table:last-child,
+      #wrapper > section .portlet-content #activity-wrapper #app-dashboard #app-dashboard-info #app-dashboard-info-primary table:last-child {
+        margin-right: 0; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .row,
     #wrapper > section .portlet-content #activity-wrapper #app-dashboard .row {
       display: flex;
@@ -693,9 +747,8 @@
     position: relative;
     width: 1000px;
     max-width: 100%;
-    margin: 0 auto 0 auto;
     max-height: 100%;
-    margin-bottom: -40px;
+    margin: 0 auto -40px;
     height: 40px;
     padding: 5px 5px 0 5px; }
   #wrapper > section .portlet-content #bibbox-wrapper #overlay-close-body,
@@ -1001,12 +1054,11 @@
             float: left;
             width: 100%;
             /* margin-bottom: 20px */
-            padding-bottom: 15px;
             color: #888;
             height: 200px;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.03);
-            padding: 5px 10px; }
+            padding: 5px 10px 15px 10px; }
             #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app .app-body .app-quickinfo h1, #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app .app-body .app-quickinfo h2, #wrapper > section .portlet-content #bibbox-wrapper #app-instances #instances .app .app-body .app-quickinfo h3,
             #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app .app-body .app-quickinfo h1,
             #wrapper > section .portlet-content #activity-wrapper #app-instances #instances .app .app-body .app-quickinfo h2,
@@ -1494,7 +1546,7 @@
         margin-top: 10px; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .app-dashboard-header .app-dashboard-controls button,
       #wrapper > section .portlet-content #activity-wrapper #app-dashboard .app-dashboard-header .app-dashboard-controls button {
-        min-width: auto;
+        min-width: initial;
         padding: 15px; }
         #wrapper > section .portlet-content #bibbox-wrapper #app-dashboard .app-dashboard-header .app-dashboard-controls button svg,
         #wrapper > section .portlet-content #activity-wrapper #app-dashboard .app-dashboard-header .app-dashboard-controls button svg {

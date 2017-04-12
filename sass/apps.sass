@@ -38,7 +38,7 @@
     
     .mce-ico,
     .mce-caret
-        font-family: 'tinymce', Arial !important
+        font-family: 'tinymce', Arial, "sans-serif" !important
         
     .mce-caret
         margin-top: 8px !important
@@ -364,37 +364,37 @@
     /* TAB NAV */
     
     #tab-nav
-        display: flex;
-        flex-flow: row nowrap;
-        width: 100%;
-        background: rgba(255, 255, 255, 0.5);
-        border-radius: 3px;
-        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
-        margin-bottom: 30px;
+        display: flex
+        flex-flow: row nowrap
+        width: 100%
+        background: rgba(255, 255, 255, 0.5)
+        border-radius: 3px
+        box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+        margin-bottom: 70px
         
         .active
-            background: rgba(45, 97, 145, 0.5);
+            background: rgba(45, 97, 145, 0.5)
             
             a
-                color: white;
+                color: white
             
         .tab-nav-item:hover
-            background: rgba(45, 97, 145, 0.75);
+            background: rgba(45, 97, 145, 0.75)
             
             a
-                color: white;
+                color: white
         
         .tab-nav-item
-            width: 50%;
-            display: inline-block;
+            width: 50%
+            display: inline-block
             
             a
-                display: inline-block;
-                width: 100%;
-                height: 40px;
-                line-height: 40px;
-                font-size: 18px;
-                text-align: center;
+                display: inline-block
+                width: 100%
+                height: 40px
+                line-height: 40px
+                font-size: 18px
+                text-align: center
                 
                 
     /* DASHBOARD */
@@ -445,7 +445,62 @@
             display: inline-block
             width: 100%
             height: 150px !important
-            
+
+        #app-dashboard-info
+            .list-box
+                background: white
+                border-radius: 5px
+                box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+                padding: 5px 12px
+
+                table
+                    width: 100%
+
+                    td
+                        padding: 5px 15px 5px 0
+                        line-height: 20px
+                        text-align: left
+                        width: 100%
+
+                        a
+                            font-size: 13px
+
+                    .icon
+                        width: 20px
+
+                        img
+                            width: 20px
+
+                    .label-left
+                        width: 150px
+                        min-width: 150px
+                        color: black
+
+                    .label-right
+                        width: 100px
+                        min-width: 100px
+                        color: black
+
+            #app-dashboard-info-primary
+                display: flex
+                width: 100%
+                flex-flow: row nowrap
+                margin-bottom: 13px
+
+                table
+                    margin-right: 30px
+
+                    td
+                        padding: 0 10px
+                        color: black
+
+                    td:last-child
+                        font-weight: bold
+                        color: #6496b4
+
+                table:last-child
+                    margin-right: 0
+
         .row
             display: flex
             width: 100%
@@ -596,10 +651,10 @@
                 float: left
                 width: 100%
                 margin-bottom: 10px
-                background: black;
-                color: white;
-                padding: 3px 10px;
-                border-radius: 3px;
+                background: black
+                color: white
+                padding: 3px 10px
+                border-radius: 3px
         
             .app-log-container
                 float: left
@@ -678,9 +733,8 @@
         position: relative
         width: 1000px
         max-width: 100%
-        margin: 0 auto 0 auto
         max-height: 100%
-        margin-bottom: -40px
+        margin: 0 auto -40px
         height: 40px
         padding: 5px 5px 0 5px
     
@@ -1001,12 +1055,11 @@
                         float: left
                         width: 100%
                         /* margin-bottom: 20px */
-                        padding-bottom: 15px
                         color: #888
                         height: 200px
                         overflow: auto
                         background-color: rgba(0, 0, 0, 0.03)
-                        padding: 5px 10px
+                        padding: 5px 10px 15px 10px
 
                         h1, h2, h3
                             color: #555f7d
@@ -1469,7 +1522,7 @@
                 flex-flow: column
                 
                 .col-2
-                    width: 100%;
+                    width: 100%
                 
                 .col-2:nth-child(1)
                     margin-right: 0
@@ -1497,7 +1550,7 @@
                         margin-top: 10px
 
                     button
-                        min-width: auto
+                        min-width: initial
                         padding: 15px
 
                         svg
