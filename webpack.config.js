@@ -1,19 +1,15 @@
-// Run this in command line from project root: "webpack"
+// Run this in command line from project root: "Webpack"
 
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var components = [
     {
-        entry: [
-            __dirname + "/components/wrapper.react.js"
-        ],
+        entry:      [ __dirname + "/components/wrapper.react.js" ],
         path:       __dirname + "/js",
         filename:   "apps.js"
     },
     {
-        entry: [
-            __dirname + "/components/activity-center.react.js"
-        ],
+        entry:      [ __dirname + "/components/activity-center.react.js" ],
         path:       __dirname + "/js",
         filename:   "activity.js"
     }
@@ -21,16 +17,12 @@ var components = [
 
 var stylesheets = [
     {
-        entry: [
-            __dirname + "/sass/apps.sass"
-        ],
+        entry:      [ __dirname + "/sass/apps.sass" ],
         path:       __dirname + "/css",
         filename:   "apps.css"
     },
     {
-        entry: [
-            __dirname + "/sass/activity.sass"
-        ],
+        entry:      [ __dirname + "/sass/activity.sass" ],
         path:       __dirname + "/css",
         filename:   "activity.css"
     }
