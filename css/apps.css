@@ -767,13 +767,14 @@
     padding: 7.5px;
     cursor: pointer;
     z-index: 1; }
+    #wrapper > section .portlet-content #bibbox-wrapper #overlay-close-body img,
+    #wrapper > section .portlet-content #activity-wrapper #overlay-close-body img {
+      float: left;
+      width: 20px;
+      height: 20px; }
   #wrapper > section .portlet-content #bibbox-wrapper #overlay-close-body:hover,
   #wrapper > section .portlet-content #activity-wrapper #overlay-close-body:hover {
     background: rgba(0, 0, 0, 0.1); }
-  #wrapper > section .portlet-content #bibbox-wrapper #overlay-close-body img,
-  #wrapper > section .portlet-content #activity-wrapper #overlay-close-body img {
-    width: 20px;
-    height: 20px; }
   #wrapper > section .portlet-content #bibbox-wrapper .message-wrapper,
   #wrapper > section .portlet-content #activity-wrapper .message-wrapper {
     float: left;
