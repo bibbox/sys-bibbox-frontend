@@ -43417,7 +43417,7 @@
 	                _react2.default.createElement(_message2.default, { text: this.state.message })
 	            );
 	        } else {
-	            var button = this.state.app.installable && this.state.app.user.role == 'admin' ? _react2.default.createElement(
+	            var button = this.state.app.installable && (this.state.app.user.role === 'vmadmin' || this.state.app.user.role === 'admin') ? _react2.default.createElement(
 	                'button',
 	                {
 	                    id: 'overlay-install',
