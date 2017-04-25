@@ -69868,8 +69868,6 @@
 	                window.location = "/instances";
 	            }
 
-	            console.log(result);
-
 	            this.setState({
 	                name: result.instancename,
 	                shortname: result.instanceshortname,
@@ -70267,17 +70265,21 @@
 	                    'table',
 	                    null,
 	                    _react2.default.createElement(
-	                        'tr',
+	                        'tbody',
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
-	                            { className: 'label-short' },
-	                            'ID:'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            params.param2
+	                            _react2.default.createElement(
+	                                'td',
+	                                { className: 'label-short' },
+	                                'ID:'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                params.param2
+	                            )
 	                        )
 	                    )
 	                ),
@@ -70285,17 +70287,21 @@
 	                    'table',
 	                    null,
 	                    _react2.default.createElement(
-	                        'tr',
+	                        'tbody',
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
-	                            { className: 'label-short' },
-	                            'App:'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            this.state.info.name
+	                            _react2.default.createElement(
+	                                'td',
+	                                { className: 'label-short' },
+	                                'App:'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                this.state.info.name
+	                            )
 	                        )
 	                    )
 	                ),
@@ -70303,17 +70309,21 @@
 	                    'table',
 	                    null,
 	                    _react2.default.createElement(
-	                        'tr',
+	                        'tbody',
 	                        null,
 	                        _react2.default.createElement(
-	                            'td',
-	                            { className: 'label-short' },
-	                            'Version:'
-	                        ),
-	                        _react2.default.createElement(
-	                            'td',
+	                            'tr',
 	                            null,
-	                            this.state.info.version
+	                            _react2.default.createElement(
+	                                'td',
+	                                { className: 'label-short' },
+	                                'Version:'
+	                            ),
+	                            _react2.default.createElement(
+	                                'td',
+	                                null,
+	                                this.state.info.version
+	                            )
 	                        )
 	                    )
 	                )
@@ -70331,95 +70341,99 @@
 	                            'table',
 	                            null,
 	                            _react2.default.createElement(
-	                                'tr',
+	                                'tbody',
 	                                null,
 	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'icon' },
-	                                    _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-left' },
-	                                    'GitHub Repository:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
 	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: "https://github.com/bibbox/" + this.state.applicationname, target: '_blank' },
-	                                        "https://github.com/bibbox/" + this.state.applicationname
+	                                        'td',
+	                                        { className: 'icon' },
+	                                        _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-left' },
+	                                        'GitHub Repository:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: "https://github.com/bibbox/" + this.state.applicationname, target: '_blank' },
+	                                            "https://github.com/bibbox/" + this.state.applicationname
+	                                        )
 	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'icon' },
-	                                    _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
 	                                ),
 	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-left' },
-	                                    'Install Instructions:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
 	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: 'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md', target: '_blank' },
-	                                        'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'
+	                                        'td',
+	                                        { className: 'icon' },
+	                                        _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-left' },
+	                                        'Install Instructions:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: 'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md', target: '_blank' },
+	                                            'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'
+	                                        )
 	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'icon' },
-	                                    _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
 	                                ),
 	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-left' },
-	                                    'Developer Site:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
 	                                    _react2.default.createElement(
-	                                        'a',
-	                                        { href: this.state.info.application_url, target: '_blank' },
-	                                        this.state.info.application_url
+	                                        'td',
+	                                        { className: 'icon' },
+	                                        _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-left' },
+	                                        'Developer Site:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        _react2.default.createElement(
+	                                            'a',
+	                                            { href: this.state.info.application_url, target: '_blank' },
+	                                            this.state.info.application_url
+	                                        )
 	                                    )
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'icon' },
-	                                    _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
 	                                ),
 	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-left' },
-	                                    'Developer Docs:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
-	                                    this.state.info.hasOwnProperty('application_documentation_url') ? _react2.default.createElement(
-	                                        'a',
-	                                        { href: this.state.info['application_documentation_url'], target: '_blank' },
-	                                        this.state.info['application_documentation_url']
-	                                    ) : ''
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'icon' },
+	                                        _react2.default.createElement('img', { src: datastore + "/js/images/ext-url.png" })
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-left' },
+	                                        'Developer Docs:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        this.state.info.hasOwnProperty('application_documentation_url') ? _react2.default.createElement(
+	                                            'a',
+	                                            { href: this.state.info['application_documentation_url'], target: '_blank' },
+	                                            this.state.info['application_documentation_url']
+	                                        ) : ''
+	                                    )
 	                                )
 	                            )
 	                        )
@@ -70435,53 +70449,57 @@
 	                            'table',
 	                            null,
 	                            _react2.default.createElement(
-	                                'tr',
+	                                'tbody',
 	                                null,
 	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-right' },
-	                                    'Containers:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
-	                                    this.state.containers.map(function (container, i) {
-	                                        var output = i < _this6.state.containers.length - 1 ? ', ' : '';
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-right' },
+	                                        'Containers:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        this.state.containers.map(function (container, i) {
+	                                            var output = i < _this6.state.containers.length - 1 ? ', ' : '';
 
-	                                        return _react2.default.createElement(
-	                                            'span',
-	                                            { key: container + '-' + i },
-	                                            container + output
-	                                        );
-	                                    })
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-right' },
-	                                    'Instance:'
+	                                            return _react2.default.createElement(
+	                                                'span',
+	                                                { key: container + '-' + i },
+	                                                container + output
+	                                            );
+	                                        })
+	                                    )
 	                                ),
 	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
-	                                    "/opt/bibbox/application-instance/" + params.param2 + "-" + this.state.applicationname
-	                                )
-	                            ),
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-right' },
-	                                    'Proxy:'
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-right' },
+	                                        'Instance:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        "/opt/bibbox/application-instance/" + params.param2 + "-" + this.state.applicationname
+	                                    )
 	                                ),
 	                                _react2.default.createElement(
-	                                    'td',
+	                                    'tr',
 	                                    null,
-	                                    "/etc/apache2/sites-available/005-" + params.param2
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        { className: 'label-right' },
+	                                        'Proxy:'
+	                                    ),
+	                                    _react2.default.createElement(
+	                                        'td',
+	                                        null,
+	                                        "/etc/apache2/sites-available/005-" + params.param2
+	                                    )
 	                                )
 	                            )
 	                        )

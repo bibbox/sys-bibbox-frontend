@@ -41,8 +41,6 @@ const Dashboard = React.createClass({
             if(result.hasOwnProperty('error')) {
                 window.location = "/instances";
             }
-
-            console.log(result);
             
 			this.setState({
                 name: result.instancename,
@@ -342,22 +340,28 @@ const Dashboard = React.createClass({
 
                 <div id="app-dashboard-info-primary">
                     <table>
-                        <tr>
-                            <td className="label-short">ID:</td>
-                            <td>{params.param2}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td className="label-short">ID:</td>
+                                <td>{params.param2}</td>
+                            </tr>
+                        </tbody>
                     </table>
                     <table>
-                        <tr>
-                            <td className="label-short">App:</td>
-                            <td>{this.state.info.name}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td className="label-short">App:</td>
+                                <td>{this.state.info.name}</td>
+                            </tr>
+                        </tbody>
                     </table>
                     <table>
-                        <tr>
-                            <td className="label-short">Version:</td>
-                            <td>{this.state.info.version}</td>
-                        </tr>
+                        <tbody>
+                            <tr>
+                                <td className="label-short">Version:</td>
+                                <td>{this.state.info.version}</td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
 
@@ -365,32 +369,34 @@ const Dashboard = React.createClass({
                     <div className="col-2">
                         <div className="list-box">
                             <table>
-                                <tr>
-                                    <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
-                                    <td className="label-left">GitHub Repository:</td>
-                                    <td><a href={"https://github.com/bibbox/" + this.state.applicationname} target="_blank">{"https://github.com/bibbox/" + this.state.applicationname}</a></td>
-                                </tr>
-                                <tr>
-                                    <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
-                                    <td className="label-left">Install Instructions:</td>
-                                    <td><a href={'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'} target="_blank">{'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'}</a></td>
-                                </tr>
-                                <tr>
-                                    <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
-                                    <td className="label-left">Developer Site:</td>
-                                    <td><a href={this.state.info.application_url} target="_blank">{this.state.info.application_url}</a></td>
-                                </tr>
-                                <tr>
-                                    <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
-                                    <td className="label-left">Developer Docs:</td>
-                                    <td>
-                                        {
-                                            (this.state.info.hasOwnProperty('application_documentation_url'))
-                                                ? <a href={this.state.info['application_documentation_url']} target="_blank">{this.state.info['application_documentation_url']}</a>
-                                                : ''
-                                        }
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
+                                        <td className="label-left">GitHub Repository:</td>
+                                        <td><a href={"https://github.com/bibbox/" + this.state.applicationname} target="_blank">{"https://github.com/bibbox/" + this.state.applicationname}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
+                                        <td className="label-left">Install Instructions:</td>
+                                        <td><a href={'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'} target="_blank">{'https://github.com/bibbox/' + this.state.applicationname + '/blob/' + version + '/INSTALL-APP.md'}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
+                                        <td className="label-left">Developer Site:</td>
+                                        <td><a href={this.state.info.application_url} target="_blank">{this.state.info.application_url}</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
+                                        <td className="label-left">Developer Docs:</td>
+                                        <td>
+                                            {
+                                                (this.state.info.hasOwnProperty('application_documentation_url'))
+                                                    ? <a href={this.state.info['application_documentation_url']} target="_blank">{this.state.info['application_documentation_url']}</a>
+                                                    : ''
+                                            }
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>                
                     </div>
@@ -398,28 +404,30 @@ const Dashboard = React.createClass({
                     <div className="col-2">
                         <div className="list-box">
                             <table>
-                                <tr>
-                                    <td className="label-right">Containers:</td>
-                                    <td>
-                                        {
-                                            this.state.containers.map((container, i) => {
-                                                const output = (i < this.state.containers.length - 1) ? ', ' : '';
+                                <tbody>
+                                    <tr>
+                                        <td className="label-right">Containers:</td>
+                                        <td>
+                                            {
+                                                this.state.containers.map((container, i) => {
+                                                    const output = (i < this.state.containers.length - 1) ? ', ' : '';
 
-                                                return (
-                                                    <span key={container + '-' + i}>{container + output}</span>
-                                                );
-                                            })
-                                        }
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td className="label-right">Instance:</td>
-                                    <td>{"/opt/bibbox/application-instance/" + params.param2 + "-" + this.state.applicationname}</td>
-                                </tr>
-                                <tr>
-                                    <td className="label-right">Proxy:</td>
-                                    <td>{"/etc/apache2/sites-available/005-" + params.param2}</td>
-                                </tr>
+                                                    return (
+                                                        <span key={container + '-' + i}>{container + output}</span>
+                                                    );
+                                                })
+                                            }
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td className="label-right">Instance:</td>
+                                        <td>{"/opt/bibbox/application-instance/" + params.param2 + "-" + this.state.applicationname}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="label-right">Proxy:</td>
+                                        <td>{"/etc/apache2/sites-available/005-" + params.param2}</td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>           
                     </div>
