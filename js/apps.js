@@ -69854,7 +69854,8 @@
 	            log: '',
 	            user: {},
 	            locked: false,
-	            info: {}
+	            info: {},
+	            containers: []
 	        };
 	    },
 	    componentDidMount: function componentDidMount() {
@@ -69883,7 +69884,9 @@
 	                url: result.url,
 	                user: result.user,
 	                locked: result.locked,
-	                info: result.application
+	                info: result.application,
+	                override: '',
+	                containers: result.containers
 	            });
 
 	            (0, _jquery2.default)('#loader').stop().fadeOut(300);
@@ -70219,7 +70222,7 @@
 	                _react2.default.createElement(
 	                    'span',
 	                    { className: 'app-dashboard-title', onClick: function onClick() {
-	                            var win = window.open(_this6.state.url, '_blank');win.focus();
+	                            var win = window.open(_this6.state.override !== '' ? _this6.state.override : _this6.state.url, '_blank');win.focus();
 	                        } },
 	                    _react2.default.createElement('img', { src: datastore + '/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png' }),
 	                    _react2.default.createElement(
@@ -70254,6 +70257,64 @@
 	                        'a',
 	                        { href: '/instance/id/' + params.param2 + '/log' },
 	                        'Logs'
+	                    )
+	                )
+	            ),
+	            _react2.default.createElement(
+	                'div',
+	                { id: 'app-dashboard-info-primary' },
+	                _react2.default.createElement(
+	                    'table',
+	                    null,
+	                    _react2.default.createElement(
+	                        'tr',
+	                        null,
+	                        _react2.default.createElement(
+	                            'td',
+	                            { className: 'label-short' },
+	                            'ID:'
+	                        ),
+	                        _react2.default.createElement(
+	                            'td',
+	                            null,
+	                            params.param2
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    null,
+	                    _react2.default.createElement(
+	                        'tr',
+	                        null,
+	                        _react2.default.createElement(
+	                            'td',
+	                            { className: 'label-short' },
+	                            'App:'
+	                        ),
+	                        _react2.default.createElement(
+	                            'td',
+	                            null,
+	                            this.state.info.name
+	                        )
+	                    )
+	                ),
+	                _react2.default.createElement(
+	                    'table',
+	                    null,
+	                    _react2.default.createElement(
+	                        'tr',
+	                        null,
+	                        _react2.default.createElement(
+	                            'td',
+	                            { className: 'label-short' },
+	                            'Version:'
+	                        ),
+	                        _react2.default.createElement(
+	                            'td',
+	                            null,
+	                            this.state.info.version
+	                        )
 	                    )
 	                )
 	            ),
@@ -70354,11 +70415,11 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    _react2.default.createElement(
+	                                    this.state.info.hasOwnProperty('application_documentation_url') ? _react2.default.createElement(
 	                                        'a',
-	                                        { href: this.state.info.application_url + "/docs", target: '_blank' },
-	                                        this.state.info.application_url + "/docs"
-	                                    )
+	                                        { href: this.state.info['application_documentation_url'], target: '_blank' },
+	                                        this.state.info['application_documentation_url']
+	                                    ) : ''
 	                                )
 	                            )
 	                        )
@@ -70367,64 +70428,6 @@
 	                _react2.default.createElement(
 	                    'div',
 	                    { className: 'col-2' },
-	                    _react2.default.createElement(
-	                        'div',
-	                        { id: 'app-dashboard-info-primary' },
-	                        _react2.default.createElement(
-	                            'table',
-	                            null,
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-short' },
-	                                    'ID:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    params.param2
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'table',
-	                            null,
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-short' },
-	                                    'App:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    this.state.info.name
-	                                )
-	                            )
-	                        ),
-	                        _react2.default.createElement(
-	                            'table',
-	                            null,
-	                            _react2.default.createElement(
-	                                'tr',
-	                                null,
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    { className: 'label-short' },
-	                                    'Version:'
-	                                ),
-	                                _react2.default.createElement(
-	                                    'td',
-	                                    null,
-	                                    this.state.info.version
-	                                )
-	                            )
-	                        )
-	                    ),
 	                    _react2.default.createElement(
 	                        'div',
 	                        { className: 'list-box' },
@@ -70442,7 +70445,15 @@
 	                                _react2.default.createElement(
 	                                    'td',
 	                                    null,
-	                                    'missing containers'
+	                                    this.state.containers.map(function (container, i) {
+	                                        var output = i < _this6.state.containers.length - 1 ? ', ' : '';
+
+	                                        return _react2.default.createElement(
+	                                            'span',
+	                                            { key: container + '-' + i },
+	                                            container + output
+	                                        );
+	                                    })
 	                                )
 	                            ),
 	                            _react2.default.createElement(

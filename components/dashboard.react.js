@@ -28,7 +28,8 @@ const Dashboard = React.createClass({
 		  	log: '',
             user: {},
             locked: false,
-            info: {}
+            info: {},
+            containers: []
 		}
 	},
   
@@ -57,7 +58,9 @@ const Dashboard = React.createClass({
                 url: result.url,
                 user: result.user,
                 locked: result.locked,
-                info: result.application
+                info: result.application,
+                override: '',
+                containers: result.containers
 			});
 		  
 			jQuery('#loader').stop().fadeOut(300);
@@ -317,7 +320,7 @@ const Dashboard = React.createClass({
 		return (
 			<div id="app-dashboard">
                 <div className="app-dashboard-header">
-                    <span className="app-dashboard-title" onClick={() => { const win = window.open(this.state.url, '_blank'); win.focus(); }}>
+                    <span className="app-dashboard-title" onClick={() => { const win = window.open((this.state.override !== '') ? this.state.override : this.state.url, '_blank'); win.focus(); }}>
                         <img src={datastore + '/bibbox/' + this.state.applicationname + '/blob/' + this.state.version + '/icon.png'} />
                         <h1>{this.state.shortname}</h1>
                         <h3>{this.state.name}</h3>
@@ -336,7 +339,28 @@ const Dashboard = React.createClass({
                         </a>
                     </span>
                 </div>
-                                    
+
+                <div id="app-dashboard-info-primary">
+                    <table>
+                        <tr>
+                            <td className="label-short">ID:</td>
+                            <td>{params.param2}</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td className="label-short">App:</td>
+                            <td>{this.state.info.name}</td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <td className="label-short">Version:</td>
+                            <td>{this.state.info.version}</td>
+                        </tr>
+                    </table>
+                </div>
+
                 <div id="app-dashboard-info" className="row">
                     <div className="col-2">
                         <div className="list-box">
@@ -359,39 +383,34 @@ const Dashboard = React.createClass({
                                 <tr>
                                     <td className="icon"><img src={datastore + "/js/images/ext-url.png"} /></td>
                                     <td className="label-left">Developer Docs:</td>
-                                    <td><a href={this.state.info.application_url + "/docs"} target="_blank">{this.state.info.application_url + "/docs"}</a></td>
+                                    <td>
+                                        {
+                                            (this.state.info.hasOwnProperty('application_documentation_url'))
+                                                ? <a href={this.state.info['application_documentation_url']} target="_blank">{this.state.info['application_documentation_url']}</a>
+                                                : ''
+                                        }
+                                    </td>
                                 </tr>
                             </table>
                         </div>                
                     </div>
                     
                     <div className="col-2">
-                        <div id="app-dashboard-info-primary">
-                            <table>
-                                <tr>
-                                    <td className="label-short">ID:</td>
-                                    <td>{params.param2}</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td className="label-short">App:</td>
-                                    <td>{this.state.info.name}</td>
-                                </tr>
-                            </table>
-                            <table>
-                                <tr>
-                                    <td className="label-short">Version:</td>
-                                    <td>{this.state.info.version}</td>
-                                </tr>
-                            </table>
-                        </div>
-                        
                         <div className="list-box">
                             <table>
                                 <tr>
                                     <td className="label-right">Containers:</td>
-                                    <td>missing containers</td>
+                                    <td>
+                                        {
+                                            this.state.containers.map((container, i) => {
+                                                const output = (i < this.state.containers.length - 1) ? ', ' : '';
+
+                                                return (
+                                                    <span key={container + '-' + i}>{container + output}</span>
+                                                );
+                                            })
+                                        }
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td className="label-right">Instance:</td>
@@ -423,6 +442,13 @@ const Dashboard = React.createClass({
                 </div>
                 <br />
                 <br />
+                {/*
+                    <label>URL Override (leave empty for default)</label>
+                    <br />
+                    <input type="text" value="" onChange={this.fieldChange.bind(this, 'override', null)} />
+                    <br />
+                    <br />
+                */}
                 <label>Maintenance description</label><br />
                 {
                     (this.state.maintenance_description !== null)
