@@ -1,0 +1,39 @@
+
+
+1.  API call from GUI at "/instance/metadata/get" with instance ID "oc".
+
+2.  Read general system information and app instance information from local database and config files.
+
+3.  Get contents of global "schema.json", "ui_schema.json" and "form_data.json" from "/opt/bibbox/metadata/global" and
+    "schema.json", "ui_schema.json" and "form_data.json" from "/opt/bibbox/metadata/app-owncloud" directories.
+
+4.  You should create an object with some config variables, like:
+
+    {
+        "forms": {
+            "general": {
+                "schema.json": "SOME_LONG_JSON_STRING",
+                "ui_schema.json": "SOME_LONG_JSON_STRING",
+                "form_data.json": "SOME_LONG_JSON_STRING"
+            },
+            "specific": {
+                "schema.json": "SOME_LONG_JSON_STRING",
+                "ui_schema.json": "SOME_LONG_JSON_STRING",
+                "form_data.json": "SOME_LONG_JSON_STRING"
+            }
+        },
+        "machine_id":   "demo.bibbox.org",
+        "instance_id":  "oc.demo.bibbox.org",
+        "app_id":       "app-owncloud",
+        "app_name":     "ownCloud",
+        "version":      "v10.0",
+        "url":          "https://oc.demo.bibbox.org",
+        "created":      "1418737629",
+        "long_name":    "My ownCloud app long name",
+        "short_name":   "My ownCloud"
+    }
+
+6.  String replace all instances of "§§MACHINE_ID", "§§INSTANCE_ID", "§§APP_ID", "§§APP_NAME", "§§VERSION", "§§URL",
+    "§§CREATED" and "§§LAST_UPDATE" in the "SOME_LONG_JSON_STRING" values.
+
+7.  Return the object to GUI.

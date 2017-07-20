@@ -1,5 +1,6 @@
 import React        from 'react';
 import Info        	from './info.react';
+import Metadata     from './metadata.react';
 import Dashboard    from './dashboard.react';
 import Log    		from './log.react';
 import Maintenance  from './maintenance.react';
@@ -12,7 +13,7 @@ const Instance = React.createClass({
 	getComponent(param) {
 		switch(param) {
 			case 'info':
-				return Info;
+				return Metadata;
 			case 'dashboard':
 				return Dashboard;
 			case 'log':

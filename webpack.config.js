@@ -1,5 +1,6 @@
 // Run this in command line from project root: "Webpack"
 
+var webpack = require('webpack');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var components = [
@@ -17,7 +18,10 @@ var components = [
 
 var stylesheets = [
     {
-        entry:      [ __dirname + "/sass/apps.sass" ],
+        entry:      [
+            __dirname + "/node_modules/bootstrap/dist/css/bootstrap.css",
+            __dirname + "/sass/apps.sass"
+        ],
         path:       __dirname + "/css",
         filename:   "apps.css"
     },
@@ -25,6 +29,11 @@ var stylesheets = [
         entry:      [ __dirname + "/sass/activity.sass" ],
         path:       __dirname + "/css",
         filename:   "activity.css"
+    },
+    {
+        entry:      [ __dirname + "/sass/metadata.sass" ],
+        path:       __dirname + "/css",
+        filename:   "metadata.css"
     }
 ];
 
@@ -52,7 +61,13 @@ for(var i = 0; i < components.length; i++) {
                     loader: 'json'
                 }
             ]
-        }
+        },
+        plugins: [
+            new webpack.ProvidePlugin({
+                $: "jquery",
+                jQuery: "jquery"
+            })
+        ]
     });
 }
 
@@ -80,7 +95,7 @@ for(var j = 0; j < stylesheets.length; j++) {
                     test: /\.(jpe?g|png|gif|svg)$/i,
                     loaders: [
                         'file?hash=sha512&digest=hex&name=[hash].[ext]',
-                        'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+                        'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
                     ]
                 }
             ]

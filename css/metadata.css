@@ -1,0 +1,115 @@
+#wrapper > section .portlet-content #bibbox-wrapper,
+#wrapper > section .portlet-content #activity-wrapper {
+  /* TAB NAV */ }
+  #wrapper > section .portlet-content #bibbox-wrapper #loader,
+  #wrapper > section .portlet-content #activity-wrapper #loader {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 200px;
+    left: 50%;
+    margin: 0 0 0 -25px; }
+  #wrapper > section .portlet-content #bibbox-wrapper #tab-nav,
+  #wrapper > section .portlet-content #activity-wrapper #tab-nav {
+    display: flex;
+    flex-flow: row nowrap;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 3px;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3);
+    margin-bottom: 70px; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .active,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .active {
+      background: rgba(45, 97, 145, 0.5); }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .active a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .active a {
+        color: white; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item:hover,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item:hover {
+      background: rgba(45, 97, 145, 0.75); }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item:hover a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item:hover a {
+        color: white; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item:nth-child(2),
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item:nth-child(2) {
+      border-left: solid 1px lightgray;
+      border-right: solid 1px lightgray; }
+    #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item,
+    #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item {
+      width: 50%;
+      display: inline-block; }
+      #wrapper > section .portlet-content #bibbox-wrapper #tab-nav .tab-nav-item a,
+      #wrapper > section .portlet-content #activity-wrapper #tab-nav .tab-nav-item a {
+        display: inline-block;
+        width: 100%;
+        height: 40px;
+        line-height: 40px;
+        font-size: 18px;
+        text-align: center; }
+  #wrapper > section .portlet-content #bibbox-wrapper #app-metadata h1,
+  #wrapper > section .portlet-content #activity-wrapper #app-metadata h1 {
+    margin-bottom: 15px; }
+  #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .app-metadata-header,
+  #wrapper > section .portlet-content #activity-wrapper #app-metadata .app-metadata-header {
+    float: left;
+    width: 100%;
+    margin-bottom: 20px; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .app-metadata-header .app-metadata-title,
+    #wrapper > section .portlet-content #activity-wrapper #app-metadata .app-metadata-header .app-metadata-title {
+      float: left;
+      cursor: pointer;
+      padding-left: 80px;
+      position: relative;
+      margin-bottom: 20px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .app-metadata-header .app-metadata-title img,
+      #wrapper > section .portlet-content #activity-wrapper #app-metadata .app-metadata-header .app-metadata-title img {
+        position: absolute;
+        height: 50px !important;
+        top: 50%;
+        left: 0;
+        margin-top: -25px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .app-metadata-header .app-metadata-title h1,
+      #wrapper > section .portlet-content #activity-wrapper #app-metadata .app-metadata-header .app-metadata-title h1 {
+        color: #2d6191;
+        padding: 0;
+        float: left;
+        margin-bottom: 10px;
+        font-size: 25px; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .app-metadata-header .app-metadata-title h3,
+      #wrapper > section .portlet-content #activity-wrapper #app-metadata .app-metadata-header .app-metadata-title h3 {
+        float: left;
+        clear: left; }
+  #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item,
+  #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item {
+    display: inline-block;
+    width: 100%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    overflow: hidden; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-head,
+    #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-head {
+      display: inline-block;
+      width: 100%;
+      height: 40px;
+      background: #DCDCDC;
+      cursor: pointer;
+      line-height: 40px;
+      padding: 0 20px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #333; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-head:hover,
+    #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-head:hover {
+      background: #CCCCCC; }
+    #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body,
+    #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-body {
+      display: none;
+      padding: 20px;
+      background: white; }
+      #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body .btn-info,
+      #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-body .btn-info {
+        background-color: #2d6191;
+        border-color: #2d6191; }
+  #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item.active .accordion-body,
+  #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item.active .accordion-body {
+    display: block; }

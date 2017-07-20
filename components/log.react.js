@@ -121,6 +121,11 @@ const Log = React.createClass({
                             Logs
                         </a>
                     </span>
+                    <span className="tab-nav-item">
+                        <a href={'/instance/id/' + params.param2 + '/info'}>
+                            Metadata
+                        </a>
+                    </span>
                 </div>
                 {
                     this.state.logs.map((log) => {

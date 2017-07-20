@@ -1,0 +1,121 @@
+
+#wrapper > section .portlet-content #bibbox-wrapper,
+#wrapper > section .portlet-content #activity-wrapper
+
+  #loader
+    width: 60px
+    height: 60px
+    position: absolute
+    top: 200px
+    left: 50%
+    margin: 0 0 0 -25px
+
+
+  /* TAB NAV */
+
+  #tab-nav
+      display: flex
+      flex-flow: row nowrap
+      width: 100%
+      background: rgba(255, 255, 255, 0.5)
+      border-radius: 3px
+      box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.3)
+      margin-bottom: 70px
+
+      .active
+          background: rgba(45, 97, 145, 0.5)
+
+          a
+              color: white
+
+      .tab-nav-item:hover
+          background: rgba(45, 97, 145, 0.75)
+
+          a
+              color: white
+
+      .tab-nav-item:nth-child(2)
+        border-left: solid 1px lightgray
+        border-right: solid 1px lightgray
+
+      .tab-nav-item
+          width: 50%
+          display: inline-block
+
+          a
+              display: inline-block
+              width: 100%
+              height: 40px
+              line-height: 40px
+              font-size: 18px
+              text-align: center
+
+
+  #app-metadata
+    h1
+      margin-bottom: 15px
+
+    .app-metadata-header
+      float: left
+      width: 100%
+      margin-bottom: 20px
+
+      .app-metadata-title
+        float: left
+        cursor: pointer
+        padding-left: 80px
+        position: relative
+        margin-bottom: 20px
+
+        img
+          position: absolute
+          height: 50px !important
+          top: 50%
+          left: 0
+          margin-top: -25px
+
+        h1
+          color: #2d6191
+          padding: 0
+          float: left
+          margin-bottom: 10px
+          font-size: 25px
+
+        h3
+          float: left
+          clear: left
+
+    .accordion-item
+      display: inline-block
+      width: 100%
+      border-radius: 5px
+      margin-bottom: 10px
+      overflow: hidden
+
+      .accordion-head
+        display: inline-block
+        width: 100%
+        height: 40px
+        background: #DCDCDC
+        cursor: pointer
+        line-height: 40px
+        padding: 0 20px
+        font-weight: bold
+        font-size: 18px
+        color: #333
+
+      .accordion-head:hover
+        background: #CCCCCC
+
+      .accordion-body
+        display: none
+        padding: 20px
+        background: white
+
+        .btn-info
+          background-color: #2d6191
+          border-color: #2d6191
+
+    .accordion-item.active
+      .accordion-body
+        display: block

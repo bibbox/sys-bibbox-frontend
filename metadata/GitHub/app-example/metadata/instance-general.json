@@ -1,0 +1,137 @@
+{
+  "schema": {
+    "title": "Metadata",
+    "type": "object",
+    "properties": {
+      "visibility": {
+        "type": "string",
+        "title": "Visibility",
+        "enum": [
+          "public",
+          "private"
+        ],
+        "default": "public"
+      },
+      "contact": {
+        "type": "object",
+        "title": "Contact person",
+        "properties": {
+          "foaf:firstName": {
+            "type": "string",
+            "title": "First name"
+          },
+          "foaf:familyName": {
+            "type": "string",
+            "title": "Last name"
+          },
+          "foaf:mbox": {
+            "type": "string",
+            "format": "email",
+            "title": "E-Mail"
+          }
+        }
+      },
+      "common": {
+        "type": "object",
+        "title": "General information",
+        "properties": {
+          "machine_id": {
+            "type": "string"
+          },
+          "instance_id": {
+            "type": "string"
+          },
+          "app_id": {
+            "type": "string"
+          },
+          "app_name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "created": {
+            "type": "string"
+          },
+          "last_update": {
+            "type": "string"
+          },
+          "data_type": {
+            "type": "string",
+            "title": "Data type",
+            "enum": [
+              "generic",
+              "beta",
+              "gamma"
+            ],
+            "default": "generic"
+          },
+          "data_visibility": {
+            "type": "string",
+            "title": "Data visibility",
+            "enum": [
+              "public",
+              "private",
+              "restricted"
+            ],
+            "default": "private"
+          },
+          "description": {
+            "type": "string",
+            "title": "Description"
+          }
+        }
+      }
+    }
+  },
+  "ui_schema": {
+    "common": {
+      "machine_id": {
+        "ui:widget": "hidden"
+      },
+      "instance_id": {
+        "ui:widget": "hidden"
+      },
+      "app_id": {
+        "ui:widget": "hidden"
+      },
+      "app_name": {
+        "ui:widget": "hidden"
+      },
+      "version": {
+        "ui:widget": "hidden"
+      },
+      "url": {
+        "ui:widget": "hidden"
+      },
+      "created": {
+        "ui:widget": "hidden"
+      },
+      "last_update": {
+        "ui:widget": "hidden"
+      },
+      "description": {
+        "ui:widget": "textarea"
+      }
+    }
+  },
+  "form_data": {
+    "visibility": "public",
+    "contact": {},
+    "common": {
+      "machine_id": "$$MACHINE_ID",
+      "instance_id": "$$INSTANCE_ID",
+      "app_id": "$$APP_ID",
+      "app_name": "$$APP_NAME",
+      "version": "$$VERSION",
+      "url": "$$URL",
+      "created": "$$CREATED",
+      "last_update": "$$LAST_UPDATE",
+      "data_type": "generic",
+      "data_visibility": "private"
+    }
+  }
+}

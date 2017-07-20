@@ -336,6 +336,11 @@ const Dashboard = React.createClass({
                             Logs
                         </a>
                     </span>
+                    <span className="tab-nav-item">
+                        <a href={'/instance/id/' + params.param2 + '/info'}>
+                            Metadata
+                        </a>
+                    </span>
                 </div>
 
                 <div id="app-dashboard-info-primary">

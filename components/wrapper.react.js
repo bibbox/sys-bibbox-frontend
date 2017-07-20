@@ -5,6 +5,7 @@ import Instances        from './instances.react';
 import Instance         from './instance.react';
 import Install          from './install.react';
 import ActivityHistory  from './activity-history.react';
+import Settings         from './settings.react';
 
 
 /**
@@ -20,6 +21,7 @@ var Wrapper = React.createClass({
             case 'instances':   Component = Instances;          break;
             case 'instance':    Component = Instance;           break;
             case 'activities':  Component = ActivityHistory;    break;
+            case 'settings':    Component = Settings;           break;
             default:            Component = Instances;
         }
         
