@@ -5,7 +5,7 @@ import                  'bootstrap/dist/js/bootstrap';
 import Form             from "react-jsonschema-form";
 
 
-export default class Settings extends React.Component {
+export default class Domain extends React.Component {
     constructor(props) {
         super(props);
 
@@ -16,7 +16,7 @@ export default class Settings extends React.Component {
     }
 
     getData() {
-        Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-machine', (result) => {
+        Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-domain', (result) => {
             this.setState(result);
         }, (error) => {
             alert("Could not get settings");
@@ -27,7 +27,7 @@ export default class Settings extends React.Component {
     submitData(formData, type) {
         console.log("Submit data");
 
-        Liferay.Service("/BIBBOXDocker-portlet.update-metadata-info-machine", {
+        Liferay.Service("/BIBBOXDocker-portlet.update-metadata-info-domain", {
             data: JSON.stringify(formData.formData),
             document_type: type
         }, (result) => {
@@ -67,7 +67,7 @@ export default class Settings extends React.Component {
         if(this.state.active !== "") {
             return (
                 <div id="app-metadata">
-                    <h1>Settings</h1>
+                    <h1>Metadata</h1>
 
                     {
                         (this.state.form.hasOwnProperty("general")) ?

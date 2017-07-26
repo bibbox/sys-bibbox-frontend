@@ -85,6 +85,10 @@
 
 	var _settings2 = _interopRequireDefault(_settings);
 
+	var _domain = __webpack_require__(673);
+
+	var _domain2 = _interopRequireDefault(_domain);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	/**
@@ -109,6 +113,8 @@
 	                Component = _activityHistory2.default;break;
 	            case 'settings':
 	                Component = _settings2.default;break;
+	            case 'domain':
+	                Component = _domain2.default;break;
 	            default:
 	                Component = _instances2.default;
 	        }
@@ -69900,8 +69906,7 @@
 	            "url": "",
 	            "created": "",
 	            "long_name": "",
-	            "short_name": "",
-	            "active": ""
+	            "short_name": ""
 	        };
 	        return _this;
 	    }
@@ -69914,8 +69919,6 @@
 	            Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-app', {
 	                instanceId: this.props.params.param2
 	            }, function (result) {
-	                result.active = "general";
-
 	                _this2.setState(result);
 	            }, function (error) {
 	                alert("Could not get metadata");
@@ -70036,56 +70039,58 @@
 	                    ),
 	                    this.state.form.hasOwnProperty("general") ? _react2.default.createElement(
 	                        'div',
-	                        { className: this.state.active === "general" ? 'accordion-item active' : 'accordion-item' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'accordion-head', onClick: function onClick() {
-	                                    return _this3.setState({ "active": "general" });
-	                                } },
-	                            'General'
-	                        ),
+	                        { className: 'accordion-item active' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'accordion-body' },
-	                            _react2.default.createElement(_reactJsonschemaForm2.default, { schema: this.state.form.general["schema.json"],
-	                                uiSchema: this.state.form.general["ui_schema.json"],
-	                                formData: this.state.form.general["form_data.json"],
-	                                onChange: function onChange(data) {
-	                                    return _this3.onChange(data, "general");
-	                                },
-	                                onSubmit: function onSubmit(data) {
-	                                    return _this3.submitData(data, "general");
-	                                },
-	                                onError: function onError() {
-	                                    return _this3.log("errors");
-	                                } })
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.general["schema.json"],
+	                                    uiSchema: this.state.form.general["ui_schema.json"],
+	                                    formData: this.state.form.general["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "general");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "general");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
 	                        )
 	                    ) : null,
 	                    this.state.form.hasOwnProperty("specific") ? _react2.default.createElement(
 	                        'div',
-	                        { className: this.state.active === "specific" ? 'accordion-item active' : 'accordion-item' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'accordion-head', onClick: function onClick() {
-	                                    return _this3.setState({ "active": "specific" });
-	                                } },
-	                            'Specific'
-	                        ),
+	                        { className: 'accordion-item' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'accordion-body' },
-	                            _react2.default.createElement(_reactJsonschemaForm2.default, { schema: this.state.form.specific["schema.json"],
-	                                uiSchema: this.state.form.specific["ui_schema.json"],
-	                                formData: this.state.form.specific["form_data.json"],
-	                                onChange: function onChange(data) {
-	                                    return _this3.onChange(data, "specific");
-	                                },
-	                                onSubmit: function onSubmit(data) {
-	                                    return _this3.submitData(data, "specific");
-	                                },
-	                                onError: function onError() {
-	                                    return _this3.log("errors");
-	                                } })
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.specific["schema.json"],
+	                                    uiSchema: this.state.form.specific["ui_schema.json"],
+	                                    formData: this.state.form.specific["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "specific");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "specific");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
 	                        )
 	                    ) : null
 	                );
@@ -85571,8 +85576,7 @@
 
 	        _this.state = {
 	            "form": {},
-	            "machine_id": "",
-	            "active": ""
+	            "machine_id": ""
 	        };
 	        return _this;
 	    }
@@ -85583,8 +85587,6 @@
 	            var _this2 = this;
 
 	            Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-machine', function (result) {
-	                result.active = "general";
-
 	                _this2.setState(result);
 	            }, function (error) {
 	                alert("Could not get settings");
@@ -85650,56 +85652,58 @@
 	                    ),
 	                    this.state.form.hasOwnProperty("general") ? _react2.default.createElement(
 	                        'div',
-	                        { className: this.state.active === "general" ? 'accordion-item active' : 'accordion-item' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'accordion-head', onClick: function onClick() {
-	                                    return _this3.setState({ "active": "general" });
-	                                } },
-	                            'General'
-	                        ),
+	                        { className: 'accordion-item active' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'accordion-body' },
-	                            _react2.default.createElement(_reactJsonschemaForm2.default, { schema: this.state.form.general["schema.json"],
-	                                uiSchema: this.state.form.general["ui_schema.json"],
-	                                formData: this.state.form.general["form_data.json"],
-	                                onChange: function onChange(data) {
-	                                    return _this3.onChange(data, "general");
-	                                },
-	                                onSubmit: function onSubmit(data) {
-	                                    return _this3.submitData(data, "general");
-	                                },
-	                                onError: function onError() {
-	                                    return _this3.log("errors");
-	                                } })
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.general["schema.json"],
+	                                    uiSchema: this.state.form.general["ui_schema.json"],
+	                                    formData: this.state.form.general["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "general");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "general");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
 	                        )
 	                    ) : null,
 	                    this.state.form.hasOwnProperty("specific") ? _react2.default.createElement(
 	                        'div',
-	                        { className: this.state.active === "specific" ? 'accordion-item active' : 'accordion-item' },
-	                        _react2.default.createElement(
-	                            'div',
-	                            { className: 'accordion-head', onClick: function onClick() {
-	                                    return _this3.setState({ "active": "specific" });
-	                                } },
-	                            'Specific'
-	                        ),
+	                        { className: 'accordion-item active' },
 	                        _react2.default.createElement(
 	                            'div',
 	                            { className: 'accordion-body' },
-	                            _react2.default.createElement(_reactJsonschemaForm2.default, { schema: this.state.form.specific["schema.json"],
-	                                uiSchema: this.state.form.specific["ui_schema.json"],
-	                                formData: this.state.form.specific["form_data.json"],
-	                                onChange: function onChange(data) {
-	                                    return _this3.onChange(data, "specific");
-	                                },
-	                                onSubmit: function onSubmit(data) {
-	                                    return _this3.submitData(data, "specific");
-	                                },
-	                                onError: function onError() {
-	                                    return _this3.log("errors");
-	                                } })
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.specific["schema.json"],
+	                                    uiSchema: this.state.form.specific["ui_schema.json"],
+	                                    formData: this.state.form.specific["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "specific");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "specific");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
 	                        )
 	                    ) : null
 	                );
@@ -85713,6 +85717,195 @@
 	}(_react2.default.Component);
 
 	exports.default = Settings;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(174)))
+
+/***/ },
+/* 673 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(jQuery) {'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	    value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(35);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	__webpack_require__(174);
+
+	__webpack_require__(566);
+
+	var _reactJsonschemaForm = __webpack_require__(567);
+
+	var _reactJsonschemaForm2 = _interopRequireDefault(_reactJsonschemaForm);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Domain = function (_React$Component) {
+	    _inherits(Domain, _React$Component);
+
+	    function Domain(props) {
+	        _classCallCheck(this, Domain);
+
+	        var _this = _possibleConstructorReturn(this, (Domain.__proto__ || Object.getPrototypeOf(Domain)).call(this, props));
+
+	        _this.state = {
+	            "form": {},
+	            "machine_id": ""
+	        };
+	        return _this;
+	    }
+
+	    _createClass(Domain, [{
+	        key: 'getData',
+	        value: function getData() {
+	            var _this2 = this;
+
+	            Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-domain', function (result) {
+	                _this2.setState(result);
+	            }, function (error) {
+	                alert("Could not get settings");
+	                console.log(error);
+	            });
+	        }
+	    }, {
+	        key: 'submitData',
+	        value: function submitData(formData, type) {
+	            console.log("Submit data");
+
+	            Liferay.Service("/BIBBOXDocker-portlet.update-metadata-info-domain", {
+	                data: JSON.stringify(formData.formData),
+	                document_type: type
+	            }, function (result) {
+	                console.log(result);
+
+	                alert("Saved!");
+	            }, function (error) {
+	                alert("Could not save settings");
+	                console.log(error);
+	            });
+	        }
+	    }, {
+	        key: 'componentDidMount',
+	        value: function componentDidMount() {
+	            jQuery('#portlet_bibboxjscontainer_WAR_BIBBOXDockerportlet .portlet-body > link').attr('href', datastore + '/js/css/metadata.css');
+
+	            console.log("Initialize form");
+	            this.getData();
+
+	            jQuery('#loader').stop().fadeOut(300);
+	            jQuery(_reactDom2.default.findDOMNode(this)).fadeIn(500);
+	        }
+	    }, {
+	        key: 'onChange',
+	        value: function onChange(data, type) {
+	            var form = this.state.form;
+	            form[type]["form_data.json"] = data.formData;
+
+	            this.setState({
+	                form: form
+	            });
+	        }
+	    }, {
+	        key: 'log',
+	        value: function log(type) {
+	            console.log(console, type);
+	        }
+	    }, {
+	        key: 'render',
+	        value: function render() {
+	            var _this3 = this;
+
+	            if (this.state.active !== "") {
+	                return _react2.default.createElement(
+	                    'div',
+	                    { id: 'app-metadata' },
+	                    _react2.default.createElement(
+	                        'h1',
+	                        null,
+	                        'Metadata'
+	                    ),
+	                    this.state.form.hasOwnProperty("general") ? _react2.default.createElement(
+	                        'div',
+	                        { className: 'accordion-item active' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'accordion-body' },
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.general["schema.json"],
+	                                    uiSchema: this.state.form.general["ui_schema.json"],
+	                                    formData: this.state.form.general["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "general");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "general");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
+	                        )
+	                    ) : null,
+	                    this.state.form.hasOwnProperty("specific") ? _react2.default.createElement(
+	                        'div',
+	                        { className: 'accordion-item active' },
+	                        _react2.default.createElement(
+	                            'div',
+	                            { className: 'accordion-body' },
+	                            _react2.default.createElement(
+	                                _reactJsonschemaForm2.default,
+	                                { schema: this.state.form.specific["schema.json"],
+	                                    uiSchema: this.state.form.specific["ui_schema.json"],
+	                                    formData: this.state.form.specific["form_data.json"],
+	                                    onChange: function onChange(data) {
+	                                        return _this3.onChange(data, "specific");
+	                                    },
+	                                    onSubmit: function onSubmit(data) {
+	                                        return _this3.submitData(data, "specific");
+	                                    },
+	                                    onError: function onError() {
+	                                        return _this3.log("errors");
+	                                    } },
+	                                _react2.default.createElement(
+	                                    'button',
+	                                    { className: 'btn btn-info', type: 'submit' },
+	                                    'Save'
+	                                )
+	                            )
+	                        )
+	                    ) : null
+	                );
+	            } else {
+	                return null;
+	            }
+	        }
+	    }]);
+
+	    return Domain;
+	}(_react2.default.Component);
+
+	exports.default = Domain;
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(174)))
 
 /***/ }

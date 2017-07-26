@@ -6,6 +6,7 @@ import Instance         from './instance.react';
 import Install          from './install.react';
 import ActivityHistory  from './activity-history.react';
 import Settings         from './settings.react';
+import Domain           from './domain.react';
 
 
 /**
@@ -22,6 +23,7 @@ var Wrapper = React.createClass({
             case 'instance':    Component = Instance;           break;
             case 'activities':  Component = ActivityHistory;    break;
             case 'settings':    Component = Settings;           break;
+            case 'domain':      Component = Domain;             break;
             default:            Component = Instances;
         }
         

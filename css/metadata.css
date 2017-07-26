@@ -103,7 +103,6 @@
       background: #CCCCCC; }
     #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body,
     #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-body {
-      display: none;
       padding: 20px;
       background: white; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body .btn-info,

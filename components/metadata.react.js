@@ -20,8 +20,7 @@ export default class Metadata extends React.Component {
             "url":          "",
             "created":      "",
             "long_name":    "",
-            "short_name":   "",
-            "active":       ""
+            "short_name":   ""
         };
     }
 
@@ -29,8 +28,6 @@ export default class Metadata extends React.Component {
         Liferay.Service('/BIBBOXDocker-portlet.get-meta-data-information-app', {
             instanceId: this.props.params.param2
         }, (result) => {
-            result.active = "general";
-
             this.setState(result);
         }, (error) => {
             alert("Could not get metadata");
@@ -116,30 +113,34 @@ export default class Metadata extends React.Component {
 
                     {
                         (this.state.form.hasOwnProperty("general")) ?
-                            <div className={(this.state.active === "general") ? 'accordion-item active' : 'accordion-item'}>
-                                <div className="accordion-head" onClick={() => this.setState({"active": "general"})}>General</div>
+                            <div className="accordion-item active">
+                                {/* <div className="accordion-head" onClick={() => this.setState({"active": "general"})}>General</div> */}
                                 <div className="accordion-body">
                                     <Form schema={this.state.form.general["schema.json"]}
                                           uiSchema={this.state.form.general["ui_schema.json"]}
                                           formData={this.state.form.general["form_data.json"]}
                                           onChange={(data) => this.onChange(data, "general")}
                                           onSubmit={(data) => this.submitData(data, "general")}
-                                          onError={() => this.log("errors")}/>
+                                          onError={() => this.log("errors")}>
+                                        <button className="btn btn-info" type="submit">Save</button>
+                                    </Form>
                                 </div>
                             </div> : null
                     }
 
                     {
                         (this.state.form.hasOwnProperty("specific")) ?
-                            <div className={(this.state.active === "specific") ? 'accordion-item active' : 'accordion-item'}>
-                                <div className="accordion-head" onClick={() => this.setState({"active": "specific"})}>Specific</div>
+                            <div className="accordion-item">
+                                {/* <div className="accordion-head" onClick={() => this.setState({"active": "specific"})}>Specific</div> */}
                                 <div className="accordion-body">
                                     <Form schema={this.state.form.specific["schema.json"]}
                                           uiSchema={this.state.form.specific["ui_schema.json"]}
                                           formData={this.state.form.specific["form_data.json"]}
                                           onChange={(data) => this.onChange(data, "specific")}
                                           onSubmit={(data) => this.submitData(data, "specific")}
-                                          onError={() => this.log("errors")}/>
+                                          onError={() => this.log("errors")}>
+                                        <button className="btn btn-info" type="submit">Save</button>
+                                    </Form>
                                 </div>
                             </div> : null
                     }
