@@ -108,6 +108,7 @@
       #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body legend,
       #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-body legend {
         font-size: 22px;
+        font-weight: bold;
         color: #2d6191; }
       #wrapper > section .portlet-content #bibbox-wrapper #app-metadata .accordion-item .accordion-body fieldset,
       #wrapper > section .portlet-content #activity-wrapper #app-metadata .accordion-item .accordion-body fieldset {
