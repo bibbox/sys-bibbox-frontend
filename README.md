@@ -1,7 +1,7 @@
 # SYS BIBBOX FRONTEND
 ## Instructions
-1. Clone or download repository
-2. Open terminal and navigate to repository directory
+1. Clone or download repository `git clone https://github.com/bibbox/sys-bibbox-frontend.git` it should take some few moment to clone depending on your internet speed
+2. Open terminal and navigate to repository directory `cd sys-bibbox-frontend`
 3. Install dependencies by running `npm install` in terminal
 4. Compile JS components and SASS stylesheets by running `Webpack` in terminal
 
